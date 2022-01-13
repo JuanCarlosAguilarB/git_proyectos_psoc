@@ -1,0 +1,8 @@
+D:\psoc codes\adc16\DelSig_16Channel01\DelSig_16Channel01.cydsn\DelSig_16Channel01.cyprj|5b299d1a-43f2-4e05-87e3-4d6737316fd8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|79cc0907-6a37-48bb-b36d-a2709b3ed039
+C:\Users\celua\OneDrive\Documentos\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|deb59bb6-8a03-430e-8dd6-a46846e86756
+C:\Users\celua\OneDrive\Documentos\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|d7ad1328-793c-401e-9122-7ed7601fd1a4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|20f27413-5ed8-44ba-bea4-b4db1d29da2a
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|b1eced9b-e3d3-4e6a-90d6-9045ebe44db0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f8a220c0-7ca9-4614-a54b-25d8b5845fd4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|670f04e9-280e-4239-8464-719377cec60c

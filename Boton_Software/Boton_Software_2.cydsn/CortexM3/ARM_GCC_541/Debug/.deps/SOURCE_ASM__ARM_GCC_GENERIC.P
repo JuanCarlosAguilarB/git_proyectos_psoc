@@ -1,0 +1,10 @@
+C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/CortexM3/ARM_GCC_541/Debug/CyBootAsmGnu.o : C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/cydevicegnu.inc C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/cyfittergnu.inc 
+
+C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/CyBootAsmGnu.s : 
+
+C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/cydevicegnu.inc : 
+
+C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/cydevicegnu_trm.inc : 
+
+C:/Users/angel/Documents/PSoC\ Creator/Boton_SoftwareBueno/Boton_Software_2.cydsn/Generated_Source/PSoC5/cyfittergnu.inc : 
+

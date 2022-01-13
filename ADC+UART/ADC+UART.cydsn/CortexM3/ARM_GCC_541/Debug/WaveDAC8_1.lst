@@ -1,0 +1,4508 @@
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"WaveDAC8_1.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.WaveDAC8_1_Enable,"ax",%progbits
+  20              		.align	2
+  21              		.global	WaveDAC8_1_Enable
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	WaveDAC8_1_Enable, %function
+  25              	WaveDAC8_1_Enable:
+  26              	.LFB1:
+  27              		.file 1 "Generated_Source\\PSoC5\\WaveDAC8_1.c"
+   1:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/WaveDAC8_1.c **** * File Name: WaveDAC8_1.c
+   3:Generated_Source\PSoC5/WaveDAC8_1.c **** * Version 2.10
+   4:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+   5:Generated_Source\PSoC5/WaveDAC8_1.c **** * Description:
+   6:Generated_Source\PSoC5/WaveDAC8_1.c **** *  This file provides the source code for the 8-bit Waveform DAC 
+   7:Generated_Source\PSoC5/WaveDAC8_1.c **** *  (WaveDAC8) Component.
+   8:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+   9:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+  10:Generated_Source\PSoC5/WaveDAC8_1.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  11:Generated_Source\PSoC5/WaveDAC8_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  12:Generated_Source\PSoC5/WaveDAC8_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  13:Generated_Source\PSoC5/WaveDAC8_1.c **** * the software package with which this file was provided.
+  14:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+  15:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  16:Generated_Source\PSoC5/WaveDAC8_1.c **** #include "WaveDAC8_1.h"
+  17:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  18:Generated_Source\PSoC5/WaveDAC8_1.c **** uint8  WaveDAC8_1_initVar = 0u;
+  19:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  20:Generated_Source\PSoC5/WaveDAC8_1.c **** const uint8 CYCODE WaveDAC8_1_wave1[WaveDAC8_1_WAVE1_LENGTH] = { 241u,241u,241u,241u,241u,241u,241u
+  21:Generated_Source\PSoC5/WaveDAC8_1.c **** const uint8 CYCODE WaveDAC8_1_wave2[WaveDAC8_1_WAVE2_LENGTH] = { 128u,130u,132u,135u,138u,140u,143u
+  22:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  23:Generated_Source\PSoC5/WaveDAC8_1.c **** static uint8  WaveDAC8_1_Wave1Chan;
+  24:Generated_Source\PSoC5/WaveDAC8_1.c **** static uint8  WaveDAC8_1_Wave2Chan;
+  25:Generated_Source\PSoC5/WaveDAC8_1.c **** static uint8  WaveDAC8_1_Wave1TD;
+  26:Generated_Source\PSoC5/WaveDAC8_1.c **** static uint8  WaveDAC8_1_Wave2TD;
+  27:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  28:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  29:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+  30:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_Init
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 2
+
+
+  31:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+  32:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  33:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary:
+  34:Generated_Source\PSoC5/WaveDAC8_1.c **** *  Initializes component with parameters set in the customizer.
+  35:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  36:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+  37:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+  38:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  39:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+  40:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+  41:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  42:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+  43:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_Init(void) 
+  44:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+  45:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_Init();
+  46:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_SetSpeed(WaveDAC8_1_HIGHSPEED);
+  47:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_SetRange(WaveDAC8_1_DAC_RANGE);
+  48:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  49:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if(WaveDAC8_1_DAC_MODE == WaveDAC8_1_CURRENT_MODE)
+  50:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_IDAC8_SetPolarity(WaveDAC8_1_DAC_POL);
+  51:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* WaveDAC8_1_DAC_MODE == WaveDAC8_1_CURRENT_MODE */
+  52:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  53:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if(WaveDAC8_1_OUT_MODE == WaveDAC8_1_BUFFER_MODE)
+  54:Generated_Source\PSoC5/WaveDAC8_1.c **** 	   WaveDAC8_1_BuffAmp_Init();
+  55:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* WaveDAC8_1_OUT_MODE == WaveDAC8_1_BUFFER_MODE */
+  56:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  57:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Get the TD Number for the DMA channel 1 and 2   */
+  58:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave1TD = CyDmaTdAllocate();
+  59:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave2TD = CyDmaTdAllocate();
+  60:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+  61:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Initialize waveform pointers  */
+  62:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave1Setup(WaveDAC8_1_wave1, WaveDAC8_1_WAVE1_LENGTH) ;
+  63:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave2Setup(WaveDAC8_1_wave2, WaveDAC8_1_WAVE2_LENGTH) ;
+  64:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+  65:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Initialize the internal clock if one present  */
+  66:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if defined(WaveDAC8_1_DacClk_PHASE)
+  67:Generated_Source\PSoC5/WaveDAC8_1.c **** 	   WaveDAC8_1_DacClk_SetPhase(WaveDAC8_1_CLK_PHASE_0nS);
+  68:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* defined(WaveDAC8_1_DacClk_PHASE) */
+  69:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+  70:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  71:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  72:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+  73:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_Enable
+  74:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+  75:Generated_Source\PSoC5/WaveDAC8_1.c **** *  
+  76:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary: 
+  77:Generated_Source\PSoC5/WaveDAC8_1.c **** *  Enables the DAC block and DMA operation.
+  78:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  79:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+  80:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+  81:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  82:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+  83:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+  84:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+  85:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+  86:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_Enable(void) 
+  87:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 3
+
+
+  28              		.loc 1 87 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  88:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_Enable();
+  36              		.loc 1 88 0
+  37 0002 FFF7FEFF 		bl	WaveDAC8_1_VDAC8_Enable
+  38              	.LVL0:
+  89:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  90:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if(WaveDAC8_1_OUT_MODE == WaveDAC8_1_BUFFER_MODE)
+  91:Generated_Source\PSoC5/WaveDAC8_1.c **** 	   WaveDAC8_1_BuffAmp_Enable();
+  92:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* WaveDAC8_1_OUT_MODE == WaveDAC8_1_BUFFER_MODE */
+  93:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+  94:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* 
+  95:Generated_Source\PSoC5/WaveDAC8_1.c **** 	* Enable the channel. It is configured to remember the TD value so that
+  96:Generated_Source\PSoC5/WaveDAC8_1.c **** 	* it can be restored from the place where it has been stopped.
+  97:Generated_Source\PSoC5/WaveDAC8_1.c **** 	*/
+  98:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaChEnable(WaveDAC8_1_Wave1Chan, 1u);
+  39              		.loc 1 98 0
+  40 0006 074C     		ldr	r4, .L3
+  41 0008 0121     		movs	r1, #1
+  42 000a 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  43 000c FFF7FEFF 		bl	CyDmaChEnable
+  44              	.LVL1:
+  99:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaChEnable(WaveDAC8_1_Wave2Chan, 1u);
+  45              		.loc 1 99 0
+  46 0010 0121     		movs	r1, #1
+  47 0012 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+  48 0014 FFF7FEFF 		bl	CyDmaChEnable
+  49              	.LVL2:
+ 100:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 101:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* set the initial value */
+ 102:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_SetValue(0u);
+  50              		.loc 1 102 0
+  51 0018 0020     		movs	r0, #0
+  52 001a FFF7FEFF 		bl	WaveDAC8_1_VDAC8_SetValue
+  53              	.LVL3:
+ 103:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 104:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if(WaveDAC8_1_CLOCK_SRC == WaveDAC8_1_CLOCK_INT)  	
+ 105:Generated_Source\PSoC5/WaveDAC8_1.c **** 	   WaveDAC8_1_DacClk_Start();
+  54              		.loc 1 105 0
+  55 001e FFF7FEFF 		bl	WaveDAC8_1_DacClk_Start
+  56              	.LVL4:
+  57 0022 10BD     		pop	{r4, pc}
+  58              	.L4:
+  59              		.align	2
+  60              	.L3:
+  61 0024 00000000 		.word	.LANCHOR0
+  62              		.cfi_endproc
+  63              	.LFE1:
+  64              		.size	WaveDAC8_1_Enable, .-WaveDAC8_1_Enable
+  65              		.section	.text.WaveDAC8_1_Stop,"ax",%progbits
+  66              		.align	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 4
+
+
+  67              		.global	WaveDAC8_1_Stop
+  68              		.thumb
+  69              		.thumb_func
+  70              		.type	WaveDAC8_1_Stop, %function
+  71              	WaveDAC8_1_Stop:
+  72              	.LFB4:
+ 106:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* WaveDAC8_1_CLOCK_SRC == WaveDAC8_1_CLOCK_INT */
+ 107:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 108:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 109:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 110:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+ 111:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_Start
+ 112:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+ 113:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 114:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary:
+ 115:Generated_Source\PSoC5/WaveDAC8_1.c **** *  The start function initializes the voltage DAC with the default values, 
+ 116:Generated_Source\PSoC5/WaveDAC8_1.c **** *  and sets the power to the given level.  A power level of 0, is the same as 
+ 117:Generated_Source\PSoC5/WaveDAC8_1.c **** *  executing the stop function.
+ 118:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 119:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+ 120:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+ 121:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 122:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+ 123:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+ 124:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 125:Generated_Source\PSoC5/WaveDAC8_1.c **** * Reentrant:
+ 126:Generated_Source\PSoC5/WaveDAC8_1.c **** *  No
+ 127:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 128:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_Start(void) 
+ 130:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+ 131:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* If not Initialized then initialize all required hardware and software */
+ 132:Generated_Source\PSoC5/WaveDAC8_1.c **** 	if(WaveDAC8_1_initVar == 0u)
+ 133:Generated_Source\PSoC5/WaveDAC8_1.c **** 	{
+ 134:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Init();
+ 135:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_initVar = 1u;
+ 136:Generated_Source\PSoC5/WaveDAC8_1.c **** 	}
+ 137:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 138:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Enable();
+ 139:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 140:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 141:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 142:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+ 143:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_StartEx
+ 144:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+ 145:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 146:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary:
+ 147:Generated_Source\PSoC5/WaveDAC8_1.c **** *  The StartEx function sets pointers and sizes for both waveforms
+ 148:Generated_Source\PSoC5/WaveDAC8_1.c **** *  and then starts the component.
+ 149:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 150:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+ 151:Generated_Source\PSoC5/WaveDAC8_1.c **** *   uint8 * wavePtr1:     Pointer to the waveform 1 array.
+ 152:Generated_Source\PSoC5/WaveDAC8_1.c **** *   uint16  sampleSize1:  The amount of samples in the waveform 1.
+ 153:Generated_Source\PSoC5/WaveDAC8_1.c **** *   uint8 * wavePtr2:     Pointer to the waveform 2 array.
+ 154:Generated_Source\PSoC5/WaveDAC8_1.c **** *   uint16  sampleSize2:  The amount of samples in the waveform 2.
+ 155:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 156:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 5
+
+
+ 157:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+ 158:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 159:Generated_Source\PSoC5/WaveDAC8_1.c **** * Reentrant:
+ 160:Generated_Source\PSoC5/WaveDAC8_1.c **** *  No
+ 161:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 162:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+ 163:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_StartEx(const uint8 * wavePtr1, uint16 sampleSize1, const uint8 * wavePtr2, uint16 
+ 164:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 165:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+ 166:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave1Setup(wavePtr1, sampleSize1);
+ 167:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave2Setup(wavePtr2, sampleSize2);
+ 168:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Start();
+ 169:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 170:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 171:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 172:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+ 173:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_Stop
+ 174:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+ 175:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 176:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary:
+ 177:Generated_Source\PSoC5/WaveDAC8_1.c **** *  Stops the clock (if internal), disables the DMA channels
+ 178:Generated_Source\PSoC5/WaveDAC8_1.c **** *  and powers down the DAC.
+ 179:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 180:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+ 181:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None  
+ 182:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 183:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+ 184:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+ 185:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 186:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+ 187:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_Stop(void) 
+ 188:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+  73              		.loc 1 188 0
+  74              		.cfi_startproc
+  75              		@ args = 0, pretend = 0, frame = 0
+  76              		@ frame_needed = 0, uses_anonymous_args = 0
+  77 0000 10B5     		push	{r4, lr}
+  78              		.cfi_def_cfa_offset 8
+  79              		.cfi_offset 4, -8
+  80              		.cfi_offset 14, -4
+ 189:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Turn off internal clock, if one present */
+ 190:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if(WaveDAC8_1_CLOCK_SRC == WaveDAC8_1_CLOCK_INT)  	
+ 191:Generated_Source\PSoC5/WaveDAC8_1.c **** 	   WaveDAC8_1_DacClk_Stop();
+  81              		.loc 1 191 0
+  82 0002 FFF7FEFF 		bl	WaveDAC8_1_DacClk_Stop
+  83              	.LVL5:
+ 192:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* WaveDAC8_1_CLOCK_SRC == WaveDAC8_1_CLOCK_INT */
+ 193:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 194:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Disble DMA channels */
+ 195:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaChDisable(WaveDAC8_1_Wave1Chan);
+  84              		.loc 1 195 0
+  85 0006 054C     		ldr	r4, .L7
+  86 0008 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+  87 000a FFF7FEFF 		bl	CyDmaChDisable
+  88              	.LVL6:
+ 196:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaChDisable(WaveDAC8_1_Wave2Chan);
+  89              		.loc 1 196 0
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 6
+
+
+  90 000e 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+  91 0010 FFF7FEFF 		bl	CyDmaChDisable
+  92              	.LVL7:
+ 197:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 198:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Disable power to DAC */
+ 199:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_Stop();
+  93              		.loc 1 199 0
+  94 0014 FFF7FEFF 		bl	WaveDAC8_1_VDAC8_Stop
+  95              	.LVL8:
+  96 0018 10BD     		pop	{r4, pc}
+  97              	.L8:
+  98 001a 00BF     		.align	2
+  99              	.L7:
+ 100 001c 00000000 		.word	.LANCHOR0
+ 101              		.cfi_endproc
+ 102              	.LFE4:
+ 103              		.size	WaveDAC8_1_Stop, .-WaveDAC8_1_Stop
+ 104              		.section	.text.WaveDAC8_1_Wave1Setup,"ax",%progbits
+ 105              		.align	2
+ 106              		.global	WaveDAC8_1_Wave1Setup
+ 107              		.thumb
+ 108              		.thumb_func
+ 109              		.type	WaveDAC8_1_Wave1Setup, %function
+ 110              	WaveDAC8_1_Wave1Setup:
+ 111              	.LFB5:
+ 200:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 201:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 202:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 203:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+ 204:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_Wave1Setup
+ 205:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+ 206:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 207:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary:
+ 208:Generated_Source\PSoC5/WaveDAC8_1.c **** *  Sets pointer and size for waveform 1.                                    
+ 209:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 210:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+ 211:Generated_Source\PSoC5/WaveDAC8_1.c **** *  uint8 * WavePtr:     Pointer to the waveform array.
+ 212:Generated_Source\PSoC5/WaveDAC8_1.c **** *  uint16  SampleSize:  The amount of samples in the waveform.
+ 213:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 214:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+ 215:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None 
+ 216:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 217:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+ 218:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_Wave1Setup(const uint8 * wavePtr, uint16 sampleSize)
+ 219:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 220:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+ 112              		.loc 1 220 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              	.LVL9:
+ 117 0000 70B5     		push	{r4, r5, r6, lr}
+ 118              		.cfi_def_cfa_offset 16
+ 119              		.cfi_offset 4, -16
+ 120              		.cfi_offset 5, -12
+ 121              		.cfi_offset 6, -8
+ 122              		.cfi_offset 14, -4
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 7
+
+
+ 123 0002 0546     		mov	r5, r0
+ 124 0004 0E46     		mov	r6, r1
+ 221:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if (CY_PSOC3)
+ 222:Generated_Source\PSoC5/WaveDAC8_1.c **** 		uint16 memoryType; /* determining the source memory type */
+ 223:Generated_Source\PSoC5/WaveDAC8_1.c **** 		memoryType = (WaveDAC8_1_HI16FLASHPTR == HI16(wavePtr)) ? HI16(CYDEV_FLS_BASE) : HI16(CYDEV_SRAM_
+ 224:Generated_Source\PSoC5/WaveDAC8_1.c **** 		
+ 225:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave1Chan = WaveDAC8_1_Wave1_DMA_DmaInitialize(
+ 226:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave1_DMA_BYTES_PER_BURST, WaveDAC8_1_Wave1_DMA_REQUEST_PER_BURST,
+ 227:Generated_Source\PSoC5/WaveDAC8_1.c **** 		memoryType, HI16(CYDEV_PERIPH_BASE));
+ 228:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#else /* PSoC 5 */
+ 229:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave1Chan = WaveDAC8_1_Wave1_DMA_DmaInitialize(
+ 125              		.loc 1 229 0
+ 126 0006 4FF48043 		mov	r3, #16384
+ 127 000a 020C     		lsrs	r2, r0, #16
+ 128 000c 0121     		movs	r1, #1
+ 129              	.LVL10:
+ 130 000e 0846     		mov	r0, r1
+ 131              	.LVL11:
+ 132 0010 FFF7FEFF 		bl	WaveDAC8_1_Wave1_DMA_DmaInitialize
+ 133              	.LVL12:
+ 134 0014 094C     		ldr	r4, .L11
+ 135 0016 2070     		strb	r0, [r4]
+ 230:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave1_DMA_BYTES_PER_BURST, WaveDAC8_1_Wave1_DMA_REQUEST_PER_BURST,
+ 231:Generated_Source\PSoC5/WaveDAC8_1.c **** 		HI16(wavePtr), HI16(WaveDAC8_1_DAC8__D));
+ 232:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* CY_PSOC3 */
+ 233:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 234:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/*
+ 235:Generated_Source\PSoC5/WaveDAC8_1.c **** 	* TD is looping on itself. 
+ 236:Generated_Source\PSoC5/WaveDAC8_1.c ****     * Increment the source address, but not the destination address. 
+ 237:Generated_Source\PSoC5/WaveDAC8_1.c **** 	*/
+ 238:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaTdSetConfiguration(WaveDAC8_1_Wave1TD, sampleSize, WaveDAC8_1_Wave1TD, 
+ 136              		.loc 1 238 0
+ 137 0018 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 138 001a 0123     		movs	r3, #1
+ 139 001c 0246     		mov	r2, r0
+ 140 001e 3146     		mov	r1, r6
+ 141 0020 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 142              	.LVL13:
+ 239:Generated_Source\PSoC5/WaveDAC8_1.c ****                                     (uint8)CY_DMA_TD_INC_SRC_ADR | (uint8)WaveDAC8_1_Wave1_DMA__TD_
+ 240:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 241:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Set the TD source and destination address */
+ 242:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaTdSetAddress(WaveDAC8_1_Wave1TD, LO16((uint32)wavePtr), LO16(WaveDAC8_1_DAC8__D));
+ 143              		.loc 1 242 0
+ 144 0024 45F68332 		movw	r2, #23427
+ 145 0028 A9B2     		uxth	r1, r5
+ 146 002a A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 147 002c FFF7FEFF 		bl	CyDmaTdSetAddress
+ 148              	.LVL14:
+ 243:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 244:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Associate the TD with the channel */
+ 245:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaChSetInitialTd(WaveDAC8_1_Wave1Chan, WaveDAC8_1_Wave1TD);
+ 149              		.loc 1 245 0
+ 150 0030 A178     		ldrb	r1, [r4, #2]	@ zero_extendqisi2
+ 151 0032 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 152 0034 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 153              	.LVL15:
+ 154 0038 70BD     		pop	{r4, r5, r6, pc}
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 8
+
+
+ 155              	.LVL16:
+ 156              	.L12:
+ 157 003a 00BF     		.align	2
+ 158              	.L11:
+ 159 003c 00000000 		.word	.LANCHOR0
+ 160              		.cfi_endproc
+ 161              	.LFE5:
+ 162              		.size	WaveDAC8_1_Wave1Setup, .-WaveDAC8_1_Wave1Setup
+ 163              		.section	.text.WaveDAC8_1_Wave2Setup,"ax",%progbits
+ 164              		.align	2
+ 165              		.global	WaveDAC8_1_Wave2Setup
+ 166              		.thumb
+ 167              		.thumb_func
+ 168              		.type	WaveDAC8_1_Wave2Setup, %function
+ 169              	WaveDAC8_1_Wave2Setup:
+ 170              	.LFB6:
+ 246:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 247:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 248:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 249:Generated_Source\PSoC5/WaveDAC8_1.c **** /*******************************************************************************
+ 250:Generated_Source\PSoC5/WaveDAC8_1.c **** * Function Name: WaveDAC8_1_Wave2Setup
+ 251:Generated_Source\PSoC5/WaveDAC8_1.c **** ********************************************************************************
+ 252:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 253:Generated_Source\PSoC5/WaveDAC8_1.c **** * Summary:
+ 254:Generated_Source\PSoC5/WaveDAC8_1.c **** *  Sets pointer and size for waveform 2.                                    
+ 255:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 256:Generated_Source\PSoC5/WaveDAC8_1.c **** * Parameters:  
+ 257:Generated_Source\PSoC5/WaveDAC8_1.c **** *  uint8 * WavePtr:     Pointer to the waveform array.
+ 258:Generated_Source\PSoC5/WaveDAC8_1.c **** *  uint16  SampleSize:  The amount of samples in the waveform.
+ 259:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 260:Generated_Source\PSoC5/WaveDAC8_1.c **** * Return: 
+ 261:Generated_Source\PSoC5/WaveDAC8_1.c **** *  None
+ 262:Generated_Source\PSoC5/WaveDAC8_1.c **** *
+ 263:Generated_Source\PSoC5/WaveDAC8_1.c **** *******************************************************************************/
+ 264:Generated_Source\PSoC5/WaveDAC8_1.c **** void WaveDAC8_1_Wave2Setup(const uint8 * wavePtr, uint16 sampleSize)
+ 265:Generated_Source\PSoC5/WaveDAC8_1.c ****  
+ 266:Generated_Source\PSoC5/WaveDAC8_1.c **** {
+ 171              		.loc 1 266 0
+ 172              		.cfi_startproc
+ 173              		@ args = 0, pretend = 0, frame = 0
+ 174              		@ frame_needed = 0, uses_anonymous_args = 0
+ 175              	.LVL17:
+ 176 0000 70B5     		push	{r4, r5, r6, lr}
+ 177              		.cfi_def_cfa_offset 16
+ 178              		.cfi_offset 4, -16
+ 179              		.cfi_offset 5, -12
+ 180              		.cfi_offset 6, -8
+ 181              		.cfi_offset 14, -4
+ 182 0002 0546     		mov	r5, r0
+ 183 0004 0E46     		mov	r6, r1
+ 267:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#if (CY_PSOC3)
+ 268:Generated_Source\PSoC5/WaveDAC8_1.c **** 		uint16 memoryType; /* determining the source memory type */
+ 269:Generated_Source\PSoC5/WaveDAC8_1.c **** 		memoryType = (WaveDAC8_1_HI16FLASHPTR == HI16(wavePtr)) ? HI16(CYDEV_FLS_BASE) : HI16(CYDEV_SRAM_
+ 270:Generated_Source\PSoC5/WaveDAC8_1.c **** 			
+ 271:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave2Chan = WaveDAC8_1_Wave2_DMA_DmaInitialize(
+ 272:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave2_DMA_BYTES_PER_BURST, WaveDAC8_1_Wave2_DMA_REQUEST_PER_BURST,
+ 273:Generated_Source\PSoC5/WaveDAC8_1.c **** 		memoryType, HI16(CYDEV_PERIPH_BASE));
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 9
+
+
+ 274:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#else /* PSoC 5 */
+ 275:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave2Chan = WaveDAC8_1_Wave2_DMA_DmaInitialize(
+ 184              		.loc 1 275 0
+ 185 0006 4FF48043 		mov	r3, #16384
+ 186 000a 020C     		lsrs	r2, r0, #16
+ 187 000c 0121     		movs	r1, #1
+ 188              	.LVL18:
+ 189 000e 0846     		mov	r0, r1
+ 190              	.LVL19:
+ 191 0010 FFF7FEFF 		bl	WaveDAC8_1_Wave2_DMA_DmaInitialize
+ 192              	.LVL20:
+ 193 0014 094C     		ldr	r4, .L15
+ 194 0016 6070     		strb	r0, [r4, #1]
+ 276:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_Wave2_DMA_BYTES_PER_BURST, WaveDAC8_1_Wave2_DMA_REQUEST_PER_BURST,
+ 277:Generated_Source\PSoC5/WaveDAC8_1.c **** 		HI16(wavePtr), HI16(WaveDAC8_1_DAC8__D));
+ 278:Generated_Source\PSoC5/WaveDAC8_1.c **** 	#endif /* CY_PSOC3 */
+ 279:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 280:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/*
+ 281:Generated_Source\PSoC5/WaveDAC8_1.c **** 	* TD is looping on itself. 
+ 282:Generated_Source\PSoC5/WaveDAC8_1.c **** 	* Increment the source address, but not the destination address. 
+ 283:Generated_Source\PSoC5/WaveDAC8_1.c **** 	*/
+ 284:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaTdSetConfiguration(WaveDAC8_1_Wave2TD, sampleSize, WaveDAC8_1_Wave2TD, 
+ 195              		.loc 1 284 0
+ 196 0018 E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
+ 197 001a 0123     		movs	r3, #1
+ 198 001c 0246     		mov	r2, r0
+ 199 001e 3146     		mov	r1, r6
+ 200 0020 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 201              	.LVL21:
+ 285:Generated_Source\PSoC5/WaveDAC8_1.c ****                                     (uint8)CY_DMA_TD_INC_SRC_ADR | (uint8)WaveDAC8_1_Wave2_DMA__TD_
+ 286:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 287:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Set the TD source and destination address */
+ 288:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaTdSetAddress(WaveDAC8_1_Wave2TD, LO16((uint32)wavePtr), LO16(WaveDAC8_1_DAC8__D));
+ 202              		.loc 1 288 0
+ 203 0024 45F68332 		movw	r2, #23427
+ 204 0028 A9B2     		uxth	r1, r5
+ 205 002a E078     		ldrb	r0, [r4, #3]	@ zero_extendqisi2
+ 206 002c FFF7FEFF 		bl	CyDmaTdSetAddress
+ 207              	.LVL22:
+ 289:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 290:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* Associate the TD with the channel */
+ 291:Generated_Source\PSoC5/WaveDAC8_1.c **** 	(void)CyDmaChSetInitialTd(WaveDAC8_1_Wave2Chan, WaveDAC8_1_Wave2TD);
+ 208              		.loc 1 291 0
+ 209 0030 E178     		ldrb	r1, [r4, #3]	@ zero_extendqisi2
+ 210 0032 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 211 0034 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 212              	.LVL23:
+ 213 0038 70BD     		pop	{r4, r5, r6, pc}
+ 214              	.LVL24:
+ 215              	.L16:
+ 216 003a 00BF     		.align	2
+ 217              	.L15:
+ 218 003c 00000000 		.word	.LANCHOR0
+ 219              		.cfi_endproc
+ 220              	.LFE6:
+ 221              		.size	WaveDAC8_1_Wave2Setup, .-WaveDAC8_1_Wave2Setup
+ 222              		.section	.text.WaveDAC8_1_Init,"ax",%progbits
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 10
+
+
+ 223              		.align	2
+ 224              		.global	WaveDAC8_1_Init
+ 225              		.thumb
+ 226              		.thumb_func
+ 227              		.type	WaveDAC8_1_Init, %function
+ 228              	WaveDAC8_1_Init:
+ 229              	.LFB0:
+  44:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_Init();
+ 230              		.loc 1 44 0
+ 231              		.cfi_startproc
+ 232              		@ args = 0, pretend = 0, frame = 0
+ 233              		@ frame_needed = 0, uses_anonymous_args = 0
+ 234 0000 10B5     		push	{r4, lr}
+ 235              		.cfi_def_cfa_offset 8
+ 236              		.cfi_offset 4, -8
+ 237              		.cfi_offset 14, -4
+  45:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_SetSpeed(WaveDAC8_1_HIGHSPEED);
+ 238              		.loc 1 45 0
+ 239 0002 FFF7FEFF 		bl	WaveDAC8_1_VDAC8_Init
+ 240              	.LVL25:
+  46:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_VDAC8_SetRange(WaveDAC8_1_DAC_RANGE);
+ 241              		.loc 1 46 0
+ 242 0006 0220     		movs	r0, #2
+ 243 0008 FFF7FEFF 		bl	WaveDAC8_1_VDAC8_SetSpeed
+ 244              	.LVL26:
+  47:Generated_Source\PSoC5/WaveDAC8_1.c **** 
+ 245              		.loc 1 47 0
+ 246 000c 0420     		movs	r0, #4
+ 247 000e FFF7FEFF 		bl	WaveDAC8_1_VDAC8_SetRange
+ 248              	.LVL27:
+  58:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave2TD = CyDmaTdAllocate();
+ 249              		.loc 1 58 0
+ 250 0012 FFF7FEFF 		bl	CyDmaTdAllocate
+ 251              	.LVL28:
+ 252 0016 084C     		ldr	r4, .L19
+ 253 0018 A070     		strb	r0, [r4, #2]
+  59:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 254              		.loc 1 59 0
+ 255 001a FFF7FEFF 		bl	CyDmaTdAllocate
+ 256              	.LVL29:
+ 257 001e E070     		strb	r0, [r4, #3]
+  62:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave2Setup(WaveDAC8_1_wave2, WaveDAC8_1_WAVE2_LENGTH) ;
+ 258              		.loc 1 62 0
+ 259 0020 064C     		ldr	r4, .L19+4
+ 260 0022 4FF4FA61 		mov	r1, #2000
+ 261 0026 2046     		mov	r0, r4
+ 262 0028 FFF7FEFF 		bl	WaveDAC8_1_Wave1Setup
+ 263              	.LVL30:
+  63:Generated_Source\PSoC5/WaveDAC8_1.c **** 	
+ 264              		.loc 1 63 0
+ 265 002c C821     		movs	r1, #200
+ 266 002e 04F5FA60 		add	r0, r4, #2000
+ 267 0032 FFF7FEFF 		bl	WaveDAC8_1_Wave2Setup
+ 268              	.LVL31:
+ 269 0036 10BD     		pop	{r4, pc}
+ 270              	.L20:
+ 271              		.align	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 11
+
+
+ 272              	.L19:
+ 273 0038 00000000 		.word	.LANCHOR0
+ 274 003c 00000000 		.word	.LANCHOR1
+ 275              		.cfi_endproc
+ 276              	.LFE0:
+ 277              		.size	WaveDAC8_1_Init, .-WaveDAC8_1_Init
+ 278              		.section	.text.WaveDAC8_1_Start,"ax",%progbits
+ 279              		.align	2
+ 280              		.global	WaveDAC8_1_Start
+ 281              		.thumb
+ 282              		.thumb_func
+ 283              		.type	WaveDAC8_1_Start, %function
+ 284              	WaveDAC8_1_Start:
+ 285              	.LFB2:
+ 130:Generated_Source\PSoC5/WaveDAC8_1.c **** 	/* If not Initialized then initialize all required hardware and software */
+ 286              		.loc 1 130 0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290 0000 08B5     		push	{r3, lr}
+ 291              		.cfi_def_cfa_offset 8
+ 292              		.cfi_offset 3, -8
+ 293              		.cfi_offset 14, -4
+ 132:Generated_Source\PSoC5/WaveDAC8_1.c **** 	{
+ 294              		.loc 1 132 0
+ 295 0002 054B     		ldr	r3, .L24
+ 296 0004 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 297 0006 23B9     		cbnz	r3, .L22
+ 134:Generated_Source\PSoC5/WaveDAC8_1.c **** 		WaveDAC8_1_initVar = 1u;
+ 298              		.loc 1 134 0
+ 299 0008 FFF7FEFF 		bl	WaveDAC8_1_Init
+ 300              	.LVL32:
+ 135:Generated_Source\PSoC5/WaveDAC8_1.c **** 	}
+ 301              		.loc 1 135 0
+ 302 000c 0122     		movs	r2, #1
+ 303 000e 024B     		ldr	r3, .L24
+ 304 0010 1A71     		strb	r2, [r3, #4]
+ 305              	.L22:
+ 138:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 306              		.loc 1 138 0
+ 307 0012 FFF7FEFF 		bl	WaveDAC8_1_Enable
+ 308              	.LVL33:
+ 309 0016 08BD     		pop	{r3, pc}
+ 310              	.L25:
+ 311              		.align	2
+ 312              	.L24:
+ 313 0018 00000000 		.word	.LANCHOR0
+ 314              		.cfi_endproc
+ 315              	.LFE2:
+ 316              		.size	WaveDAC8_1_Start, .-WaveDAC8_1_Start
+ 317              		.section	.text.WaveDAC8_1_StartEx,"ax",%progbits
+ 318              		.align	2
+ 319              		.global	WaveDAC8_1_StartEx
+ 320              		.thumb
+ 321              		.thumb_func
+ 322              		.type	WaveDAC8_1_StartEx, %function
+ 323              	WaveDAC8_1_StartEx:
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 12
+
+
+ 324              	.LFB3:
+ 165:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave1Setup(wavePtr1, sampleSize1);
+ 325              		.loc 1 165 0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 0
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329              	.LVL34:
+ 330 0000 38B5     		push	{r3, r4, r5, lr}
+ 331              		.cfi_def_cfa_offset 16
+ 332              		.cfi_offset 3, -16
+ 333              		.cfi_offset 4, -12
+ 334              		.cfi_offset 5, -8
+ 335              		.cfi_offset 14, -4
+ 336 0002 1446     		mov	r4, r2
+ 337 0004 1D46     		mov	r5, r3
+ 166:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Wave2Setup(wavePtr2, sampleSize2);
+ 338              		.loc 1 166 0
+ 339 0006 FFF7FEFF 		bl	WaveDAC8_1_Wave1Setup
+ 340              	.LVL35:
+ 167:Generated_Source\PSoC5/WaveDAC8_1.c **** 	WaveDAC8_1_Start();
+ 341              		.loc 1 167 0
+ 342 000a 2946     		mov	r1, r5
+ 343 000c 2046     		mov	r0, r4
+ 344 000e FFF7FEFF 		bl	WaveDAC8_1_Wave2Setup
+ 345              	.LVL36:
+ 168:Generated_Source\PSoC5/WaveDAC8_1.c **** }
+ 346              		.loc 1 168 0
+ 347 0012 FFF7FEFF 		bl	WaveDAC8_1_Start
+ 348              	.LVL37:
+ 349 0016 38BD     		pop	{r3, r4, r5, pc}
+ 350              		.cfi_endproc
+ 351              	.LFE3:
+ 352              		.size	WaveDAC8_1_StartEx, .-WaveDAC8_1_StartEx
+ 353              		.global	WaveDAC8_1_wave2
+ 354              		.global	WaveDAC8_1_wave1
+ 355              		.global	WaveDAC8_1_initVar
+ 356              		.section	.rodata
+ 357              		.align	2
+ 358              		.set	.LANCHOR1,. + 0
+ 359              		.type	WaveDAC8_1_wave1, %object
+ 360              		.size	WaveDAC8_1_wave1, 2000
+ 361              	WaveDAC8_1_wave1:
+ 362 0000 F1       		.byte	-15
+ 363 0001 F1       		.byte	-15
+ 364 0002 F1       		.byte	-15
+ 365 0003 F1       		.byte	-15
+ 366 0004 F1       		.byte	-15
+ 367 0005 F1       		.byte	-15
+ 368 0006 F1       		.byte	-15
+ 369 0007 F1       		.byte	-15
+ 370 0008 F1       		.byte	-15
+ 371 0009 F1       		.byte	-15
+ 372 000a F1       		.byte	-15
+ 373 000b F1       		.byte	-15
+ 374 000c F1       		.byte	-15
+ 375 000d F1       		.byte	-15
+ 376 000e F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 13
+
+
+ 377 000f F1       		.byte	-15
+ 378 0010 F1       		.byte	-15
+ 379 0011 F1       		.byte	-15
+ 380 0012 F1       		.byte	-15
+ 381 0013 F1       		.byte	-15
+ 382 0014 F1       		.byte	-15
+ 383 0015 F1       		.byte	-15
+ 384 0016 F1       		.byte	-15
+ 385 0017 F1       		.byte	-15
+ 386 0018 F1       		.byte	-15
+ 387 0019 F1       		.byte	-15
+ 388 001a F1       		.byte	-15
+ 389 001b F1       		.byte	-15
+ 390 001c F1       		.byte	-15
+ 391 001d F1       		.byte	-15
+ 392 001e F1       		.byte	-15
+ 393 001f F1       		.byte	-15
+ 394 0020 F1       		.byte	-15
+ 395 0021 F1       		.byte	-15
+ 396 0022 F1       		.byte	-15
+ 397 0023 F1       		.byte	-15
+ 398 0024 F1       		.byte	-15
+ 399 0025 F1       		.byte	-15
+ 400 0026 F1       		.byte	-15
+ 401 0027 F1       		.byte	-15
+ 402 0028 F1       		.byte	-15
+ 403 0029 F1       		.byte	-15
+ 404 002a F1       		.byte	-15
+ 405 002b F1       		.byte	-15
+ 406 002c F1       		.byte	-15
+ 407 002d F1       		.byte	-15
+ 408 002e F1       		.byte	-15
+ 409 002f F1       		.byte	-15
+ 410 0030 F1       		.byte	-15
+ 411 0031 F1       		.byte	-15
+ 412 0032 F1       		.byte	-15
+ 413 0033 F1       		.byte	-15
+ 414 0034 F1       		.byte	-15
+ 415 0035 F1       		.byte	-15
+ 416 0036 F1       		.byte	-15
+ 417 0037 F1       		.byte	-15
+ 418 0038 F1       		.byte	-15
+ 419 0039 F1       		.byte	-15
+ 420 003a F1       		.byte	-15
+ 421 003b F1       		.byte	-15
+ 422 003c F1       		.byte	-15
+ 423 003d F1       		.byte	-15
+ 424 003e F1       		.byte	-15
+ 425 003f F1       		.byte	-15
+ 426 0040 F1       		.byte	-15
+ 427 0041 F1       		.byte	-15
+ 428 0042 F1       		.byte	-15
+ 429 0043 F1       		.byte	-15
+ 430 0044 F1       		.byte	-15
+ 431 0045 F1       		.byte	-15
+ 432 0046 F1       		.byte	-15
+ 433 0047 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 14
+
+
+ 434 0048 F1       		.byte	-15
+ 435 0049 F1       		.byte	-15
+ 436 004a F1       		.byte	-15
+ 437 004b F1       		.byte	-15
+ 438 004c F1       		.byte	-15
+ 439 004d F1       		.byte	-15
+ 440 004e F1       		.byte	-15
+ 441 004f F1       		.byte	-15
+ 442 0050 F1       		.byte	-15
+ 443 0051 F1       		.byte	-15
+ 444 0052 F1       		.byte	-15
+ 445 0053 F1       		.byte	-15
+ 446 0054 F1       		.byte	-15
+ 447 0055 F1       		.byte	-15
+ 448 0056 F1       		.byte	-15
+ 449 0057 F1       		.byte	-15
+ 450 0058 F1       		.byte	-15
+ 451 0059 F1       		.byte	-15
+ 452 005a F1       		.byte	-15
+ 453 005b F1       		.byte	-15
+ 454 005c F1       		.byte	-15
+ 455 005d F1       		.byte	-15
+ 456 005e F1       		.byte	-15
+ 457 005f F1       		.byte	-15
+ 458 0060 F1       		.byte	-15
+ 459 0061 F1       		.byte	-15
+ 460 0062 F1       		.byte	-15
+ 461 0063 F1       		.byte	-15
+ 462 0064 F1       		.byte	-15
+ 463 0065 F1       		.byte	-15
+ 464 0066 F1       		.byte	-15
+ 465 0067 F1       		.byte	-15
+ 466 0068 F1       		.byte	-15
+ 467 0069 F1       		.byte	-15
+ 468 006a F1       		.byte	-15
+ 469 006b F1       		.byte	-15
+ 470 006c F1       		.byte	-15
+ 471 006d F1       		.byte	-15
+ 472 006e F1       		.byte	-15
+ 473 006f F1       		.byte	-15
+ 474 0070 F1       		.byte	-15
+ 475 0071 F1       		.byte	-15
+ 476 0072 F1       		.byte	-15
+ 477 0073 F1       		.byte	-15
+ 478 0074 F1       		.byte	-15
+ 479 0075 F1       		.byte	-15
+ 480 0076 F1       		.byte	-15
+ 481 0077 F1       		.byte	-15
+ 482 0078 F1       		.byte	-15
+ 483 0079 F1       		.byte	-15
+ 484 007a F1       		.byte	-15
+ 485 007b F1       		.byte	-15
+ 486 007c F1       		.byte	-15
+ 487 007d F1       		.byte	-15
+ 488 007e F1       		.byte	-15
+ 489 007f F1       		.byte	-15
+ 490 0080 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 15
+
+
+ 491 0081 F1       		.byte	-15
+ 492 0082 F1       		.byte	-15
+ 493 0083 F1       		.byte	-15
+ 494 0084 F1       		.byte	-15
+ 495 0085 F1       		.byte	-15
+ 496 0086 F1       		.byte	-15
+ 497 0087 F1       		.byte	-15
+ 498 0088 F1       		.byte	-15
+ 499 0089 F1       		.byte	-15
+ 500 008a F1       		.byte	-15
+ 501 008b F1       		.byte	-15
+ 502 008c F1       		.byte	-15
+ 503 008d F1       		.byte	-15
+ 504 008e F1       		.byte	-15
+ 505 008f F1       		.byte	-15
+ 506 0090 F1       		.byte	-15
+ 507 0091 F1       		.byte	-15
+ 508 0092 F1       		.byte	-15
+ 509 0093 F1       		.byte	-15
+ 510 0094 F1       		.byte	-15
+ 511 0095 F1       		.byte	-15
+ 512 0096 F1       		.byte	-15
+ 513 0097 F1       		.byte	-15
+ 514 0098 F1       		.byte	-15
+ 515 0099 F1       		.byte	-15
+ 516 009a F1       		.byte	-15
+ 517 009b F1       		.byte	-15
+ 518 009c F1       		.byte	-15
+ 519 009d F1       		.byte	-15
+ 520 009e F1       		.byte	-15
+ 521 009f F1       		.byte	-15
+ 522 00a0 F1       		.byte	-15
+ 523 00a1 F1       		.byte	-15
+ 524 00a2 F1       		.byte	-15
+ 525 00a3 F1       		.byte	-15
+ 526 00a4 F1       		.byte	-15
+ 527 00a5 F1       		.byte	-15
+ 528 00a6 F1       		.byte	-15
+ 529 00a7 F1       		.byte	-15
+ 530 00a8 F1       		.byte	-15
+ 531 00a9 F1       		.byte	-15
+ 532 00aa F1       		.byte	-15
+ 533 00ab F1       		.byte	-15
+ 534 00ac F1       		.byte	-15
+ 535 00ad F1       		.byte	-15
+ 536 00ae F1       		.byte	-15
+ 537 00af F1       		.byte	-15
+ 538 00b0 F1       		.byte	-15
+ 539 00b1 F1       		.byte	-15
+ 540 00b2 F1       		.byte	-15
+ 541 00b3 F1       		.byte	-15
+ 542 00b4 F1       		.byte	-15
+ 543 00b5 F1       		.byte	-15
+ 544 00b6 F1       		.byte	-15
+ 545 00b7 F1       		.byte	-15
+ 546 00b8 F1       		.byte	-15
+ 547 00b9 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 16
+
+
+ 548 00ba F1       		.byte	-15
+ 549 00bb F1       		.byte	-15
+ 550 00bc F1       		.byte	-15
+ 551 00bd F1       		.byte	-15
+ 552 00be F1       		.byte	-15
+ 553 00bf F1       		.byte	-15
+ 554 00c0 F1       		.byte	-15
+ 555 00c1 F1       		.byte	-15
+ 556 00c2 F1       		.byte	-15
+ 557 00c3 F1       		.byte	-15
+ 558 00c4 F1       		.byte	-15
+ 559 00c5 F1       		.byte	-15
+ 560 00c6 F1       		.byte	-15
+ 561 00c7 F1       		.byte	-15
+ 562 00c8 F1       		.byte	-15
+ 563 00c9 F1       		.byte	-15
+ 564 00ca F1       		.byte	-15
+ 565 00cb F1       		.byte	-15
+ 566 00cc F1       		.byte	-15
+ 567 00cd F1       		.byte	-15
+ 568 00ce F1       		.byte	-15
+ 569 00cf F1       		.byte	-15
+ 570 00d0 F1       		.byte	-15
+ 571 00d1 F1       		.byte	-15
+ 572 00d2 F1       		.byte	-15
+ 573 00d3 F1       		.byte	-15
+ 574 00d4 F1       		.byte	-15
+ 575 00d5 F1       		.byte	-15
+ 576 00d6 F1       		.byte	-15
+ 577 00d7 F1       		.byte	-15
+ 578 00d8 F1       		.byte	-15
+ 579 00d9 F1       		.byte	-15
+ 580 00da F1       		.byte	-15
+ 581 00db F1       		.byte	-15
+ 582 00dc F1       		.byte	-15
+ 583 00dd F1       		.byte	-15
+ 584 00de F1       		.byte	-15
+ 585 00df F1       		.byte	-15
+ 586 00e0 F1       		.byte	-15
+ 587 00e1 F1       		.byte	-15
+ 588 00e2 F1       		.byte	-15
+ 589 00e3 F1       		.byte	-15
+ 590 00e4 F1       		.byte	-15
+ 591 00e5 F1       		.byte	-15
+ 592 00e6 F1       		.byte	-15
+ 593 00e7 F1       		.byte	-15
+ 594 00e8 F1       		.byte	-15
+ 595 00e9 F1       		.byte	-15
+ 596 00ea F1       		.byte	-15
+ 597 00eb F1       		.byte	-15
+ 598 00ec F1       		.byte	-15
+ 599 00ed F1       		.byte	-15
+ 600 00ee F1       		.byte	-15
+ 601 00ef F1       		.byte	-15
+ 602 00f0 F1       		.byte	-15
+ 603 00f1 F1       		.byte	-15
+ 604 00f2 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 17
+
+
+ 605 00f3 F1       		.byte	-15
+ 606 00f4 F1       		.byte	-15
+ 607 00f5 F1       		.byte	-15
+ 608 00f6 F1       		.byte	-15
+ 609 00f7 F1       		.byte	-15
+ 610 00f8 F1       		.byte	-15
+ 611 00f9 F1       		.byte	-15
+ 612 00fa F1       		.byte	-15
+ 613 00fb F1       		.byte	-15
+ 614 00fc F1       		.byte	-15
+ 615 00fd F1       		.byte	-15
+ 616 00fe F1       		.byte	-15
+ 617 00ff F1       		.byte	-15
+ 618 0100 F1       		.byte	-15
+ 619 0101 F1       		.byte	-15
+ 620 0102 F1       		.byte	-15
+ 621 0103 F1       		.byte	-15
+ 622 0104 F1       		.byte	-15
+ 623 0105 F1       		.byte	-15
+ 624 0106 F1       		.byte	-15
+ 625 0107 F1       		.byte	-15
+ 626 0108 F1       		.byte	-15
+ 627 0109 F1       		.byte	-15
+ 628 010a F1       		.byte	-15
+ 629 010b F1       		.byte	-15
+ 630 010c F1       		.byte	-15
+ 631 010d F1       		.byte	-15
+ 632 010e F1       		.byte	-15
+ 633 010f F1       		.byte	-15
+ 634 0110 F1       		.byte	-15
+ 635 0111 F1       		.byte	-15
+ 636 0112 F1       		.byte	-15
+ 637 0113 F1       		.byte	-15
+ 638 0114 F1       		.byte	-15
+ 639 0115 F1       		.byte	-15
+ 640 0116 F1       		.byte	-15
+ 641 0117 F1       		.byte	-15
+ 642 0118 F1       		.byte	-15
+ 643 0119 F1       		.byte	-15
+ 644 011a F1       		.byte	-15
+ 645 011b F1       		.byte	-15
+ 646 011c F1       		.byte	-15
+ 647 011d F1       		.byte	-15
+ 648 011e F1       		.byte	-15
+ 649 011f F1       		.byte	-15
+ 650 0120 F1       		.byte	-15
+ 651 0121 F1       		.byte	-15
+ 652 0122 F1       		.byte	-15
+ 653 0123 F1       		.byte	-15
+ 654 0124 F1       		.byte	-15
+ 655 0125 F1       		.byte	-15
+ 656 0126 F1       		.byte	-15
+ 657 0127 F1       		.byte	-15
+ 658 0128 F1       		.byte	-15
+ 659 0129 F1       		.byte	-15
+ 660 012a F1       		.byte	-15
+ 661 012b F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 18
+
+
+ 662 012c F1       		.byte	-15
+ 663 012d F1       		.byte	-15
+ 664 012e F1       		.byte	-15
+ 665 012f F1       		.byte	-15
+ 666 0130 F1       		.byte	-15
+ 667 0131 F1       		.byte	-15
+ 668 0132 F1       		.byte	-15
+ 669 0133 F1       		.byte	-15
+ 670 0134 F1       		.byte	-15
+ 671 0135 F1       		.byte	-15
+ 672 0136 F1       		.byte	-15
+ 673 0137 F1       		.byte	-15
+ 674 0138 F1       		.byte	-15
+ 675 0139 F1       		.byte	-15
+ 676 013a F1       		.byte	-15
+ 677 013b F1       		.byte	-15
+ 678 013c F1       		.byte	-15
+ 679 013d F1       		.byte	-15
+ 680 013e F1       		.byte	-15
+ 681 013f F1       		.byte	-15
+ 682 0140 F1       		.byte	-15
+ 683 0141 F1       		.byte	-15
+ 684 0142 F1       		.byte	-15
+ 685 0143 F1       		.byte	-15
+ 686 0144 F1       		.byte	-15
+ 687 0145 F1       		.byte	-15
+ 688 0146 F1       		.byte	-15
+ 689 0147 F1       		.byte	-15
+ 690 0148 F1       		.byte	-15
+ 691 0149 F1       		.byte	-15
+ 692 014a F1       		.byte	-15
+ 693 014b F1       		.byte	-15
+ 694 014c F1       		.byte	-15
+ 695 014d F1       		.byte	-15
+ 696 014e F1       		.byte	-15
+ 697 014f F1       		.byte	-15
+ 698 0150 F1       		.byte	-15
+ 699 0151 F1       		.byte	-15
+ 700 0152 F1       		.byte	-15
+ 701 0153 F1       		.byte	-15
+ 702 0154 F1       		.byte	-15
+ 703 0155 F1       		.byte	-15
+ 704 0156 F1       		.byte	-15
+ 705 0157 F1       		.byte	-15
+ 706 0158 F1       		.byte	-15
+ 707 0159 F1       		.byte	-15
+ 708 015a F1       		.byte	-15
+ 709 015b F1       		.byte	-15
+ 710 015c F1       		.byte	-15
+ 711 015d F1       		.byte	-15
+ 712 015e F1       		.byte	-15
+ 713 015f F1       		.byte	-15
+ 714 0160 F1       		.byte	-15
+ 715 0161 F1       		.byte	-15
+ 716 0162 F1       		.byte	-15
+ 717 0163 F1       		.byte	-15
+ 718 0164 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 19
+
+
+ 719 0165 F1       		.byte	-15
+ 720 0166 F1       		.byte	-15
+ 721 0167 F1       		.byte	-15
+ 722 0168 F1       		.byte	-15
+ 723 0169 F1       		.byte	-15
+ 724 016a F1       		.byte	-15
+ 725 016b F1       		.byte	-15
+ 726 016c F1       		.byte	-15
+ 727 016d F1       		.byte	-15
+ 728 016e F1       		.byte	-15
+ 729 016f F1       		.byte	-15
+ 730 0170 F1       		.byte	-15
+ 731 0171 F1       		.byte	-15
+ 732 0172 F1       		.byte	-15
+ 733 0173 F1       		.byte	-15
+ 734 0174 F1       		.byte	-15
+ 735 0175 F1       		.byte	-15
+ 736 0176 F1       		.byte	-15
+ 737 0177 F1       		.byte	-15
+ 738 0178 F1       		.byte	-15
+ 739 0179 F1       		.byte	-15
+ 740 017a F1       		.byte	-15
+ 741 017b F1       		.byte	-15
+ 742 017c F1       		.byte	-15
+ 743 017d F1       		.byte	-15
+ 744 017e F1       		.byte	-15
+ 745 017f F1       		.byte	-15
+ 746 0180 F1       		.byte	-15
+ 747 0181 F1       		.byte	-15
+ 748 0182 F1       		.byte	-15
+ 749 0183 F1       		.byte	-15
+ 750 0184 F1       		.byte	-15
+ 751 0185 F1       		.byte	-15
+ 752 0186 F1       		.byte	-15
+ 753 0187 F1       		.byte	-15
+ 754 0188 F1       		.byte	-15
+ 755 0189 F1       		.byte	-15
+ 756 018a F1       		.byte	-15
+ 757 018b F1       		.byte	-15
+ 758 018c F1       		.byte	-15
+ 759 018d F1       		.byte	-15
+ 760 018e F1       		.byte	-15
+ 761 018f F1       		.byte	-15
+ 762 0190 F1       		.byte	-15
+ 763 0191 F1       		.byte	-15
+ 764 0192 F1       		.byte	-15
+ 765 0193 F1       		.byte	-15
+ 766 0194 F1       		.byte	-15
+ 767 0195 F1       		.byte	-15
+ 768 0196 F1       		.byte	-15
+ 769 0197 F1       		.byte	-15
+ 770 0198 F1       		.byte	-15
+ 771 0199 F1       		.byte	-15
+ 772 019a F1       		.byte	-15
+ 773 019b F1       		.byte	-15
+ 774 019c F1       		.byte	-15
+ 775 019d F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 20
+
+
+ 776 019e F1       		.byte	-15
+ 777 019f F1       		.byte	-15
+ 778 01a0 F1       		.byte	-15
+ 779 01a1 F1       		.byte	-15
+ 780 01a2 F1       		.byte	-15
+ 781 01a3 F1       		.byte	-15
+ 782 01a4 F1       		.byte	-15
+ 783 01a5 F1       		.byte	-15
+ 784 01a6 F1       		.byte	-15
+ 785 01a7 F1       		.byte	-15
+ 786 01a8 F1       		.byte	-15
+ 787 01a9 F1       		.byte	-15
+ 788 01aa F1       		.byte	-15
+ 789 01ab F1       		.byte	-15
+ 790 01ac F1       		.byte	-15
+ 791 01ad F1       		.byte	-15
+ 792 01ae F1       		.byte	-15
+ 793 01af F1       		.byte	-15
+ 794 01b0 F1       		.byte	-15
+ 795 01b1 F1       		.byte	-15
+ 796 01b2 F1       		.byte	-15
+ 797 01b3 F1       		.byte	-15
+ 798 01b4 F1       		.byte	-15
+ 799 01b5 F1       		.byte	-15
+ 800 01b6 F1       		.byte	-15
+ 801 01b7 F1       		.byte	-15
+ 802 01b8 F1       		.byte	-15
+ 803 01b9 F1       		.byte	-15
+ 804 01ba F1       		.byte	-15
+ 805 01bb F1       		.byte	-15
+ 806 01bc F1       		.byte	-15
+ 807 01bd F1       		.byte	-15
+ 808 01be F1       		.byte	-15
+ 809 01bf F1       		.byte	-15
+ 810 01c0 F1       		.byte	-15
+ 811 01c1 F1       		.byte	-15
+ 812 01c2 F1       		.byte	-15
+ 813 01c3 F1       		.byte	-15
+ 814 01c4 F1       		.byte	-15
+ 815 01c5 F1       		.byte	-15
+ 816 01c6 F1       		.byte	-15
+ 817 01c7 F1       		.byte	-15
+ 818 01c8 F1       		.byte	-15
+ 819 01c9 F1       		.byte	-15
+ 820 01ca F1       		.byte	-15
+ 821 01cb F1       		.byte	-15
+ 822 01cc F1       		.byte	-15
+ 823 01cd F1       		.byte	-15
+ 824 01ce F1       		.byte	-15
+ 825 01cf F1       		.byte	-15
+ 826 01d0 F1       		.byte	-15
+ 827 01d1 F1       		.byte	-15
+ 828 01d2 F1       		.byte	-15
+ 829 01d3 F1       		.byte	-15
+ 830 01d4 F1       		.byte	-15
+ 831 01d5 F1       		.byte	-15
+ 832 01d6 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 21
+
+
+ 833 01d7 F1       		.byte	-15
+ 834 01d8 F1       		.byte	-15
+ 835 01d9 F1       		.byte	-15
+ 836 01da F1       		.byte	-15
+ 837 01db F1       		.byte	-15
+ 838 01dc F1       		.byte	-15
+ 839 01dd F1       		.byte	-15
+ 840 01de F1       		.byte	-15
+ 841 01df F1       		.byte	-15
+ 842 01e0 F1       		.byte	-15
+ 843 01e1 F1       		.byte	-15
+ 844 01e2 F1       		.byte	-15
+ 845 01e3 F1       		.byte	-15
+ 846 01e4 F1       		.byte	-15
+ 847 01e5 F1       		.byte	-15
+ 848 01e6 F1       		.byte	-15
+ 849 01e7 F1       		.byte	-15
+ 850 01e8 F1       		.byte	-15
+ 851 01e9 F1       		.byte	-15
+ 852 01ea F1       		.byte	-15
+ 853 01eb F1       		.byte	-15
+ 854 01ec F1       		.byte	-15
+ 855 01ed F1       		.byte	-15
+ 856 01ee F1       		.byte	-15
+ 857 01ef F1       		.byte	-15
+ 858 01f0 F1       		.byte	-15
+ 859 01f1 F1       		.byte	-15
+ 860 01f2 F1       		.byte	-15
+ 861 01f3 F1       		.byte	-15
+ 862 01f4 F1       		.byte	-15
+ 863 01f5 F1       		.byte	-15
+ 864 01f6 F1       		.byte	-15
+ 865 01f7 F1       		.byte	-15
+ 866 01f8 F1       		.byte	-15
+ 867 01f9 F1       		.byte	-15
+ 868 01fa F1       		.byte	-15
+ 869 01fb F1       		.byte	-15
+ 870 01fc F1       		.byte	-15
+ 871 01fd F1       		.byte	-15
+ 872 01fe F1       		.byte	-15
+ 873 01ff F1       		.byte	-15
+ 874 0200 F1       		.byte	-15
+ 875 0201 F1       		.byte	-15
+ 876 0202 F1       		.byte	-15
+ 877 0203 F1       		.byte	-15
+ 878 0204 F1       		.byte	-15
+ 879 0205 F1       		.byte	-15
+ 880 0206 F1       		.byte	-15
+ 881 0207 F1       		.byte	-15
+ 882 0208 F1       		.byte	-15
+ 883 0209 F1       		.byte	-15
+ 884 020a F1       		.byte	-15
+ 885 020b F1       		.byte	-15
+ 886 020c F1       		.byte	-15
+ 887 020d F1       		.byte	-15
+ 888 020e F1       		.byte	-15
+ 889 020f F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 22
+
+
+ 890 0210 F1       		.byte	-15
+ 891 0211 F1       		.byte	-15
+ 892 0212 F1       		.byte	-15
+ 893 0213 F1       		.byte	-15
+ 894 0214 F1       		.byte	-15
+ 895 0215 F1       		.byte	-15
+ 896 0216 F1       		.byte	-15
+ 897 0217 F1       		.byte	-15
+ 898 0218 F1       		.byte	-15
+ 899 0219 F1       		.byte	-15
+ 900 021a F1       		.byte	-15
+ 901 021b F1       		.byte	-15
+ 902 021c F1       		.byte	-15
+ 903 021d F1       		.byte	-15
+ 904 021e F1       		.byte	-15
+ 905 021f F1       		.byte	-15
+ 906 0220 F1       		.byte	-15
+ 907 0221 F1       		.byte	-15
+ 908 0222 F1       		.byte	-15
+ 909 0223 F1       		.byte	-15
+ 910 0224 F1       		.byte	-15
+ 911 0225 F1       		.byte	-15
+ 912 0226 F1       		.byte	-15
+ 913 0227 F1       		.byte	-15
+ 914 0228 F1       		.byte	-15
+ 915 0229 F1       		.byte	-15
+ 916 022a F1       		.byte	-15
+ 917 022b F1       		.byte	-15
+ 918 022c F1       		.byte	-15
+ 919 022d F1       		.byte	-15
+ 920 022e F1       		.byte	-15
+ 921 022f F1       		.byte	-15
+ 922 0230 F1       		.byte	-15
+ 923 0231 F1       		.byte	-15
+ 924 0232 F1       		.byte	-15
+ 925 0233 F1       		.byte	-15
+ 926 0234 F1       		.byte	-15
+ 927 0235 F1       		.byte	-15
+ 928 0236 F1       		.byte	-15
+ 929 0237 F1       		.byte	-15
+ 930 0238 F1       		.byte	-15
+ 931 0239 F1       		.byte	-15
+ 932 023a F1       		.byte	-15
+ 933 023b F1       		.byte	-15
+ 934 023c F1       		.byte	-15
+ 935 023d F1       		.byte	-15
+ 936 023e F1       		.byte	-15
+ 937 023f F1       		.byte	-15
+ 938 0240 F1       		.byte	-15
+ 939 0241 F1       		.byte	-15
+ 940 0242 F1       		.byte	-15
+ 941 0243 F1       		.byte	-15
+ 942 0244 F1       		.byte	-15
+ 943 0245 F1       		.byte	-15
+ 944 0246 F1       		.byte	-15
+ 945 0247 F1       		.byte	-15
+ 946 0248 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 23
+
+
+ 947 0249 F1       		.byte	-15
+ 948 024a F1       		.byte	-15
+ 949 024b F1       		.byte	-15
+ 950 024c F1       		.byte	-15
+ 951 024d F1       		.byte	-15
+ 952 024e F1       		.byte	-15
+ 953 024f F1       		.byte	-15
+ 954 0250 F1       		.byte	-15
+ 955 0251 F1       		.byte	-15
+ 956 0252 F1       		.byte	-15
+ 957 0253 F1       		.byte	-15
+ 958 0254 F1       		.byte	-15
+ 959 0255 F1       		.byte	-15
+ 960 0256 F1       		.byte	-15
+ 961 0257 F1       		.byte	-15
+ 962 0258 F1       		.byte	-15
+ 963 0259 F1       		.byte	-15
+ 964 025a F1       		.byte	-15
+ 965 025b F1       		.byte	-15
+ 966 025c F1       		.byte	-15
+ 967 025d F1       		.byte	-15
+ 968 025e F1       		.byte	-15
+ 969 025f F1       		.byte	-15
+ 970 0260 F1       		.byte	-15
+ 971 0261 F1       		.byte	-15
+ 972 0262 F1       		.byte	-15
+ 973 0263 F1       		.byte	-15
+ 974 0264 F1       		.byte	-15
+ 975 0265 F1       		.byte	-15
+ 976 0266 F1       		.byte	-15
+ 977 0267 F1       		.byte	-15
+ 978 0268 F1       		.byte	-15
+ 979 0269 F1       		.byte	-15
+ 980 026a F1       		.byte	-15
+ 981 026b F1       		.byte	-15
+ 982 026c F1       		.byte	-15
+ 983 026d F1       		.byte	-15
+ 984 026e F1       		.byte	-15
+ 985 026f F1       		.byte	-15
+ 986 0270 F1       		.byte	-15
+ 987 0271 F1       		.byte	-15
+ 988 0272 F1       		.byte	-15
+ 989 0273 F1       		.byte	-15
+ 990 0274 F1       		.byte	-15
+ 991 0275 F1       		.byte	-15
+ 992 0276 F1       		.byte	-15
+ 993 0277 F1       		.byte	-15
+ 994 0278 F1       		.byte	-15
+ 995 0279 F1       		.byte	-15
+ 996 027a F1       		.byte	-15
+ 997 027b F1       		.byte	-15
+ 998 027c F1       		.byte	-15
+ 999 027d F1       		.byte	-15
+ 1000 027e F1       		.byte	-15
+ 1001 027f F1       		.byte	-15
+ 1002 0280 F1       		.byte	-15
+ 1003 0281 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 24
+
+
+ 1004 0282 F1       		.byte	-15
+ 1005 0283 F1       		.byte	-15
+ 1006 0284 F1       		.byte	-15
+ 1007 0285 F1       		.byte	-15
+ 1008 0286 F1       		.byte	-15
+ 1009 0287 F1       		.byte	-15
+ 1010 0288 F1       		.byte	-15
+ 1011 0289 F1       		.byte	-15
+ 1012 028a F1       		.byte	-15
+ 1013 028b F1       		.byte	-15
+ 1014 028c F1       		.byte	-15
+ 1015 028d F1       		.byte	-15
+ 1016 028e F1       		.byte	-15
+ 1017 028f F1       		.byte	-15
+ 1018 0290 F1       		.byte	-15
+ 1019 0291 F1       		.byte	-15
+ 1020 0292 F1       		.byte	-15
+ 1021 0293 F1       		.byte	-15
+ 1022 0294 F1       		.byte	-15
+ 1023 0295 F1       		.byte	-15
+ 1024 0296 F1       		.byte	-15
+ 1025 0297 F1       		.byte	-15
+ 1026 0298 F1       		.byte	-15
+ 1027 0299 F1       		.byte	-15
+ 1028 029a F1       		.byte	-15
+ 1029 029b F1       		.byte	-15
+ 1030 029c F1       		.byte	-15
+ 1031 029d F1       		.byte	-15
+ 1032 029e F1       		.byte	-15
+ 1033 029f F1       		.byte	-15
+ 1034 02a0 F1       		.byte	-15
+ 1035 02a1 F1       		.byte	-15
+ 1036 02a2 F1       		.byte	-15
+ 1037 02a3 F1       		.byte	-15
+ 1038 02a4 F1       		.byte	-15
+ 1039 02a5 F1       		.byte	-15
+ 1040 02a6 F1       		.byte	-15
+ 1041 02a7 F1       		.byte	-15
+ 1042 02a8 F1       		.byte	-15
+ 1043 02a9 F1       		.byte	-15
+ 1044 02aa F1       		.byte	-15
+ 1045 02ab F1       		.byte	-15
+ 1046 02ac F1       		.byte	-15
+ 1047 02ad F1       		.byte	-15
+ 1048 02ae F1       		.byte	-15
+ 1049 02af F1       		.byte	-15
+ 1050 02b0 F1       		.byte	-15
+ 1051 02b1 F1       		.byte	-15
+ 1052 02b2 F1       		.byte	-15
+ 1053 02b3 F1       		.byte	-15
+ 1054 02b4 F1       		.byte	-15
+ 1055 02b5 F1       		.byte	-15
+ 1056 02b6 F1       		.byte	-15
+ 1057 02b7 F1       		.byte	-15
+ 1058 02b8 F1       		.byte	-15
+ 1059 02b9 F1       		.byte	-15
+ 1060 02ba F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 25
+
+
+ 1061 02bb F1       		.byte	-15
+ 1062 02bc F1       		.byte	-15
+ 1063 02bd F1       		.byte	-15
+ 1064 02be F1       		.byte	-15
+ 1065 02bf F1       		.byte	-15
+ 1066 02c0 F1       		.byte	-15
+ 1067 02c1 F1       		.byte	-15
+ 1068 02c2 F1       		.byte	-15
+ 1069 02c3 F1       		.byte	-15
+ 1070 02c4 F1       		.byte	-15
+ 1071 02c5 F1       		.byte	-15
+ 1072 02c6 F1       		.byte	-15
+ 1073 02c7 F1       		.byte	-15
+ 1074 02c8 F1       		.byte	-15
+ 1075 02c9 F1       		.byte	-15
+ 1076 02ca F1       		.byte	-15
+ 1077 02cb F1       		.byte	-15
+ 1078 02cc F1       		.byte	-15
+ 1079 02cd F1       		.byte	-15
+ 1080 02ce F1       		.byte	-15
+ 1081 02cf F1       		.byte	-15
+ 1082 02d0 F1       		.byte	-15
+ 1083 02d1 F1       		.byte	-15
+ 1084 02d2 F1       		.byte	-15
+ 1085 02d3 F1       		.byte	-15
+ 1086 02d4 F1       		.byte	-15
+ 1087 02d5 F1       		.byte	-15
+ 1088 02d6 F1       		.byte	-15
+ 1089 02d7 F1       		.byte	-15
+ 1090 02d8 F1       		.byte	-15
+ 1091 02d9 F1       		.byte	-15
+ 1092 02da F1       		.byte	-15
+ 1093 02db F1       		.byte	-15
+ 1094 02dc F1       		.byte	-15
+ 1095 02dd F1       		.byte	-15
+ 1096 02de F1       		.byte	-15
+ 1097 02df F1       		.byte	-15
+ 1098 02e0 F1       		.byte	-15
+ 1099 02e1 F1       		.byte	-15
+ 1100 02e2 F1       		.byte	-15
+ 1101 02e3 F1       		.byte	-15
+ 1102 02e4 F1       		.byte	-15
+ 1103 02e5 F1       		.byte	-15
+ 1104 02e6 F1       		.byte	-15
+ 1105 02e7 F1       		.byte	-15
+ 1106 02e8 F1       		.byte	-15
+ 1107 02e9 F1       		.byte	-15
+ 1108 02ea F1       		.byte	-15
+ 1109 02eb F1       		.byte	-15
+ 1110 02ec F1       		.byte	-15
+ 1111 02ed F1       		.byte	-15
+ 1112 02ee F1       		.byte	-15
+ 1113 02ef F1       		.byte	-15
+ 1114 02f0 F1       		.byte	-15
+ 1115 02f1 F1       		.byte	-15
+ 1116 02f2 F1       		.byte	-15
+ 1117 02f3 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 26
+
+
+ 1118 02f4 F1       		.byte	-15
+ 1119 02f5 F1       		.byte	-15
+ 1120 02f6 F1       		.byte	-15
+ 1121 02f7 F1       		.byte	-15
+ 1122 02f8 F1       		.byte	-15
+ 1123 02f9 F1       		.byte	-15
+ 1124 02fa F1       		.byte	-15
+ 1125 02fb F1       		.byte	-15
+ 1126 02fc F1       		.byte	-15
+ 1127 02fd F1       		.byte	-15
+ 1128 02fe F1       		.byte	-15
+ 1129 02ff F1       		.byte	-15
+ 1130 0300 F1       		.byte	-15
+ 1131 0301 F1       		.byte	-15
+ 1132 0302 F1       		.byte	-15
+ 1133 0303 F1       		.byte	-15
+ 1134 0304 F1       		.byte	-15
+ 1135 0305 F1       		.byte	-15
+ 1136 0306 F1       		.byte	-15
+ 1137 0307 F1       		.byte	-15
+ 1138 0308 F1       		.byte	-15
+ 1139 0309 F1       		.byte	-15
+ 1140 030a F1       		.byte	-15
+ 1141 030b F1       		.byte	-15
+ 1142 030c F1       		.byte	-15
+ 1143 030d F1       		.byte	-15
+ 1144 030e F1       		.byte	-15
+ 1145 030f F1       		.byte	-15
+ 1146 0310 F1       		.byte	-15
+ 1147 0311 F1       		.byte	-15
+ 1148 0312 F1       		.byte	-15
+ 1149 0313 F1       		.byte	-15
+ 1150 0314 F1       		.byte	-15
+ 1151 0315 F1       		.byte	-15
+ 1152 0316 F1       		.byte	-15
+ 1153 0317 F1       		.byte	-15
+ 1154 0318 F1       		.byte	-15
+ 1155 0319 F1       		.byte	-15
+ 1156 031a F1       		.byte	-15
+ 1157 031b F1       		.byte	-15
+ 1158 031c F1       		.byte	-15
+ 1159 031d F1       		.byte	-15
+ 1160 031e F1       		.byte	-15
+ 1161 031f F1       		.byte	-15
+ 1162 0320 F1       		.byte	-15
+ 1163 0321 F1       		.byte	-15
+ 1164 0322 F1       		.byte	-15
+ 1165 0323 F1       		.byte	-15
+ 1166 0324 F1       		.byte	-15
+ 1167 0325 F1       		.byte	-15
+ 1168 0326 F1       		.byte	-15
+ 1169 0327 F1       		.byte	-15
+ 1170 0328 F1       		.byte	-15
+ 1171 0329 F1       		.byte	-15
+ 1172 032a F1       		.byte	-15
+ 1173 032b F1       		.byte	-15
+ 1174 032c F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 27
+
+
+ 1175 032d F1       		.byte	-15
+ 1176 032e F1       		.byte	-15
+ 1177 032f F1       		.byte	-15
+ 1178 0330 F1       		.byte	-15
+ 1179 0331 F1       		.byte	-15
+ 1180 0332 F1       		.byte	-15
+ 1181 0333 F1       		.byte	-15
+ 1182 0334 F1       		.byte	-15
+ 1183 0335 F1       		.byte	-15
+ 1184 0336 F1       		.byte	-15
+ 1185 0337 F1       		.byte	-15
+ 1186 0338 F1       		.byte	-15
+ 1187 0339 F1       		.byte	-15
+ 1188 033a F1       		.byte	-15
+ 1189 033b F1       		.byte	-15
+ 1190 033c F1       		.byte	-15
+ 1191 033d F1       		.byte	-15
+ 1192 033e F1       		.byte	-15
+ 1193 033f F1       		.byte	-15
+ 1194 0340 F1       		.byte	-15
+ 1195 0341 F1       		.byte	-15
+ 1196 0342 F1       		.byte	-15
+ 1197 0343 F1       		.byte	-15
+ 1198 0344 F1       		.byte	-15
+ 1199 0345 F1       		.byte	-15
+ 1200 0346 F1       		.byte	-15
+ 1201 0347 F1       		.byte	-15
+ 1202 0348 F1       		.byte	-15
+ 1203 0349 F1       		.byte	-15
+ 1204 034a F1       		.byte	-15
+ 1205 034b F1       		.byte	-15
+ 1206 034c F1       		.byte	-15
+ 1207 034d F1       		.byte	-15
+ 1208 034e F1       		.byte	-15
+ 1209 034f F1       		.byte	-15
+ 1210 0350 F1       		.byte	-15
+ 1211 0351 F1       		.byte	-15
+ 1212 0352 F1       		.byte	-15
+ 1213 0353 F1       		.byte	-15
+ 1214 0354 F1       		.byte	-15
+ 1215 0355 F1       		.byte	-15
+ 1216 0356 F1       		.byte	-15
+ 1217 0357 F1       		.byte	-15
+ 1218 0358 F1       		.byte	-15
+ 1219 0359 F1       		.byte	-15
+ 1220 035a F1       		.byte	-15
+ 1221 035b F1       		.byte	-15
+ 1222 035c F1       		.byte	-15
+ 1223 035d F1       		.byte	-15
+ 1224 035e F1       		.byte	-15
+ 1225 035f F1       		.byte	-15
+ 1226 0360 F1       		.byte	-15
+ 1227 0361 F1       		.byte	-15
+ 1228 0362 F1       		.byte	-15
+ 1229 0363 F1       		.byte	-15
+ 1230 0364 F1       		.byte	-15
+ 1231 0365 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 28
+
+
+ 1232 0366 F1       		.byte	-15
+ 1233 0367 F1       		.byte	-15
+ 1234 0368 F1       		.byte	-15
+ 1235 0369 F1       		.byte	-15
+ 1236 036a F1       		.byte	-15
+ 1237 036b F1       		.byte	-15
+ 1238 036c F1       		.byte	-15
+ 1239 036d F1       		.byte	-15
+ 1240 036e F1       		.byte	-15
+ 1241 036f F1       		.byte	-15
+ 1242 0370 F1       		.byte	-15
+ 1243 0371 F1       		.byte	-15
+ 1244 0372 F1       		.byte	-15
+ 1245 0373 F1       		.byte	-15
+ 1246 0374 F1       		.byte	-15
+ 1247 0375 F1       		.byte	-15
+ 1248 0376 F1       		.byte	-15
+ 1249 0377 F1       		.byte	-15
+ 1250 0378 F1       		.byte	-15
+ 1251 0379 F1       		.byte	-15
+ 1252 037a F1       		.byte	-15
+ 1253 037b F1       		.byte	-15
+ 1254 037c F1       		.byte	-15
+ 1255 037d F1       		.byte	-15
+ 1256 037e F1       		.byte	-15
+ 1257 037f F1       		.byte	-15
+ 1258 0380 F1       		.byte	-15
+ 1259 0381 F1       		.byte	-15
+ 1260 0382 F1       		.byte	-15
+ 1261 0383 F1       		.byte	-15
+ 1262 0384 F1       		.byte	-15
+ 1263 0385 F1       		.byte	-15
+ 1264 0386 F1       		.byte	-15
+ 1265 0387 F1       		.byte	-15
+ 1266 0388 F1       		.byte	-15
+ 1267 0389 F1       		.byte	-15
+ 1268 038a F1       		.byte	-15
+ 1269 038b F1       		.byte	-15
+ 1270 038c F1       		.byte	-15
+ 1271 038d F1       		.byte	-15
+ 1272 038e F1       		.byte	-15
+ 1273 038f F1       		.byte	-15
+ 1274 0390 F1       		.byte	-15
+ 1275 0391 F1       		.byte	-15
+ 1276 0392 F1       		.byte	-15
+ 1277 0393 F1       		.byte	-15
+ 1278 0394 F1       		.byte	-15
+ 1279 0395 F1       		.byte	-15
+ 1280 0396 F1       		.byte	-15
+ 1281 0397 F1       		.byte	-15
+ 1282 0398 F1       		.byte	-15
+ 1283 0399 F1       		.byte	-15
+ 1284 039a F1       		.byte	-15
+ 1285 039b F1       		.byte	-15
+ 1286 039c F1       		.byte	-15
+ 1287 039d F1       		.byte	-15
+ 1288 039e F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 29
+
+
+ 1289 039f F1       		.byte	-15
+ 1290 03a0 F1       		.byte	-15
+ 1291 03a1 F1       		.byte	-15
+ 1292 03a2 F1       		.byte	-15
+ 1293 03a3 F1       		.byte	-15
+ 1294 03a4 F1       		.byte	-15
+ 1295 03a5 F1       		.byte	-15
+ 1296 03a6 F1       		.byte	-15
+ 1297 03a7 F1       		.byte	-15
+ 1298 03a8 F1       		.byte	-15
+ 1299 03a9 F1       		.byte	-15
+ 1300 03aa F1       		.byte	-15
+ 1301 03ab F1       		.byte	-15
+ 1302 03ac F1       		.byte	-15
+ 1303 03ad F1       		.byte	-15
+ 1304 03ae F1       		.byte	-15
+ 1305 03af F1       		.byte	-15
+ 1306 03b0 F1       		.byte	-15
+ 1307 03b1 F1       		.byte	-15
+ 1308 03b2 F1       		.byte	-15
+ 1309 03b3 F1       		.byte	-15
+ 1310 03b4 F1       		.byte	-15
+ 1311 03b5 F1       		.byte	-15
+ 1312 03b6 F1       		.byte	-15
+ 1313 03b7 F1       		.byte	-15
+ 1314 03b8 F1       		.byte	-15
+ 1315 03b9 F1       		.byte	-15
+ 1316 03ba F1       		.byte	-15
+ 1317 03bb F1       		.byte	-15
+ 1318 03bc F1       		.byte	-15
+ 1319 03bd F1       		.byte	-15
+ 1320 03be F1       		.byte	-15
+ 1321 03bf F1       		.byte	-15
+ 1322 03c0 F1       		.byte	-15
+ 1323 03c1 F1       		.byte	-15
+ 1324 03c2 F1       		.byte	-15
+ 1325 03c3 F1       		.byte	-15
+ 1326 03c4 F1       		.byte	-15
+ 1327 03c5 F1       		.byte	-15
+ 1328 03c6 F1       		.byte	-15
+ 1329 03c7 F1       		.byte	-15
+ 1330 03c8 F1       		.byte	-15
+ 1331 03c9 F1       		.byte	-15
+ 1332 03ca F1       		.byte	-15
+ 1333 03cb F1       		.byte	-15
+ 1334 03cc F1       		.byte	-15
+ 1335 03cd F1       		.byte	-15
+ 1336 03ce F1       		.byte	-15
+ 1337 03cf F1       		.byte	-15
+ 1338 03d0 F1       		.byte	-15
+ 1339 03d1 F1       		.byte	-15
+ 1340 03d2 F1       		.byte	-15
+ 1341 03d3 F1       		.byte	-15
+ 1342 03d4 F1       		.byte	-15
+ 1343 03d5 F1       		.byte	-15
+ 1344 03d6 F1       		.byte	-15
+ 1345 03d7 F1       		.byte	-15
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 30
+
+
+ 1346 03d8 F1       		.byte	-15
+ 1347 03d9 F1       		.byte	-15
+ 1348 03da F1       		.byte	-15
+ 1349 03db F1       		.byte	-15
+ 1350 03dc F1       		.byte	-15
+ 1351 03dd F1       		.byte	-15
+ 1352 03de F1       		.byte	-15
+ 1353 03df F1       		.byte	-15
+ 1354 03e0 F1       		.byte	-15
+ 1355 03e1 F1       		.byte	-15
+ 1356 03e2 F1       		.byte	-15
+ 1357 03e3 F1       		.byte	-15
+ 1358 03e4 F1       		.byte	-15
+ 1359 03e5 F1       		.byte	-15
+ 1360 03e6 F1       		.byte	-15
+ 1361 03e7 F1       		.byte	-15
+ 1362 03e8 02       		.byte	2
+ 1363 03e9 02       		.byte	2
+ 1364 03ea 02       		.byte	2
+ 1365 03eb 02       		.byte	2
+ 1366 03ec 02       		.byte	2
+ 1367 03ed 02       		.byte	2
+ 1368 03ee 02       		.byte	2
+ 1369 03ef 02       		.byte	2
+ 1370 03f0 02       		.byte	2
+ 1371 03f1 02       		.byte	2
+ 1372 03f2 02       		.byte	2
+ 1373 03f3 02       		.byte	2
+ 1374 03f4 02       		.byte	2
+ 1375 03f5 02       		.byte	2
+ 1376 03f6 02       		.byte	2
+ 1377 03f7 02       		.byte	2
+ 1378 03f8 02       		.byte	2
+ 1379 03f9 02       		.byte	2
+ 1380 03fa 02       		.byte	2
+ 1381 03fb 02       		.byte	2
+ 1382 03fc 02       		.byte	2
+ 1383 03fd 02       		.byte	2
+ 1384 03fe 02       		.byte	2
+ 1385 03ff 02       		.byte	2
+ 1386 0400 02       		.byte	2
+ 1387 0401 02       		.byte	2
+ 1388 0402 02       		.byte	2
+ 1389 0403 02       		.byte	2
+ 1390 0404 02       		.byte	2
+ 1391 0405 02       		.byte	2
+ 1392 0406 02       		.byte	2
+ 1393 0407 02       		.byte	2
+ 1394 0408 02       		.byte	2
+ 1395 0409 02       		.byte	2
+ 1396 040a 02       		.byte	2
+ 1397 040b 02       		.byte	2
+ 1398 040c 02       		.byte	2
+ 1399 040d 02       		.byte	2
+ 1400 040e 02       		.byte	2
+ 1401 040f 02       		.byte	2
+ 1402 0410 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 31
+
+
+ 1403 0411 02       		.byte	2
+ 1404 0412 02       		.byte	2
+ 1405 0413 02       		.byte	2
+ 1406 0414 02       		.byte	2
+ 1407 0415 02       		.byte	2
+ 1408 0416 02       		.byte	2
+ 1409 0417 02       		.byte	2
+ 1410 0418 02       		.byte	2
+ 1411 0419 02       		.byte	2
+ 1412 041a 02       		.byte	2
+ 1413 041b 02       		.byte	2
+ 1414 041c 02       		.byte	2
+ 1415 041d 02       		.byte	2
+ 1416 041e 02       		.byte	2
+ 1417 041f 02       		.byte	2
+ 1418 0420 02       		.byte	2
+ 1419 0421 02       		.byte	2
+ 1420 0422 02       		.byte	2
+ 1421 0423 02       		.byte	2
+ 1422 0424 02       		.byte	2
+ 1423 0425 02       		.byte	2
+ 1424 0426 02       		.byte	2
+ 1425 0427 02       		.byte	2
+ 1426 0428 02       		.byte	2
+ 1427 0429 02       		.byte	2
+ 1428 042a 02       		.byte	2
+ 1429 042b 02       		.byte	2
+ 1430 042c 02       		.byte	2
+ 1431 042d 02       		.byte	2
+ 1432 042e 02       		.byte	2
+ 1433 042f 02       		.byte	2
+ 1434 0430 02       		.byte	2
+ 1435 0431 02       		.byte	2
+ 1436 0432 02       		.byte	2
+ 1437 0433 02       		.byte	2
+ 1438 0434 02       		.byte	2
+ 1439 0435 02       		.byte	2
+ 1440 0436 02       		.byte	2
+ 1441 0437 02       		.byte	2
+ 1442 0438 02       		.byte	2
+ 1443 0439 02       		.byte	2
+ 1444 043a 02       		.byte	2
+ 1445 043b 02       		.byte	2
+ 1446 043c 02       		.byte	2
+ 1447 043d 02       		.byte	2
+ 1448 043e 02       		.byte	2
+ 1449 043f 02       		.byte	2
+ 1450 0440 02       		.byte	2
+ 1451 0441 02       		.byte	2
+ 1452 0442 02       		.byte	2
+ 1453 0443 02       		.byte	2
+ 1454 0444 02       		.byte	2
+ 1455 0445 02       		.byte	2
+ 1456 0446 02       		.byte	2
+ 1457 0447 02       		.byte	2
+ 1458 0448 02       		.byte	2
+ 1459 0449 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 32
+
+
+ 1460 044a 02       		.byte	2
+ 1461 044b 02       		.byte	2
+ 1462 044c 02       		.byte	2
+ 1463 044d 02       		.byte	2
+ 1464 044e 02       		.byte	2
+ 1465 044f 02       		.byte	2
+ 1466 0450 02       		.byte	2
+ 1467 0451 02       		.byte	2
+ 1468 0452 02       		.byte	2
+ 1469 0453 02       		.byte	2
+ 1470 0454 02       		.byte	2
+ 1471 0455 02       		.byte	2
+ 1472 0456 02       		.byte	2
+ 1473 0457 02       		.byte	2
+ 1474 0458 02       		.byte	2
+ 1475 0459 02       		.byte	2
+ 1476 045a 02       		.byte	2
+ 1477 045b 02       		.byte	2
+ 1478 045c 02       		.byte	2
+ 1479 045d 02       		.byte	2
+ 1480 045e 02       		.byte	2
+ 1481 045f 02       		.byte	2
+ 1482 0460 02       		.byte	2
+ 1483 0461 02       		.byte	2
+ 1484 0462 02       		.byte	2
+ 1485 0463 02       		.byte	2
+ 1486 0464 02       		.byte	2
+ 1487 0465 02       		.byte	2
+ 1488 0466 02       		.byte	2
+ 1489 0467 02       		.byte	2
+ 1490 0468 02       		.byte	2
+ 1491 0469 02       		.byte	2
+ 1492 046a 02       		.byte	2
+ 1493 046b 02       		.byte	2
+ 1494 046c 02       		.byte	2
+ 1495 046d 02       		.byte	2
+ 1496 046e 02       		.byte	2
+ 1497 046f 02       		.byte	2
+ 1498 0470 02       		.byte	2
+ 1499 0471 02       		.byte	2
+ 1500 0472 02       		.byte	2
+ 1501 0473 02       		.byte	2
+ 1502 0474 02       		.byte	2
+ 1503 0475 02       		.byte	2
+ 1504 0476 02       		.byte	2
+ 1505 0477 02       		.byte	2
+ 1506 0478 02       		.byte	2
+ 1507 0479 02       		.byte	2
+ 1508 047a 02       		.byte	2
+ 1509 047b 02       		.byte	2
+ 1510 047c 02       		.byte	2
+ 1511 047d 02       		.byte	2
+ 1512 047e 02       		.byte	2
+ 1513 047f 02       		.byte	2
+ 1514 0480 02       		.byte	2
+ 1515 0481 02       		.byte	2
+ 1516 0482 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 33
+
+
+ 1517 0483 02       		.byte	2
+ 1518 0484 02       		.byte	2
+ 1519 0485 02       		.byte	2
+ 1520 0486 02       		.byte	2
+ 1521 0487 02       		.byte	2
+ 1522 0488 02       		.byte	2
+ 1523 0489 02       		.byte	2
+ 1524 048a 02       		.byte	2
+ 1525 048b 02       		.byte	2
+ 1526 048c 02       		.byte	2
+ 1527 048d 02       		.byte	2
+ 1528 048e 02       		.byte	2
+ 1529 048f 02       		.byte	2
+ 1530 0490 02       		.byte	2
+ 1531 0491 02       		.byte	2
+ 1532 0492 02       		.byte	2
+ 1533 0493 02       		.byte	2
+ 1534 0494 02       		.byte	2
+ 1535 0495 02       		.byte	2
+ 1536 0496 02       		.byte	2
+ 1537 0497 02       		.byte	2
+ 1538 0498 02       		.byte	2
+ 1539 0499 02       		.byte	2
+ 1540 049a 02       		.byte	2
+ 1541 049b 02       		.byte	2
+ 1542 049c 02       		.byte	2
+ 1543 049d 02       		.byte	2
+ 1544 049e 02       		.byte	2
+ 1545 049f 02       		.byte	2
+ 1546 04a0 02       		.byte	2
+ 1547 04a1 02       		.byte	2
+ 1548 04a2 02       		.byte	2
+ 1549 04a3 02       		.byte	2
+ 1550 04a4 02       		.byte	2
+ 1551 04a5 02       		.byte	2
+ 1552 04a6 02       		.byte	2
+ 1553 04a7 02       		.byte	2
+ 1554 04a8 02       		.byte	2
+ 1555 04a9 02       		.byte	2
+ 1556 04aa 02       		.byte	2
+ 1557 04ab 02       		.byte	2
+ 1558 04ac 02       		.byte	2
+ 1559 04ad 02       		.byte	2
+ 1560 04ae 02       		.byte	2
+ 1561 04af 02       		.byte	2
+ 1562 04b0 02       		.byte	2
+ 1563 04b1 02       		.byte	2
+ 1564 04b2 02       		.byte	2
+ 1565 04b3 02       		.byte	2
+ 1566 04b4 02       		.byte	2
+ 1567 04b5 02       		.byte	2
+ 1568 04b6 02       		.byte	2
+ 1569 04b7 02       		.byte	2
+ 1570 04b8 02       		.byte	2
+ 1571 04b9 02       		.byte	2
+ 1572 04ba 02       		.byte	2
+ 1573 04bb 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 34
+
+
+ 1574 04bc 02       		.byte	2
+ 1575 04bd 02       		.byte	2
+ 1576 04be 02       		.byte	2
+ 1577 04bf 02       		.byte	2
+ 1578 04c0 02       		.byte	2
+ 1579 04c1 02       		.byte	2
+ 1580 04c2 02       		.byte	2
+ 1581 04c3 02       		.byte	2
+ 1582 04c4 02       		.byte	2
+ 1583 04c5 02       		.byte	2
+ 1584 04c6 02       		.byte	2
+ 1585 04c7 02       		.byte	2
+ 1586 04c8 02       		.byte	2
+ 1587 04c9 02       		.byte	2
+ 1588 04ca 02       		.byte	2
+ 1589 04cb 02       		.byte	2
+ 1590 04cc 02       		.byte	2
+ 1591 04cd 02       		.byte	2
+ 1592 04ce 02       		.byte	2
+ 1593 04cf 02       		.byte	2
+ 1594 04d0 02       		.byte	2
+ 1595 04d1 02       		.byte	2
+ 1596 04d2 02       		.byte	2
+ 1597 04d3 02       		.byte	2
+ 1598 04d4 02       		.byte	2
+ 1599 04d5 02       		.byte	2
+ 1600 04d6 02       		.byte	2
+ 1601 04d7 02       		.byte	2
+ 1602 04d8 02       		.byte	2
+ 1603 04d9 02       		.byte	2
+ 1604 04da 02       		.byte	2
+ 1605 04db 02       		.byte	2
+ 1606 04dc 02       		.byte	2
+ 1607 04dd 02       		.byte	2
+ 1608 04de 02       		.byte	2
+ 1609 04df 02       		.byte	2
+ 1610 04e0 02       		.byte	2
+ 1611 04e1 02       		.byte	2
+ 1612 04e2 02       		.byte	2
+ 1613 04e3 02       		.byte	2
+ 1614 04e4 02       		.byte	2
+ 1615 04e5 02       		.byte	2
+ 1616 04e6 02       		.byte	2
+ 1617 04e7 02       		.byte	2
+ 1618 04e8 02       		.byte	2
+ 1619 04e9 02       		.byte	2
+ 1620 04ea 02       		.byte	2
+ 1621 04eb 02       		.byte	2
+ 1622 04ec 02       		.byte	2
+ 1623 04ed 02       		.byte	2
+ 1624 04ee 02       		.byte	2
+ 1625 04ef 02       		.byte	2
+ 1626 04f0 02       		.byte	2
+ 1627 04f1 02       		.byte	2
+ 1628 04f2 02       		.byte	2
+ 1629 04f3 02       		.byte	2
+ 1630 04f4 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 35
+
+
+ 1631 04f5 02       		.byte	2
+ 1632 04f6 02       		.byte	2
+ 1633 04f7 02       		.byte	2
+ 1634 04f8 02       		.byte	2
+ 1635 04f9 02       		.byte	2
+ 1636 04fa 02       		.byte	2
+ 1637 04fb 02       		.byte	2
+ 1638 04fc 02       		.byte	2
+ 1639 04fd 02       		.byte	2
+ 1640 04fe 02       		.byte	2
+ 1641 04ff 02       		.byte	2
+ 1642 0500 02       		.byte	2
+ 1643 0501 02       		.byte	2
+ 1644 0502 02       		.byte	2
+ 1645 0503 02       		.byte	2
+ 1646 0504 02       		.byte	2
+ 1647 0505 02       		.byte	2
+ 1648 0506 02       		.byte	2
+ 1649 0507 02       		.byte	2
+ 1650 0508 02       		.byte	2
+ 1651 0509 02       		.byte	2
+ 1652 050a 02       		.byte	2
+ 1653 050b 02       		.byte	2
+ 1654 050c 02       		.byte	2
+ 1655 050d 02       		.byte	2
+ 1656 050e 02       		.byte	2
+ 1657 050f 02       		.byte	2
+ 1658 0510 02       		.byte	2
+ 1659 0511 02       		.byte	2
+ 1660 0512 02       		.byte	2
+ 1661 0513 02       		.byte	2
+ 1662 0514 02       		.byte	2
+ 1663 0515 02       		.byte	2
+ 1664 0516 02       		.byte	2
+ 1665 0517 02       		.byte	2
+ 1666 0518 02       		.byte	2
+ 1667 0519 02       		.byte	2
+ 1668 051a 02       		.byte	2
+ 1669 051b 02       		.byte	2
+ 1670 051c 02       		.byte	2
+ 1671 051d 02       		.byte	2
+ 1672 051e 02       		.byte	2
+ 1673 051f 02       		.byte	2
+ 1674 0520 02       		.byte	2
+ 1675 0521 02       		.byte	2
+ 1676 0522 02       		.byte	2
+ 1677 0523 02       		.byte	2
+ 1678 0524 02       		.byte	2
+ 1679 0525 02       		.byte	2
+ 1680 0526 02       		.byte	2
+ 1681 0527 02       		.byte	2
+ 1682 0528 02       		.byte	2
+ 1683 0529 02       		.byte	2
+ 1684 052a 02       		.byte	2
+ 1685 052b 02       		.byte	2
+ 1686 052c 02       		.byte	2
+ 1687 052d 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 36
+
+
+ 1688 052e 02       		.byte	2
+ 1689 052f 02       		.byte	2
+ 1690 0530 02       		.byte	2
+ 1691 0531 02       		.byte	2
+ 1692 0532 02       		.byte	2
+ 1693 0533 02       		.byte	2
+ 1694 0534 02       		.byte	2
+ 1695 0535 02       		.byte	2
+ 1696 0536 02       		.byte	2
+ 1697 0537 02       		.byte	2
+ 1698 0538 02       		.byte	2
+ 1699 0539 02       		.byte	2
+ 1700 053a 02       		.byte	2
+ 1701 053b 02       		.byte	2
+ 1702 053c 02       		.byte	2
+ 1703 053d 02       		.byte	2
+ 1704 053e 02       		.byte	2
+ 1705 053f 02       		.byte	2
+ 1706 0540 02       		.byte	2
+ 1707 0541 02       		.byte	2
+ 1708 0542 02       		.byte	2
+ 1709 0543 02       		.byte	2
+ 1710 0544 02       		.byte	2
+ 1711 0545 02       		.byte	2
+ 1712 0546 02       		.byte	2
+ 1713 0547 02       		.byte	2
+ 1714 0548 02       		.byte	2
+ 1715 0549 02       		.byte	2
+ 1716 054a 02       		.byte	2
+ 1717 054b 02       		.byte	2
+ 1718 054c 02       		.byte	2
+ 1719 054d 02       		.byte	2
+ 1720 054e 02       		.byte	2
+ 1721 054f 02       		.byte	2
+ 1722 0550 02       		.byte	2
+ 1723 0551 02       		.byte	2
+ 1724 0552 02       		.byte	2
+ 1725 0553 02       		.byte	2
+ 1726 0554 02       		.byte	2
+ 1727 0555 02       		.byte	2
+ 1728 0556 02       		.byte	2
+ 1729 0557 02       		.byte	2
+ 1730 0558 02       		.byte	2
+ 1731 0559 02       		.byte	2
+ 1732 055a 02       		.byte	2
+ 1733 055b 02       		.byte	2
+ 1734 055c 02       		.byte	2
+ 1735 055d 02       		.byte	2
+ 1736 055e 02       		.byte	2
+ 1737 055f 02       		.byte	2
+ 1738 0560 02       		.byte	2
+ 1739 0561 02       		.byte	2
+ 1740 0562 02       		.byte	2
+ 1741 0563 02       		.byte	2
+ 1742 0564 02       		.byte	2
+ 1743 0565 02       		.byte	2
+ 1744 0566 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 37
+
+
+ 1745 0567 02       		.byte	2
+ 1746 0568 02       		.byte	2
+ 1747 0569 02       		.byte	2
+ 1748 056a 02       		.byte	2
+ 1749 056b 02       		.byte	2
+ 1750 056c 02       		.byte	2
+ 1751 056d 02       		.byte	2
+ 1752 056e 02       		.byte	2
+ 1753 056f 02       		.byte	2
+ 1754 0570 02       		.byte	2
+ 1755 0571 02       		.byte	2
+ 1756 0572 02       		.byte	2
+ 1757 0573 02       		.byte	2
+ 1758 0574 02       		.byte	2
+ 1759 0575 02       		.byte	2
+ 1760 0576 02       		.byte	2
+ 1761 0577 02       		.byte	2
+ 1762 0578 02       		.byte	2
+ 1763 0579 02       		.byte	2
+ 1764 057a 02       		.byte	2
+ 1765 057b 02       		.byte	2
+ 1766 057c 02       		.byte	2
+ 1767 057d 02       		.byte	2
+ 1768 057e 02       		.byte	2
+ 1769 057f 02       		.byte	2
+ 1770 0580 02       		.byte	2
+ 1771 0581 02       		.byte	2
+ 1772 0582 02       		.byte	2
+ 1773 0583 02       		.byte	2
+ 1774 0584 02       		.byte	2
+ 1775 0585 02       		.byte	2
+ 1776 0586 02       		.byte	2
+ 1777 0587 02       		.byte	2
+ 1778 0588 02       		.byte	2
+ 1779 0589 02       		.byte	2
+ 1780 058a 02       		.byte	2
+ 1781 058b 02       		.byte	2
+ 1782 058c 02       		.byte	2
+ 1783 058d 02       		.byte	2
+ 1784 058e 02       		.byte	2
+ 1785 058f 02       		.byte	2
+ 1786 0590 02       		.byte	2
+ 1787 0591 02       		.byte	2
+ 1788 0592 02       		.byte	2
+ 1789 0593 02       		.byte	2
+ 1790 0594 02       		.byte	2
+ 1791 0595 02       		.byte	2
+ 1792 0596 02       		.byte	2
+ 1793 0597 02       		.byte	2
+ 1794 0598 02       		.byte	2
+ 1795 0599 02       		.byte	2
+ 1796 059a 02       		.byte	2
+ 1797 059b 02       		.byte	2
+ 1798 059c 02       		.byte	2
+ 1799 059d 02       		.byte	2
+ 1800 059e 02       		.byte	2
+ 1801 059f 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 38
+
+
+ 1802 05a0 02       		.byte	2
+ 1803 05a1 02       		.byte	2
+ 1804 05a2 02       		.byte	2
+ 1805 05a3 02       		.byte	2
+ 1806 05a4 02       		.byte	2
+ 1807 05a5 02       		.byte	2
+ 1808 05a6 02       		.byte	2
+ 1809 05a7 02       		.byte	2
+ 1810 05a8 02       		.byte	2
+ 1811 05a9 02       		.byte	2
+ 1812 05aa 02       		.byte	2
+ 1813 05ab 02       		.byte	2
+ 1814 05ac 02       		.byte	2
+ 1815 05ad 02       		.byte	2
+ 1816 05ae 02       		.byte	2
+ 1817 05af 02       		.byte	2
+ 1818 05b0 02       		.byte	2
+ 1819 05b1 02       		.byte	2
+ 1820 05b2 02       		.byte	2
+ 1821 05b3 02       		.byte	2
+ 1822 05b4 02       		.byte	2
+ 1823 05b5 02       		.byte	2
+ 1824 05b6 02       		.byte	2
+ 1825 05b7 02       		.byte	2
+ 1826 05b8 02       		.byte	2
+ 1827 05b9 02       		.byte	2
+ 1828 05ba 02       		.byte	2
+ 1829 05bb 02       		.byte	2
+ 1830 05bc 02       		.byte	2
+ 1831 05bd 02       		.byte	2
+ 1832 05be 02       		.byte	2
+ 1833 05bf 02       		.byte	2
+ 1834 05c0 02       		.byte	2
+ 1835 05c1 02       		.byte	2
+ 1836 05c2 02       		.byte	2
+ 1837 05c3 02       		.byte	2
+ 1838 05c4 02       		.byte	2
+ 1839 05c5 02       		.byte	2
+ 1840 05c6 02       		.byte	2
+ 1841 05c7 02       		.byte	2
+ 1842 05c8 02       		.byte	2
+ 1843 05c9 02       		.byte	2
+ 1844 05ca 02       		.byte	2
+ 1845 05cb 02       		.byte	2
+ 1846 05cc 02       		.byte	2
+ 1847 05cd 02       		.byte	2
+ 1848 05ce 02       		.byte	2
+ 1849 05cf 02       		.byte	2
+ 1850 05d0 02       		.byte	2
+ 1851 05d1 02       		.byte	2
+ 1852 05d2 02       		.byte	2
+ 1853 05d3 02       		.byte	2
+ 1854 05d4 02       		.byte	2
+ 1855 05d5 02       		.byte	2
+ 1856 05d6 02       		.byte	2
+ 1857 05d7 02       		.byte	2
+ 1858 05d8 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 39
+
+
+ 1859 05d9 02       		.byte	2
+ 1860 05da 02       		.byte	2
+ 1861 05db 02       		.byte	2
+ 1862 05dc 02       		.byte	2
+ 1863 05dd 02       		.byte	2
+ 1864 05de 02       		.byte	2
+ 1865 05df 02       		.byte	2
+ 1866 05e0 02       		.byte	2
+ 1867 05e1 02       		.byte	2
+ 1868 05e2 02       		.byte	2
+ 1869 05e3 02       		.byte	2
+ 1870 05e4 02       		.byte	2
+ 1871 05e5 02       		.byte	2
+ 1872 05e6 02       		.byte	2
+ 1873 05e7 02       		.byte	2
+ 1874 05e8 02       		.byte	2
+ 1875 05e9 02       		.byte	2
+ 1876 05ea 02       		.byte	2
+ 1877 05eb 02       		.byte	2
+ 1878 05ec 02       		.byte	2
+ 1879 05ed 02       		.byte	2
+ 1880 05ee 02       		.byte	2
+ 1881 05ef 02       		.byte	2
+ 1882 05f0 02       		.byte	2
+ 1883 05f1 02       		.byte	2
+ 1884 05f2 02       		.byte	2
+ 1885 05f3 02       		.byte	2
+ 1886 05f4 02       		.byte	2
+ 1887 05f5 02       		.byte	2
+ 1888 05f6 02       		.byte	2
+ 1889 05f7 02       		.byte	2
+ 1890 05f8 02       		.byte	2
+ 1891 05f9 02       		.byte	2
+ 1892 05fa 02       		.byte	2
+ 1893 05fb 02       		.byte	2
+ 1894 05fc 02       		.byte	2
+ 1895 05fd 02       		.byte	2
+ 1896 05fe 02       		.byte	2
+ 1897 05ff 02       		.byte	2
+ 1898 0600 02       		.byte	2
+ 1899 0601 02       		.byte	2
+ 1900 0602 02       		.byte	2
+ 1901 0603 02       		.byte	2
+ 1902 0604 02       		.byte	2
+ 1903 0605 02       		.byte	2
+ 1904 0606 02       		.byte	2
+ 1905 0607 02       		.byte	2
+ 1906 0608 02       		.byte	2
+ 1907 0609 02       		.byte	2
+ 1908 060a 02       		.byte	2
+ 1909 060b 02       		.byte	2
+ 1910 060c 02       		.byte	2
+ 1911 060d 02       		.byte	2
+ 1912 060e 02       		.byte	2
+ 1913 060f 02       		.byte	2
+ 1914 0610 02       		.byte	2
+ 1915 0611 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 40
+
+
+ 1916 0612 02       		.byte	2
+ 1917 0613 02       		.byte	2
+ 1918 0614 02       		.byte	2
+ 1919 0615 02       		.byte	2
+ 1920 0616 02       		.byte	2
+ 1921 0617 02       		.byte	2
+ 1922 0618 02       		.byte	2
+ 1923 0619 02       		.byte	2
+ 1924 061a 02       		.byte	2
+ 1925 061b 02       		.byte	2
+ 1926 061c 02       		.byte	2
+ 1927 061d 02       		.byte	2
+ 1928 061e 02       		.byte	2
+ 1929 061f 02       		.byte	2
+ 1930 0620 02       		.byte	2
+ 1931 0621 02       		.byte	2
+ 1932 0622 02       		.byte	2
+ 1933 0623 02       		.byte	2
+ 1934 0624 02       		.byte	2
+ 1935 0625 02       		.byte	2
+ 1936 0626 02       		.byte	2
+ 1937 0627 02       		.byte	2
+ 1938 0628 02       		.byte	2
+ 1939 0629 02       		.byte	2
+ 1940 062a 02       		.byte	2
+ 1941 062b 02       		.byte	2
+ 1942 062c 02       		.byte	2
+ 1943 062d 02       		.byte	2
+ 1944 062e 02       		.byte	2
+ 1945 062f 02       		.byte	2
+ 1946 0630 02       		.byte	2
+ 1947 0631 02       		.byte	2
+ 1948 0632 02       		.byte	2
+ 1949 0633 02       		.byte	2
+ 1950 0634 02       		.byte	2
+ 1951 0635 02       		.byte	2
+ 1952 0636 02       		.byte	2
+ 1953 0637 02       		.byte	2
+ 1954 0638 02       		.byte	2
+ 1955 0639 02       		.byte	2
+ 1956 063a 02       		.byte	2
+ 1957 063b 02       		.byte	2
+ 1958 063c 02       		.byte	2
+ 1959 063d 02       		.byte	2
+ 1960 063e 02       		.byte	2
+ 1961 063f 02       		.byte	2
+ 1962 0640 02       		.byte	2
+ 1963 0641 02       		.byte	2
+ 1964 0642 02       		.byte	2
+ 1965 0643 02       		.byte	2
+ 1966 0644 02       		.byte	2
+ 1967 0645 02       		.byte	2
+ 1968 0646 02       		.byte	2
+ 1969 0647 02       		.byte	2
+ 1970 0648 02       		.byte	2
+ 1971 0649 02       		.byte	2
+ 1972 064a 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 41
+
+
+ 1973 064b 02       		.byte	2
+ 1974 064c 02       		.byte	2
+ 1975 064d 02       		.byte	2
+ 1976 064e 02       		.byte	2
+ 1977 064f 02       		.byte	2
+ 1978 0650 02       		.byte	2
+ 1979 0651 02       		.byte	2
+ 1980 0652 02       		.byte	2
+ 1981 0653 02       		.byte	2
+ 1982 0654 02       		.byte	2
+ 1983 0655 02       		.byte	2
+ 1984 0656 02       		.byte	2
+ 1985 0657 02       		.byte	2
+ 1986 0658 02       		.byte	2
+ 1987 0659 02       		.byte	2
+ 1988 065a 02       		.byte	2
+ 1989 065b 02       		.byte	2
+ 1990 065c 02       		.byte	2
+ 1991 065d 02       		.byte	2
+ 1992 065e 02       		.byte	2
+ 1993 065f 02       		.byte	2
+ 1994 0660 02       		.byte	2
+ 1995 0661 02       		.byte	2
+ 1996 0662 02       		.byte	2
+ 1997 0663 02       		.byte	2
+ 1998 0664 02       		.byte	2
+ 1999 0665 02       		.byte	2
+ 2000 0666 02       		.byte	2
+ 2001 0667 02       		.byte	2
+ 2002 0668 02       		.byte	2
+ 2003 0669 02       		.byte	2
+ 2004 066a 02       		.byte	2
+ 2005 066b 02       		.byte	2
+ 2006 066c 02       		.byte	2
+ 2007 066d 02       		.byte	2
+ 2008 066e 02       		.byte	2
+ 2009 066f 02       		.byte	2
+ 2010 0670 02       		.byte	2
+ 2011 0671 02       		.byte	2
+ 2012 0672 02       		.byte	2
+ 2013 0673 02       		.byte	2
+ 2014 0674 02       		.byte	2
+ 2015 0675 02       		.byte	2
+ 2016 0676 02       		.byte	2
+ 2017 0677 02       		.byte	2
+ 2018 0678 02       		.byte	2
+ 2019 0679 02       		.byte	2
+ 2020 067a 02       		.byte	2
+ 2021 067b 02       		.byte	2
+ 2022 067c 02       		.byte	2
+ 2023 067d 02       		.byte	2
+ 2024 067e 02       		.byte	2
+ 2025 067f 02       		.byte	2
+ 2026 0680 02       		.byte	2
+ 2027 0681 02       		.byte	2
+ 2028 0682 02       		.byte	2
+ 2029 0683 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 42
+
+
+ 2030 0684 02       		.byte	2
+ 2031 0685 02       		.byte	2
+ 2032 0686 02       		.byte	2
+ 2033 0687 02       		.byte	2
+ 2034 0688 02       		.byte	2
+ 2035 0689 02       		.byte	2
+ 2036 068a 02       		.byte	2
+ 2037 068b 02       		.byte	2
+ 2038 068c 02       		.byte	2
+ 2039 068d 02       		.byte	2
+ 2040 068e 02       		.byte	2
+ 2041 068f 02       		.byte	2
+ 2042 0690 02       		.byte	2
+ 2043 0691 02       		.byte	2
+ 2044 0692 02       		.byte	2
+ 2045 0693 02       		.byte	2
+ 2046 0694 02       		.byte	2
+ 2047 0695 02       		.byte	2
+ 2048 0696 02       		.byte	2
+ 2049 0697 02       		.byte	2
+ 2050 0698 02       		.byte	2
+ 2051 0699 02       		.byte	2
+ 2052 069a 02       		.byte	2
+ 2053 069b 02       		.byte	2
+ 2054 069c 02       		.byte	2
+ 2055 069d 02       		.byte	2
+ 2056 069e 02       		.byte	2
+ 2057 069f 02       		.byte	2
+ 2058 06a0 02       		.byte	2
+ 2059 06a1 02       		.byte	2
+ 2060 06a2 02       		.byte	2
+ 2061 06a3 02       		.byte	2
+ 2062 06a4 02       		.byte	2
+ 2063 06a5 02       		.byte	2
+ 2064 06a6 02       		.byte	2
+ 2065 06a7 02       		.byte	2
+ 2066 06a8 02       		.byte	2
+ 2067 06a9 02       		.byte	2
+ 2068 06aa 02       		.byte	2
+ 2069 06ab 02       		.byte	2
+ 2070 06ac 02       		.byte	2
+ 2071 06ad 02       		.byte	2
+ 2072 06ae 02       		.byte	2
+ 2073 06af 02       		.byte	2
+ 2074 06b0 02       		.byte	2
+ 2075 06b1 02       		.byte	2
+ 2076 06b2 02       		.byte	2
+ 2077 06b3 02       		.byte	2
+ 2078 06b4 02       		.byte	2
+ 2079 06b5 02       		.byte	2
+ 2080 06b6 02       		.byte	2
+ 2081 06b7 02       		.byte	2
+ 2082 06b8 02       		.byte	2
+ 2083 06b9 02       		.byte	2
+ 2084 06ba 02       		.byte	2
+ 2085 06bb 02       		.byte	2
+ 2086 06bc 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 43
+
+
+ 2087 06bd 02       		.byte	2
+ 2088 06be 02       		.byte	2
+ 2089 06bf 02       		.byte	2
+ 2090 06c0 02       		.byte	2
+ 2091 06c1 02       		.byte	2
+ 2092 06c2 02       		.byte	2
+ 2093 06c3 02       		.byte	2
+ 2094 06c4 02       		.byte	2
+ 2095 06c5 02       		.byte	2
+ 2096 06c6 02       		.byte	2
+ 2097 06c7 02       		.byte	2
+ 2098 06c8 02       		.byte	2
+ 2099 06c9 02       		.byte	2
+ 2100 06ca 02       		.byte	2
+ 2101 06cb 02       		.byte	2
+ 2102 06cc 02       		.byte	2
+ 2103 06cd 02       		.byte	2
+ 2104 06ce 02       		.byte	2
+ 2105 06cf 02       		.byte	2
+ 2106 06d0 02       		.byte	2
+ 2107 06d1 02       		.byte	2
+ 2108 06d2 02       		.byte	2
+ 2109 06d3 02       		.byte	2
+ 2110 06d4 02       		.byte	2
+ 2111 06d5 02       		.byte	2
+ 2112 06d6 02       		.byte	2
+ 2113 06d7 02       		.byte	2
+ 2114 06d8 02       		.byte	2
+ 2115 06d9 02       		.byte	2
+ 2116 06da 02       		.byte	2
+ 2117 06db 02       		.byte	2
+ 2118 06dc 02       		.byte	2
+ 2119 06dd 02       		.byte	2
+ 2120 06de 02       		.byte	2
+ 2121 06df 02       		.byte	2
+ 2122 06e0 02       		.byte	2
+ 2123 06e1 02       		.byte	2
+ 2124 06e2 02       		.byte	2
+ 2125 06e3 02       		.byte	2
+ 2126 06e4 02       		.byte	2
+ 2127 06e5 02       		.byte	2
+ 2128 06e6 02       		.byte	2
+ 2129 06e7 02       		.byte	2
+ 2130 06e8 02       		.byte	2
+ 2131 06e9 02       		.byte	2
+ 2132 06ea 02       		.byte	2
+ 2133 06eb 02       		.byte	2
+ 2134 06ec 02       		.byte	2
+ 2135 06ed 02       		.byte	2
+ 2136 06ee 02       		.byte	2
+ 2137 06ef 02       		.byte	2
+ 2138 06f0 02       		.byte	2
+ 2139 06f1 02       		.byte	2
+ 2140 06f2 02       		.byte	2
+ 2141 06f3 02       		.byte	2
+ 2142 06f4 02       		.byte	2
+ 2143 06f5 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 44
+
+
+ 2144 06f6 02       		.byte	2
+ 2145 06f7 02       		.byte	2
+ 2146 06f8 02       		.byte	2
+ 2147 06f9 02       		.byte	2
+ 2148 06fa 02       		.byte	2
+ 2149 06fb 02       		.byte	2
+ 2150 06fc 02       		.byte	2
+ 2151 06fd 02       		.byte	2
+ 2152 06fe 02       		.byte	2
+ 2153 06ff 02       		.byte	2
+ 2154 0700 02       		.byte	2
+ 2155 0701 02       		.byte	2
+ 2156 0702 02       		.byte	2
+ 2157 0703 02       		.byte	2
+ 2158 0704 02       		.byte	2
+ 2159 0705 02       		.byte	2
+ 2160 0706 02       		.byte	2
+ 2161 0707 02       		.byte	2
+ 2162 0708 02       		.byte	2
+ 2163 0709 02       		.byte	2
+ 2164 070a 02       		.byte	2
+ 2165 070b 02       		.byte	2
+ 2166 070c 02       		.byte	2
+ 2167 070d 02       		.byte	2
+ 2168 070e 02       		.byte	2
+ 2169 070f 02       		.byte	2
+ 2170 0710 02       		.byte	2
+ 2171 0711 02       		.byte	2
+ 2172 0712 02       		.byte	2
+ 2173 0713 02       		.byte	2
+ 2174 0714 02       		.byte	2
+ 2175 0715 02       		.byte	2
+ 2176 0716 02       		.byte	2
+ 2177 0717 02       		.byte	2
+ 2178 0718 02       		.byte	2
+ 2179 0719 02       		.byte	2
+ 2180 071a 02       		.byte	2
+ 2181 071b 02       		.byte	2
+ 2182 071c 02       		.byte	2
+ 2183 071d 02       		.byte	2
+ 2184 071e 02       		.byte	2
+ 2185 071f 02       		.byte	2
+ 2186 0720 02       		.byte	2
+ 2187 0721 02       		.byte	2
+ 2188 0722 02       		.byte	2
+ 2189 0723 02       		.byte	2
+ 2190 0724 02       		.byte	2
+ 2191 0725 02       		.byte	2
+ 2192 0726 02       		.byte	2
+ 2193 0727 02       		.byte	2
+ 2194 0728 02       		.byte	2
+ 2195 0729 02       		.byte	2
+ 2196 072a 02       		.byte	2
+ 2197 072b 02       		.byte	2
+ 2198 072c 02       		.byte	2
+ 2199 072d 02       		.byte	2
+ 2200 072e 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 45
+
+
+ 2201 072f 02       		.byte	2
+ 2202 0730 02       		.byte	2
+ 2203 0731 02       		.byte	2
+ 2204 0732 02       		.byte	2
+ 2205 0733 02       		.byte	2
+ 2206 0734 02       		.byte	2
+ 2207 0735 02       		.byte	2
+ 2208 0736 02       		.byte	2
+ 2209 0737 02       		.byte	2
+ 2210 0738 02       		.byte	2
+ 2211 0739 02       		.byte	2
+ 2212 073a 02       		.byte	2
+ 2213 073b 02       		.byte	2
+ 2214 073c 02       		.byte	2
+ 2215 073d 02       		.byte	2
+ 2216 073e 02       		.byte	2
+ 2217 073f 02       		.byte	2
+ 2218 0740 02       		.byte	2
+ 2219 0741 02       		.byte	2
+ 2220 0742 02       		.byte	2
+ 2221 0743 02       		.byte	2
+ 2222 0744 02       		.byte	2
+ 2223 0745 02       		.byte	2
+ 2224 0746 02       		.byte	2
+ 2225 0747 02       		.byte	2
+ 2226 0748 02       		.byte	2
+ 2227 0749 02       		.byte	2
+ 2228 074a 02       		.byte	2
+ 2229 074b 02       		.byte	2
+ 2230 074c 02       		.byte	2
+ 2231 074d 02       		.byte	2
+ 2232 074e 02       		.byte	2
+ 2233 074f 02       		.byte	2
+ 2234 0750 02       		.byte	2
+ 2235 0751 02       		.byte	2
+ 2236 0752 02       		.byte	2
+ 2237 0753 02       		.byte	2
+ 2238 0754 02       		.byte	2
+ 2239 0755 02       		.byte	2
+ 2240 0756 02       		.byte	2
+ 2241 0757 02       		.byte	2
+ 2242 0758 02       		.byte	2
+ 2243 0759 02       		.byte	2
+ 2244 075a 02       		.byte	2
+ 2245 075b 02       		.byte	2
+ 2246 075c 02       		.byte	2
+ 2247 075d 02       		.byte	2
+ 2248 075e 02       		.byte	2
+ 2249 075f 02       		.byte	2
+ 2250 0760 02       		.byte	2
+ 2251 0761 02       		.byte	2
+ 2252 0762 02       		.byte	2
+ 2253 0763 02       		.byte	2
+ 2254 0764 02       		.byte	2
+ 2255 0765 02       		.byte	2
+ 2256 0766 02       		.byte	2
+ 2257 0767 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 46
+
+
+ 2258 0768 02       		.byte	2
+ 2259 0769 02       		.byte	2
+ 2260 076a 02       		.byte	2
+ 2261 076b 02       		.byte	2
+ 2262 076c 02       		.byte	2
+ 2263 076d 02       		.byte	2
+ 2264 076e 02       		.byte	2
+ 2265 076f 02       		.byte	2
+ 2266 0770 02       		.byte	2
+ 2267 0771 02       		.byte	2
+ 2268 0772 02       		.byte	2
+ 2269 0773 02       		.byte	2
+ 2270 0774 02       		.byte	2
+ 2271 0775 02       		.byte	2
+ 2272 0776 02       		.byte	2
+ 2273 0777 02       		.byte	2
+ 2274 0778 02       		.byte	2
+ 2275 0779 02       		.byte	2
+ 2276 077a 02       		.byte	2
+ 2277 077b 02       		.byte	2
+ 2278 077c 02       		.byte	2
+ 2279 077d 02       		.byte	2
+ 2280 077e 02       		.byte	2
+ 2281 077f 02       		.byte	2
+ 2282 0780 02       		.byte	2
+ 2283 0781 02       		.byte	2
+ 2284 0782 02       		.byte	2
+ 2285 0783 02       		.byte	2
+ 2286 0784 02       		.byte	2
+ 2287 0785 02       		.byte	2
+ 2288 0786 02       		.byte	2
+ 2289 0787 02       		.byte	2
+ 2290 0788 02       		.byte	2
+ 2291 0789 02       		.byte	2
+ 2292 078a 02       		.byte	2
+ 2293 078b 02       		.byte	2
+ 2294 078c 02       		.byte	2
+ 2295 078d 02       		.byte	2
+ 2296 078e 02       		.byte	2
+ 2297 078f 02       		.byte	2
+ 2298 0790 02       		.byte	2
+ 2299 0791 02       		.byte	2
+ 2300 0792 02       		.byte	2
+ 2301 0793 02       		.byte	2
+ 2302 0794 02       		.byte	2
+ 2303 0795 02       		.byte	2
+ 2304 0796 02       		.byte	2
+ 2305 0797 02       		.byte	2
+ 2306 0798 02       		.byte	2
+ 2307 0799 02       		.byte	2
+ 2308 079a 02       		.byte	2
+ 2309 079b 02       		.byte	2
+ 2310 079c 02       		.byte	2
+ 2311 079d 02       		.byte	2
+ 2312 079e 02       		.byte	2
+ 2313 079f 02       		.byte	2
+ 2314 07a0 02       		.byte	2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 47
+
+
+ 2315 07a1 02       		.byte	2
+ 2316 07a2 02       		.byte	2
+ 2317 07a3 02       		.byte	2
+ 2318 07a4 02       		.byte	2
+ 2319 07a5 02       		.byte	2
+ 2320 07a6 02       		.byte	2
+ 2321 07a7 02       		.byte	2
+ 2322 07a8 02       		.byte	2
+ 2323 07a9 02       		.byte	2
+ 2324 07aa 02       		.byte	2
+ 2325 07ab 02       		.byte	2
+ 2326 07ac 02       		.byte	2
+ 2327 07ad 02       		.byte	2
+ 2328 07ae 02       		.byte	2
+ 2329 07af 02       		.byte	2
+ 2330 07b0 02       		.byte	2
+ 2331 07b1 02       		.byte	2
+ 2332 07b2 02       		.byte	2
+ 2333 07b3 02       		.byte	2
+ 2334 07b4 02       		.byte	2
+ 2335 07b5 02       		.byte	2
+ 2336 07b6 02       		.byte	2
+ 2337 07b7 02       		.byte	2
+ 2338 07b8 02       		.byte	2
+ 2339 07b9 02       		.byte	2
+ 2340 07ba 02       		.byte	2
+ 2341 07bb 02       		.byte	2
+ 2342 07bc 02       		.byte	2
+ 2343 07bd 02       		.byte	2
+ 2344 07be 02       		.byte	2
+ 2345 07bf 02       		.byte	2
+ 2346 07c0 02       		.byte	2
+ 2347 07c1 02       		.byte	2
+ 2348 07c2 02       		.byte	2
+ 2349 07c3 02       		.byte	2
+ 2350 07c4 02       		.byte	2
+ 2351 07c5 02       		.byte	2
+ 2352 07c6 02       		.byte	2
+ 2353 07c7 02       		.byte	2
+ 2354 07c8 02       		.byte	2
+ 2355 07c9 02       		.byte	2
+ 2356 07ca 02       		.byte	2
+ 2357 07cb 02       		.byte	2
+ 2358 07cc 02       		.byte	2
+ 2359 07cd 02       		.byte	2
+ 2360 07ce 02       		.byte	2
+ 2361 07cf 02       		.byte	2
+ 2362              		.type	WaveDAC8_1_wave2, %object
+ 2363              		.size	WaveDAC8_1_wave2, 200
+ 2364              	WaveDAC8_1_wave2:
+ 2365 07d0 80       		.byte	-128
+ 2366 07d1 82       		.byte	-126
+ 2367 07d2 84       		.byte	-124
+ 2368 07d3 87       		.byte	-121
+ 2369 07d4 8A       		.byte	-118
+ 2370 07d5 8C       		.byte	-116
+ 2371 07d6 8F       		.byte	-113
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 48
+
+
+ 2372 07d7 91       		.byte	-111
+ 2373 07d8 94       		.byte	-108
+ 2374 07d9 96       		.byte	-106
+ 2375 07da 98       		.byte	-104
+ 2376 07db 9B       		.byte	-101
+ 2377 07dc 9E       		.byte	-98
+ 2378 07dd A0       		.byte	-96
+ 2379 07de A2       		.byte	-94
+ 2380 07df A5       		.byte	-91
+ 2381 07e0 A8       		.byte	-88
+ 2382 07e1 AA       		.byte	-86
+ 2383 07e2 AC       		.byte	-84
+ 2384 07e3 AF       		.byte	-81
+ 2385 07e4 B2       		.byte	-78
+ 2386 07e5 B4       		.byte	-76
+ 2387 07e6 B6       		.byte	-74
+ 2388 07e7 B9       		.byte	-71
+ 2389 07e8 BC       		.byte	-68
+ 2390 07e9 BE       		.byte	-66
+ 2391 07ea C0       		.byte	-64
+ 2392 07eb C3       		.byte	-61
+ 2393 07ec C6       		.byte	-58
+ 2394 07ed C8       		.byte	-56
+ 2395 07ee CA       		.byte	-54
+ 2396 07ef CD       		.byte	-51
+ 2397 07f0 D0       		.byte	-48
+ 2398 07f1 D2       		.byte	-46
+ 2399 07f2 D5       		.byte	-43
+ 2400 07f3 D7       		.byte	-41
+ 2401 07f4 DA       		.byte	-38
+ 2402 07f5 DC       		.byte	-36
+ 2403 07f6 DE       		.byte	-34
+ 2404 07f7 E1       		.byte	-31
+ 2405 07f8 E4       		.byte	-28
+ 2406 07f9 E6       		.byte	-26
+ 2407 07fa E8       		.byte	-24
+ 2408 07fb EB       		.byte	-21
+ 2409 07fc EE       		.byte	-18
+ 2410 07fd F0       		.byte	-16
+ 2411 07fe F2       		.byte	-14
+ 2412 07ff F5       		.byte	-11
+ 2413 0800 F8       		.byte	-8
+ 2414 0801 FA       		.byte	-6
+ 2415 0802 FC       		.byte	-4
+ 2416 0803 FA       		.byte	-6
+ 2417 0804 F8       		.byte	-8
+ 2418 0805 F5       		.byte	-11
+ 2419 0806 F2       		.byte	-14
+ 2420 0807 F0       		.byte	-16
+ 2421 0808 EE       		.byte	-18
+ 2422 0809 EB       		.byte	-21
+ 2423 080a E8       		.byte	-24
+ 2424 080b E6       		.byte	-26
+ 2425 080c E4       		.byte	-28
+ 2426 080d E1       		.byte	-31
+ 2427 080e DE       		.byte	-34
+ 2428 080f DC       		.byte	-36
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 49
+
+
+ 2429 0810 DA       		.byte	-38
+ 2430 0811 D7       		.byte	-41
+ 2431 0812 D4       		.byte	-44
+ 2432 0813 D2       		.byte	-46
+ 2433 0814 D0       		.byte	-48
+ 2434 0815 CD       		.byte	-51
+ 2435 0816 CA       		.byte	-54
+ 2436 0817 C8       		.byte	-56
+ 2437 0818 C6       		.byte	-58
+ 2438 0819 C3       		.byte	-61
+ 2439 081a C0       		.byte	-64
+ 2440 081b BE       		.byte	-66
+ 2441 081c BC       		.byte	-68
+ 2442 081d B9       		.byte	-71
+ 2443 081e B6       		.byte	-74
+ 2444 081f B4       		.byte	-76
+ 2445 0820 B2       		.byte	-78
+ 2446 0821 AF       		.byte	-81
+ 2447 0822 AD       		.byte	-83
+ 2448 0823 AA       		.byte	-86
+ 2449 0824 A8       		.byte	-88
+ 2450 0825 A5       		.byte	-91
+ 2451 0826 A2       		.byte	-94
+ 2452 0827 A0       		.byte	-96
+ 2453 0828 9E       		.byte	-98
+ 2454 0829 9B       		.byte	-101
+ 2455 082a 98       		.byte	-104
+ 2456 082b 96       		.byte	-106
+ 2457 082c 94       		.byte	-108
+ 2458 082d 91       		.byte	-111
+ 2459 082e 8F       		.byte	-113
+ 2460 082f 8C       		.byte	-116
+ 2461 0830 8A       		.byte	-118
+ 2462 0831 87       		.byte	-121
+ 2463 0832 84       		.byte	-124
+ 2464 0833 82       		.byte	-126
+ 2465 0834 80       		.byte	-128
+ 2466 0835 7D       		.byte	125
+ 2467 0836 7A       		.byte	122
+ 2468 0837 78       		.byte	120
+ 2469 0838 76       		.byte	118
+ 2470 0839 73       		.byte	115
+ 2471 083a 70       		.byte	112
+ 2472 083b 6E       		.byte	110
+ 2473 083c 6B       		.byte	107
+ 2474 083d 69       		.byte	105
+ 2475 083e 66       		.byte	102
+ 2476 083f 64       		.byte	100
+ 2477 0840 61       		.byte	97
+ 2478 0841 5F       		.byte	95
+ 2479 0842 5D       		.byte	93
+ 2480 0843 5A       		.byte	90
+ 2481 0844 58       		.byte	88
+ 2482 0845 55       		.byte	85
+ 2483 0846 53       		.byte	83
+ 2484 0847 50       		.byte	80
+ 2485 0848 4E       		.byte	78
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 50
+
+
+ 2486 0849 4B       		.byte	75
+ 2487 084a 49       		.byte	73
+ 2488 084b 46       		.byte	70
+ 2489 084c 44       		.byte	68
+ 2490 084d 41       		.byte	65
+ 2491 084e 3E       		.byte	62
+ 2492 084f 3C       		.byte	60
+ 2493 0850 39       		.byte	57
+ 2494 0851 37       		.byte	55
+ 2495 0852 34       		.byte	52
+ 2496 0853 32       		.byte	50
+ 2497 0854 2F       		.byte	47
+ 2498 0855 2D       		.byte	45
+ 2499 0856 2A       		.byte	42
+ 2500 0857 28       		.byte	40
+ 2501 0858 25       		.byte	37
+ 2502 0859 23       		.byte	35
+ 2503 085a 21       		.byte	33
+ 2504 085b 1E       		.byte	30
+ 2505 085c 1C       		.byte	28
+ 2506 085d 19       		.byte	25
+ 2507 085e 17       		.byte	23
+ 2508 085f 14       		.byte	20
+ 2509 0860 12       		.byte	18
+ 2510 0861 0F       		.byte	15
+ 2511 0862 0D       		.byte	13
+ 2512 0863 0A       		.byte	10
+ 2513 0864 08       		.byte	8
+ 2514 0865 05       		.byte	5
+ 2515 0866 03       		.byte	3
+ 2516 0867 05       		.byte	5
+ 2517 0868 08       		.byte	8
+ 2518 0869 0A       		.byte	10
+ 2519 086a 0D       		.byte	13
+ 2520 086b 0F       		.byte	15
+ 2521 086c 12       		.byte	18
+ 2522 086d 14       		.byte	20
+ 2523 086e 17       		.byte	23
+ 2524 086f 19       		.byte	25
+ 2525 0870 1C       		.byte	28
+ 2526 0871 1E       		.byte	30
+ 2527 0872 21       		.byte	33
+ 2528 0873 23       		.byte	35
+ 2529 0874 25       		.byte	37
+ 2530 0875 28       		.byte	40
+ 2531 0876 2A       		.byte	42
+ 2532 0877 2D       		.byte	45
+ 2533 0878 2F       		.byte	47
+ 2534 0879 32       		.byte	50
+ 2535 087a 34       		.byte	52
+ 2536 087b 37       		.byte	55
+ 2537 087c 39       		.byte	57
+ 2538 087d 3C       		.byte	60
+ 2539 087e 3E       		.byte	62
+ 2540 087f 41       		.byte	65
+ 2541 0880 44       		.byte	68
+ 2542 0881 46       		.byte	70
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 51
+
+
+ 2543 0882 49       		.byte	73
+ 2544 0883 4B       		.byte	75
+ 2545 0884 4E       		.byte	78
+ 2546 0885 50       		.byte	80
+ 2547 0886 53       		.byte	83
+ 2548 0887 55       		.byte	85
+ 2549 0888 58       		.byte	88
+ 2550 0889 5A       		.byte	90
+ 2551 088a 5D       		.byte	93
+ 2552 088b 5F       		.byte	95
+ 2553 088c 61       		.byte	97
+ 2554 088d 64       		.byte	100
+ 2555 088e 66       		.byte	102
+ 2556 088f 69       		.byte	105
+ 2557 0890 6B       		.byte	107
+ 2558 0891 6E       		.byte	110
+ 2559 0892 70       		.byte	112
+ 2560 0893 73       		.byte	115
+ 2561 0894 76       		.byte	118
+ 2562 0895 78       		.byte	120
+ 2563 0896 7A       		.byte	122
+ 2564 0897 7D       		.byte	125
+ 2565              		.bss
+ 2566              		.set	.LANCHOR0,. + 0
+ 2567              		.type	WaveDAC8_1_Wave1Chan, %object
+ 2568              		.size	WaveDAC8_1_Wave1Chan, 1
+ 2569              	WaveDAC8_1_Wave1Chan:
+ 2570 0000 00       		.space	1
+ 2571              		.type	WaveDAC8_1_Wave2Chan, %object
+ 2572              		.size	WaveDAC8_1_Wave2Chan, 1
+ 2573              	WaveDAC8_1_Wave2Chan:
+ 2574 0001 00       		.space	1
+ 2575              		.type	WaveDAC8_1_Wave1TD, %object
+ 2576              		.size	WaveDAC8_1_Wave1TD, 1
+ 2577              	WaveDAC8_1_Wave1TD:
+ 2578 0002 00       		.space	1
+ 2579              		.type	WaveDAC8_1_Wave2TD, %object
+ 2580              		.size	WaveDAC8_1_Wave2TD, 1
+ 2581              	WaveDAC8_1_Wave2TD:
+ 2582 0003 00       		.space	1
+ 2583              		.type	WaveDAC8_1_initVar, %object
+ 2584              		.size	WaveDAC8_1_initVar, 1
+ 2585              	WaveDAC8_1_initVar:
+ 2586 0004 00       		.space	1
+ 2587              		.text
+ 2588              	.Letext0:
+ 2589              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 2590              		.file 3 "Generated_Source\\PSoC5/WaveDAC8_1_VDAC8.h"
+ 2591              		.file 4 "Generated_Source\\PSoC5/CYDMAC.H"
+ 2592              		.file 5 "Generated_Source\\PSoC5/WaveDAC8_1_DacClk.h"
+ 2593              		.file 6 "Generated_Source\\PSoC5/WaveDAC8_1_Wave1_DMA_dma.h"
+ 2594              		.file 7 "Generated_Source\\PSoC5/WaveDAC8_1_Wave2_DMA_dma.h"
+ 2595              		.section	.debug_info,"",%progbits
+ 2596              	.Ldebug_info0:
+ 2597 0000 15050000 		.4byte	0x515
+ 2598 0004 0400     		.2byte	0x4
+ 2599 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 52
+
+
+ 2600 000a 04       		.byte	0x4
+ 2601 000b 01       		.uleb128 0x1
+ 2602 000c 4A010000 		.4byte	.LASF53
+ 2603 0010 0C       		.byte	0xc
+ 2604 0011 FE020000 		.4byte	.LASF54
+ 2605 0015 7C030000 		.4byte	.LASF55
+ 2606 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 2607 001d 00000000 		.4byte	0
+ 2608 0021 00000000 		.4byte	.Ldebug_line0
+ 2609 0025 02       		.uleb128 0x2
+ 2610 0026 01       		.byte	0x1
+ 2611 0027 06       		.byte	0x6
+ 2612 0028 32040000 		.4byte	.LASF0
+ 2613 002c 02       		.uleb128 0x2
+ 2614 002d 01       		.byte	0x1
+ 2615 002e 08       		.byte	0x8
+ 2616 002f E3020000 		.4byte	.LASF1
+ 2617 0033 02       		.uleb128 0x2
+ 2618 0034 02       		.byte	0x2
+ 2619 0035 05       		.byte	0x5
+ 2620 0036 9A020000 		.4byte	.LASF2
+ 2621 003a 02       		.uleb128 0x2
+ 2622 003b 02       		.byte	0x2
+ 2623 003c 07       		.byte	0x7
+ 2624 003d 7C000000 		.4byte	.LASF3
+ 2625 0041 02       		.uleb128 0x2
+ 2626 0042 04       		.byte	0x4
+ 2627 0043 05       		.byte	0x5
+ 2628 0044 1D040000 		.4byte	.LASF4
+ 2629 0048 02       		.uleb128 0x2
+ 2630 0049 04       		.byte	0x4
+ 2631 004a 07       		.byte	0x7
+ 2632 004b 06020000 		.4byte	.LASF5
+ 2633 004f 02       		.uleb128 0x2
+ 2634 0050 08       		.byte	0x8
+ 2635 0051 05       		.byte	0x5
+ 2636 0052 AB030000 		.4byte	.LASF6
+ 2637 0056 02       		.uleb128 0x2
+ 2638 0057 08       		.byte	0x8
+ 2639 0058 07       		.byte	0x7
+ 2640 0059 22030000 		.4byte	.LASF7
+ 2641 005d 03       		.uleb128 0x3
+ 2642 005e 04       		.byte	0x4
+ 2643 005f 05       		.byte	0x5
+ 2644 0060 696E7400 		.ascii	"int\000"
+ 2645 0064 02       		.uleb128 0x2
+ 2646 0065 04       		.byte	0x4
+ 2647 0066 07       		.byte	0x7
+ 2648 0067 F1020000 		.4byte	.LASF8
+ 2649 006b 04       		.uleb128 0x4
+ 2650 006c 20020000 		.4byte	.LASF9
+ 2651 0070 02       		.byte	0x2
+ 2652 0071 9201     		.2byte	0x192
+ 2653 0073 2C000000 		.4byte	0x2c
+ 2654 0077 04       		.uleb128 0x4
+ 2655 0078 B2020000 		.4byte	.LASF10
+ 2656 007c 02       		.byte	0x2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 53
+
+
+ 2657 007d 9301     		.2byte	0x193
+ 2658 007f 3A000000 		.4byte	0x3a
+ 2659 0083 04       		.uleb128 0x4
+ 2660 0084 DC020000 		.4byte	.LASF11
+ 2661 0088 02       		.byte	0x2
+ 2662 0089 9401     		.2byte	0x194
+ 2663 008b 48000000 		.4byte	0x48
+ 2664 008f 02       		.uleb128 0x2
+ 2665 0090 04       		.byte	0x4
+ 2666 0091 04       		.byte	0x4
+ 2667 0092 26010000 		.4byte	.LASF12
+ 2668 0096 02       		.uleb128 0x2
+ 2669 0097 08       		.byte	0x8
+ 2670 0098 04       		.byte	0x4
+ 2671 0099 83020000 		.4byte	.LASF13
+ 2672 009d 02       		.uleb128 0x2
+ 2673 009e 01       		.byte	0x1
+ 2674 009f 08       		.byte	0x8
+ 2675 00a0 B9030000 		.4byte	.LASF14
+ 2676 00a4 02       		.uleb128 0x2
+ 2677 00a5 08       		.byte	0x8
+ 2678 00a6 04       		.byte	0x4
+ 2679 00a7 26040000 		.4byte	.LASF15
+ 2680 00ab 02       		.uleb128 0x2
+ 2681 00ac 04       		.byte	0x4
+ 2682 00ad 07       		.byte	0x7
+ 2683 00ae A2030000 		.4byte	.LASF16
+ 2684 00b2 05       		.uleb128 0x5
+ 2685 00b3 D4030000 		.4byte	.LASF17
+ 2686 00b7 01       		.byte	0x1
+ 2687 00b8 56       		.byte	0x56
+ 2688 00b9 00000000 		.4byte	.LFB1
+ 2689 00bd 28000000 		.4byte	.LFE1-.LFB1
+ 2690 00c1 01       		.uleb128 0x1
+ 2691 00c2 9C       		.byte	0x9c
+ 2692 00c3 13010000 		.4byte	0x113
+ 2693 00c7 06       		.uleb128 0x6
+ 2694 00c8 06000000 		.4byte	.LVL0
+ 2695 00cc 68040000 		.4byte	0x468
+ 2696 00d0 07       		.uleb128 0x7
+ 2697 00d1 10000000 		.4byte	.LVL1
+ 2698 00d5 73040000 		.4byte	0x473
+ 2699 00d9 E3000000 		.4byte	0xe3
+ 2700 00dd 08       		.uleb128 0x8
+ 2701 00de 01       		.uleb128 0x1
+ 2702 00df 51       		.byte	0x51
+ 2703 00e0 01       		.uleb128 0x1
+ 2704 00e1 31       		.byte	0x31
+ 2705 00e2 00       		.byte	0
+ 2706 00e3 07       		.uleb128 0x7
+ 2707 00e4 18000000 		.4byte	.LVL2
+ 2708 00e8 73040000 		.4byte	0x473
+ 2709 00ec F6000000 		.4byte	0xf6
+ 2710 00f0 08       		.uleb128 0x8
+ 2711 00f1 01       		.uleb128 0x1
+ 2712 00f2 51       		.byte	0x51
+ 2713 00f3 01       		.uleb128 0x1
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 54
+
+
+ 2714 00f4 31       		.byte	0x31
+ 2715 00f5 00       		.byte	0
+ 2716 00f6 07       		.uleb128 0x7
+ 2717 00f7 1E000000 		.4byte	.LVL3
+ 2718 00fb 7E040000 		.4byte	0x47e
+ 2719 00ff 09010000 		.4byte	0x109
+ 2720 0103 08       		.uleb128 0x8
+ 2721 0104 01       		.uleb128 0x1
+ 2722 0105 50       		.byte	0x50
+ 2723 0106 01       		.uleb128 0x1
+ 2724 0107 30       		.byte	0x30
+ 2725 0108 00       		.byte	0
+ 2726 0109 06       		.uleb128 0x6
+ 2727 010a 22000000 		.4byte	.LVL4
+ 2728 010e 89040000 		.4byte	0x489
+ 2729 0112 00       		.byte	0
+ 2730 0113 05       		.uleb128 0x5
+ 2731 0114 8A020000 		.4byte	.LASF18
+ 2732 0118 01       		.byte	0x1
+ 2733 0119 BB       		.byte	0xbb
+ 2734 011a 00000000 		.4byte	.LFB4
+ 2735 011e 20000000 		.4byte	.LFE4-.LFB4
+ 2736 0122 01       		.uleb128 0x1
+ 2737 0123 9C       		.byte	0x9c
+ 2738 0124 4D010000 		.4byte	0x14d
+ 2739 0128 06       		.uleb128 0x6
+ 2740 0129 06000000 		.4byte	.LVL5
+ 2741 012d 94040000 		.4byte	0x494
+ 2742 0131 06       		.uleb128 0x6
+ 2743 0132 0E000000 		.4byte	.LVL6
+ 2744 0136 9F040000 		.4byte	0x49f
+ 2745 013a 06       		.uleb128 0x6
+ 2746 013b 14000000 		.4byte	.LVL7
+ 2747 013f 9F040000 		.4byte	0x49f
+ 2748 0143 06       		.uleb128 0x6
+ 2749 0144 18000000 		.4byte	.LVL8
+ 2750 0148 AA040000 		.4byte	0x4aa
+ 2751 014c 00       		.byte	0
+ 2752 014d 05       		.uleb128 0x5
+ 2753 014e 55020000 		.4byte	.LASF19
+ 2754 0152 01       		.byte	0x1
+ 2755 0153 DA       		.byte	0xda
+ 2756 0154 00000000 		.4byte	.LFB5
+ 2757 0158 40000000 		.4byte	.LFE5-.LFB5
+ 2758 015c 01       		.uleb128 0x1
+ 2759 015d 9C       		.byte	0x9c
+ 2760 015e E5010000 		.4byte	0x1e5
+ 2761 0162 09       		.uleb128 0x9
+ 2762 0163 18020000 		.4byte	.LASF20
+ 2763 0167 01       		.byte	0x1
+ 2764 0168 DA       		.byte	0xda
+ 2765 0169 E5010000 		.4byte	0x1e5
+ 2766 016d 00000000 		.4byte	.LLST0
+ 2767 0171 09       		.uleb128 0x9
+ 2768 0172 3F010000 		.4byte	.LASF21
+ 2769 0176 01       		.byte	0x1
+ 2770 0177 DA       		.byte	0xda
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 55
+
+
+ 2771 0178 77000000 		.4byte	0x77
+ 2772 017c 2C000000 		.4byte	.LLST1
+ 2773 0180 07       		.uleb128 0x7
+ 2774 0181 14000000 		.4byte	.LVL12
+ 2775 0185 B5040000 		.4byte	0x4b5
+ 2776 0189 A7010000 		.4byte	0x1a7
+ 2777 018d 08       		.uleb128 0x8
+ 2778 018e 01       		.uleb128 0x1
+ 2779 018f 50       		.byte	0x50
+ 2780 0190 01       		.uleb128 0x1
+ 2781 0191 31       		.byte	0x31
+ 2782 0192 08       		.uleb128 0x8
+ 2783 0193 01       		.uleb128 0x1
+ 2784 0194 51       		.byte	0x51
+ 2785 0195 01       		.uleb128 0x1
+ 2786 0196 31       		.byte	0x31
+ 2787 0197 08       		.uleb128 0x8
+ 2788 0198 01       		.uleb128 0x1
+ 2789 0199 52       		.byte	0x52
+ 2790 019a 04       		.uleb128 0x4
+ 2791 019b 75       		.byte	0x75
+ 2792 019c 00       		.sleb128 0
+ 2793 019d 40       		.byte	0x40
+ 2794 019e 25       		.byte	0x25
+ 2795 019f 08       		.uleb128 0x8
+ 2796 01a0 01       		.uleb128 0x1
+ 2797 01a1 53       		.byte	0x53
+ 2798 01a2 03       		.uleb128 0x3
+ 2799 01a3 0A       		.byte	0xa
+ 2800 01a4 0040     		.2byte	0x4000
+ 2801 01a6 00       		.byte	0
+ 2802 01a7 07       		.uleb128 0x7
+ 2803 01a8 24000000 		.4byte	.LVL13
+ 2804 01ac C0040000 		.4byte	0x4c0
+ 2805 01b0 C0010000 		.4byte	0x1c0
+ 2806 01b4 08       		.uleb128 0x8
+ 2807 01b5 01       		.uleb128 0x1
+ 2808 01b6 51       		.byte	0x51
+ 2809 01b7 02       		.uleb128 0x2
+ 2810 01b8 76       		.byte	0x76
+ 2811 01b9 00       		.sleb128 0
+ 2812 01ba 08       		.uleb128 0x8
+ 2813 01bb 01       		.uleb128 0x1
+ 2814 01bc 53       		.byte	0x53
+ 2815 01bd 01       		.uleb128 0x1
+ 2816 01be 31       		.byte	0x31
+ 2817 01bf 00       		.byte	0
+ 2818 01c0 07       		.uleb128 0x7
+ 2819 01c1 30000000 		.4byte	.LVL14
+ 2820 01c5 CB040000 		.4byte	0x4cb
+ 2821 01c9 DB010000 		.4byte	0x1db
+ 2822 01cd 08       		.uleb128 0x8
+ 2823 01ce 01       		.uleb128 0x1
+ 2824 01cf 51       		.byte	0x51
+ 2825 01d0 02       		.uleb128 0x2
+ 2826 01d1 75       		.byte	0x75
+ 2827 01d2 00       		.sleb128 0
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 56
+
+
+ 2828 01d3 08       		.uleb128 0x8
+ 2829 01d4 01       		.uleb128 0x1
+ 2830 01d5 52       		.byte	0x52
+ 2831 01d6 03       		.uleb128 0x3
+ 2832 01d7 0A       		.byte	0xa
+ 2833 01d8 835B     		.2byte	0x5b83
+ 2834 01da 00       		.byte	0
+ 2835 01db 06       		.uleb128 0x6
+ 2836 01dc 38000000 		.4byte	.LVL15
+ 2837 01e0 D6040000 		.4byte	0x4d6
+ 2838 01e4 00       		.byte	0
+ 2839 01e5 0A       		.uleb128 0xa
+ 2840 01e6 04       		.byte	0x4
+ 2841 01e7 EB010000 		.4byte	0x1eb
+ 2842 01eb 0B       		.uleb128 0xb
+ 2843 01ec 6B000000 		.4byte	0x6b
+ 2844 01f0 0C       		.uleb128 0xc
+ 2845 01f1 BE030000 		.4byte	.LASF22
+ 2846 01f5 01       		.byte	0x1
+ 2847 01f6 0801     		.2byte	0x108
+ 2848 01f8 00000000 		.4byte	.LFB6
+ 2849 01fc 40000000 		.4byte	.LFE6-.LFB6
+ 2850 0200 01       		.uleb128 0x1
+ 2851 0201 9C       		.byte	0x9c
+ 2852 0202 8B020000 		.4byte	0x28b
+ 2853 0206 0D       		.uleb128 0xd
+ 2854 0207 18020000 		.4byte	.LASF20
+ 2855 020b 01       		.byte	0x1
+ 2856 020c 0801     		.2byte	0x108
+ 2857 020e E5010000 		.4byte	0x1e5
+ 2858 0212 4D000000 		.4byte	.LLST2
+ 2859 0216 0D       		.uleb128 0xd
+ 2860 0217 3F010000 		.4byte	.LASF21
+ 2861 021b 01       		.byte	0x1
+ 2862 021c 0801     		.2byte	0x108
+ 2863 021e 77000000 		.4byte	0x77
+ 2864 0222 79000000 		.4byte	.LLST3
+ 2865 0226 07       		.uleb128 0x7
+ 2866 0227 14000000 		.4byte	.LVL20
+ 2867 022b E1040000 		.4byte	0x4e1
+ 2868 022f 4D020000 		.4byte	0x24d
+ 2869 0233 08       		.uleb128 0x8
+ 2870 0234 01       		.uleb128 0x1
+ 2871 0235 50       		.byte	0x50
+ 2872 0236 01       		.uleb128 0x1
+ 2873 0237 31       		.byte	0x31
+ 2874 0238 08       		.uleb128 0x8
+ 2875 0239 01       		.uleb128 0x1
+ 2876 023a 51       		.byte	0x51
+ 2877 023b 01       		.uleb128 0x1
+ 2878 023c 31       		.byte	0x31
+ 2879 023d 08       		.uleb128 0x8
+ 2880 023e 01       		.uleb128 0x1
+ 2881 023f 52       		.byte	0x52
+ 2882 0240 04       		.uleb128 0x4
+ 2883 0241 75       		.byte	0x75
+ 2884 0242 00       		.sleb128 0
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 57
+
+
+ 2885 0243 40       		.byte	0x40
+ 2886 0244 25       		.byte	0x25
+ 2887 0245 08       		.uleb128 0x8
+ 2888 0246 01       		.uleb128 0x1
+ 2889 0247 53       		.byte	0x53
+ 2890 0248 03       		.uleb128 0x3
+ 2891 0249 0A       		.byte	0xa
+ 2892 024a 0040     		.2byte	0x4000
+ 2893 024c 00       		.byte	0
+ 2894 024d 07       		.uleb128 0x7
+ 2895 024e 24000000 		.4byte	.LVL21
+ 2896 0252 C0040000 		.4byte	0x4c0
+ 2897 0256 66020000 		.4byte	0x266
+ 2898 025a 08       		.uleb128 0x8
+ 2899 025b 01       		.uleb128 0x1
+ 2900 025c 51       		.byte	0x51
+ 2901 025d 02       		.uleb128 0x2
+ 2902 025e 76       		.byte	0x76
+ 2903 025f 00       		.sleb128 0
+ 2904 0260 08       		.uleb128 0x8
+ 2905 0261 01       		.uleb128 0x1
+ 2906 0262 53       		.byte	0x53
+ 2907 0263 01       		.uleb128 0x1
+ 2908 0264 31       		.byte	0x31
+ 2909 0265 00       		.byte	0
+ 2910 0266 07       		.uleb128 0x7
+ 2911 0267 30000000 		.4byte	.LVL22
+ 2912 026b CB040000 		.4byte	0x4cb
+ 2913 026f 81020000 		.4byte	0x281
+ 2914 0273 08       		.uleb128 0x8
+ 2915 0274 01       		.uleb128 0x1
+ 2916 0275 51       		.byte	0x51
+ 2917 0276 02       		.uleb128 0x2
+ 2918 0277 75       		.byte	0x75
+ 2919 0278 00       		.sleb128 0
+ 2920 0279 08       		.uleb128 0x8
+ 2921 027a 01       		.uleb128 0x1
+ 2922 027b 52       		.byte	0x52
+ 2923 027c 03       		.uleb128 0x3
+ 2924 027d 0A       		.byte	0xa
+ 2925 027e 835B     		.2byte	0x5b83
+ 2926 0280 00       		.byte	0
+ 2927 0281 06       		.uleb128 0x6
+ 2928 0282 38000000 		.4byte	.LVL23
+ 2929 0286 D6040000 		.4byte	0x4d6
+ 2930 028a 00       		.byte	0
+ 2931 028b 05       		.uleb128 0x5
+ 2932 028c 6C000000 		.4byte	.LASF23
+ 2933 0290 01       		.byte	0x1
+ 2934 0291 2B       		.byte	0x2b
+ 2935 0292 00000000 		.4byte	.LFB0
+ 2936 0296 40000000 		.4byte	.LFE0-.LFB0
+ 2937 029a 01       		.uleb128 0x1
+ 2938 029b 9C       		.byte	0x9c
+ 2939 029c 14030000 		.4byte	0x314
+ 2940 02a0 06       		.uleb128 0x6
+ 2941 02a1 06000000 		.4byte	.LVL25
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 58
+
+
+ 2942 02a5 EC040000 		.4byte	0x4ec
+ 2943 02a9 07       		.uleb128 0x7
+ 2944 02aa 0C000000 		.4byte	.LVL26
+ 2945 02ae F7040000 		.4byte	0x4f7
+ 2946 02b2 BC020000 		.4byte	0x2bc
+ 2947 02b6 08       		.uleb128 0x8
+ 2948 02b7 01       		.uleb128 0x1
+ 2949 02b8 50       		.byte	0x50
+ 2950 02b9 01       		.uleb128 0x1
+ 2951 02ba 32       		.byte	0x32
+ 2952 02bb 00       		.byte	0
+ 2953 02bc 07       		.uleb128 0x7
+ 2954 02bd 12000000 		.4byte	.LVL27
+ 2955 02c1 02050000 		.4byte	0x502
+ 2956 02c5 CF020000 		.4byte	0x2cf
+ 2957 02c9 08       		.uleb128 0x8
+ 2958 02ca 01       		.uleb128 0x1
+ 2959 02cb 50       		.byte	0x50
+ 2960 02cc 01       		.uleb128 0x1
+ 2961 02cd 34       		.byte	0x34
+ 2962 02ce 00       		.byte	0
+ 2963 02cf 06       		.uleb128 0x6
+ 2964 02d0 16000000 		.4byte	.LVL28
+ 2965 02d4 0D050000 		.4byte	0x50d
+ 2966 02d8 06       		.uleb128 0x6
+ 2967 02d9 1E000000 		.4byte	.LVL29
+ 2968 02dd 0D050000 		.4byte	0x50d
+ 2969 02e1 07       		.uleb128 0x7
+ 2970 02e2 2C000000 		.4byte	.LVL30
+ 2971 02e6 4D010000 		.4byte	0x14d
+ 2972 02ea FC020000 		.4byte	0x2fc
+ 2973 02ee 08       		.uleb128 0x8
+ 2974 02ef 01       		.uleb128 0x1
+ 2975 02f0 50       		.byte	0x50
+ 2976 02f1 02       		.uleb128 0x2
+ 2977 02f2 74       		.byte	0x74
+ 2978 02f3 00       		.sleb128 0
+ 2979 02f4 08       		.uleb128 0x8
+ 2980 02f5 01       		.uleb128 0x1
+ 2981 02f6 51       		.byte	0x51
+ 2982 02f7 03       		.uleb128 0x3
+ 2983 02f8 0A       		.byte	0xa
+ 2984 02f9 D007     		.2byte	0x7d0
+ 2985 02fb 00       		.byte	0
+ 2986 02fc 0E       		.uleb128 0xe
+ 2987 02fd 36000000 		.4byte	.LVL31
+ 2988 0301 F0010000 		.4byte	0x1f0
+ 2989 0305 08       		.uleb128 0x8
+ 2990 0306 01       		.uleb128 0x1
+ 2991 0307 50       		.byte	0x50
+ 2992 0308 03       		.uleb128 0x3
+ 2993 0309 74       		.byte	0x74
+ 2994 030a D00F     		.sleb128 2000
+ 2995 030c 08       		.uleb128 0x8
+ 2996 030d 01       		.uleb128 0x1
+ 2997 030e 51       		.byte	0x51
+ 2998 030f 02       		.uleb128 0x2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 59
+
+
+ 2999 0310 08       		.byte	0x8
+ 3000 0311 C8       		.byte	0xc8
+ 3001 0312 00       		.byte	0
+ 3002 0313 00       		.byte	0
+ 3003 0314 05       		.uleb128 0x5
+ 3004 0315 A3000000 		.4byte	.LASF24
+ 3005 0319 01       		.byte	0x1
+ 3006 031a 81       		.byte	0x81
+ 3007 031b 00000000 		.4byte	.LFB2
+ 3008 031f 1C000000 		.4byte	.LFE2-.LFB2
+ 3009 0323 01       		.uleb128 0x1
+ 3010 0324 9C       		.byte	0x9c
+ 3011 0325 3C030000 		.4byte	0x33c
+ 3012 0329 06       		.uleb128 0x6
+ 3013 032a 0C000000 		.4byte	.LVL32
+ 3014 032e 8B020000 		.4byte	0x28b
+ 3015 0332 06       		.uleb128 0x6
+ 3016 0333 16000000 		.4byte	.LVL33
+ 3017 0337 B2000000 		.4byte	0xb2
+ 3018 033b 00       		.byte	0
+ 3019 033c 05       		.uleb128 0x5
+ 3020 033d E9000000 		.4byte	.LASF25
+ 3021 0341 01       		.byte	0x1
+ 3022 0342 A3       		.byte	0xa3
+ 3023 0343 00000000 		.4byte	.LFB3
+ 3024 0347 18000000 		.4byte	.LFE3-.LFB3
+ 3025 034b 01       		.uleb128 0x1
+ 3026 034c 9C       		.byte	0x9c
+ 3027 034d C6030000 		.4byte	0x3c6
+ 3028 0351 09       		.uleb128 0x9
+ 3029 0352 B4000000 		.4byte	.LASF26
+ 3030 0356 01       		.byte	0x1
+ 3031 0357 A3       		.byte	0xa3
+ 3032 0358 E5010000 		.4byte	0x1e5
+ 3033 035c 9A000000 		.4byte	.LLST4
+ 3034 0360 09       		.uleb128 0x9
+ 3035 0361 3D020000 		.4byte	.LASF27
+ 3036 0365 01       		.byte	0x1
+ 3037 0366 A3       		.byte	0xa3
+ 3038 0367 77000000 		.4byte	0x77
+ 3039 036b BB000000 		.4byte	.LLST5
+ 3040 036f 09       		.uleb128 0x9
+ 3041 0370 BD000000 		.4byte	.LASF28
+ 3042 0374 01       		.byte	0x1
+ 3043 0375 A3       		.byte	0xa3
+ 3044 0376 E5010000 		.4byte	0x1e5
+ 3045 037a DC000000 		.4byte	.LLST6
+ 3046 037e 09       		.uleb128 0x9
+ 3047 037f 49020000 		.4byte	.LASF29
+ 3048 0383 01       		.byte	0x1
+ 3049 0384 A3       		.byte	0xa3
+ 3050 0385 77000000 		.4byte	0x77
+ 3051 0389 FA000000 		.4byte	.LLST7
+ 3052 038d 07       		.uleb128 0x7
+ 3053 038e 0A000000 		.4byte	.LVL35
+ 3054 0392 4D010000 		.4byte	0x14d
+ 3055 0396 A2030000 		.4byte	0x3a2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 60
+
+
+ 3056 039a 08       		.uleb128 0x8
+ 3057 039b 01       		.uleb128 0x1
+ 3058 039c 50       		.byte	0x50
+ 3059 039d 03       		.uleb128 0x3
+ 3060 039e F3       		.byte	0xf3
+ 3061 039f 01       		.uleb128 0x1
+ 3062 03a0 50       		.byte	0x50
+ 3063 03a1 00       		.byte	0
+ 3064 03a2 07       		.uleb128 0x7
+ 3065 03a3 12000000 		.4byte	.LVL36
+ 3066 03a7 F0010000 		.4byte	0x1f0
+ 3067 03ab BC030000 		.4byte	0x3bc
+ 3068 03af 08       		.uleb128 0x8
+ 3069 03b0 01       		.uleb128 0x1
+ 3070 03b1 50       		.byte	0x50
+ 3071 03b2 02       		.uleb128 0x2
+ 3072 03b3 74       		.byte	0x74
+ 3073 03b4 00       		.sleb128 0
+ 3074 03b5 08       		.uleb128 0x8
+ 3075 03b6 01       		.uleb128 0x1
+ 3076 03b7 51       		.byte	0x51
+ 3077 03b8 02       		.uleb128 0x2
+ 3078 03b9 75       		.byte	0x75
+ 3079 03ba 00       		.sleb128 0
+ 3080 03bb 00       		.byte	0
+ 3081 03bc 06       		.uleb128 0x6
+ 3082 03bd 16000000 		.4byte	.LVL37
+ 3083 03c1 14030000 		.4byte	0x314
+ 3084 03c5 00       		.byte	0
+ 3085 03c6 0F       		.uleb128 0xf
+ 3086 03c7 08040000 		.4byte	.LASF30
+ 3087 03cb 01       		.byte	0x1
+ 3088 03cc 17       		.byte	0x17
+ 3089 03cd 6B000000 		.4byte	0x6b
+ 3090 03d1 05       		.uleb128 0x5
+ 3091 03d2 03       		.byte	0x3
+ 3092 03d3 00000000 		.4byte	WaveDAC8_1_Wave1Chan
+ 3093 03d7 0F       		.uleb128 0xf
+ 3094 03d8 2D000000 		.4byte	.LASF31
+ 3095 03dc 01       		.byte	0x1
+ 3096 03dd 18       		.byte	0x18
+ 3097 03de 6B000000 		.4byte	0x6b
+ 3098 03e2 05       		.uleb128 0x5
+ 3099 03e3 03       		.byte	0x3
+ 3100 03e4 01000000 		.4byte	WaveDAC8_1_Wave2Chan
+ 3101 03e8 0F       		.uleb128 0xf
+ 3102 03e9 2C010000 		.4byte	.LASF32
+ 3103 03ed 01       		.byte	0x1
+ 3104 03ee 19       		.byte	0x19
+ 3105 03ef 6B000000 		.4byte	0x6b
+ 3106 03f3 05       		.uleb128 0x5
+ 3107 03f4 03       		.byte	0x3
+ 3108 03f5 02000000 		.4byte	WaveDAC8_1_Wave1TD
+ 3109 03f9 0F       		.uleb128 0xf
+ 3110 03fa 39030000 		.4byte	.LASF33
+ 3111 03fe 01       		.byte	0x1
+ 3112 03ff 1A       		.byte	0x1a
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 61
+
+
+ 3113 0400 6B000000 		.4byte	0x6b
+ 3114 0404 05       		.uleb128 0x5
+ 3115 0405 03       		.byte	0x3
+ 3116 0406 03000000 		.4byte	WaveDAC8_1_Wave2TD
+ 3117 040a 10       		.uleb128 0x10
+ 3118 040b 1A000000 		.4byte	.LASF34
+ 3119 040f 01       		.byte	0x1
+ 3120 0410 12       		.byte	0x12
+ 3121 0411 6B000000 		.4byte	0x6b
+ 3122 0415 05       		.uleb128 0x5
+ 3123 0416 03       		.byte	0x3
+ 3124 0417 00000000 		.4byte	WaveDAC8_1_initVar
+ 3125 041b 11       		.uleb128 0x11
+ 3126 041c EB010000 		.4byte	0x1eb
+ 3127 0420 2C040000 		.4byte	0x42c
+ 3128 0424 12       		.uleb128 0x12
+ 3129 0425 AB000000 		.4byte	0xab
+ 3130 0429 CF07     		.2byte	0x7cf
+ 3131 042b 00       		.byte	0
+ 3132 042c 10       		.uleb128 0x10
+ 3133 042d E6030000 		.4byte	.LASF35
+ 3134 0431 01       		.byte	0x1
+ 3135 0432 14       		.byte	0x14
+ 3136 0433 3D040000 		.4byte	0x43d
+ 3137 0437 05       		.uleb128 0x5
+ 3138 0438 03       		.byte	0x3
+ 3139 0439 00000000 		.4byte	WaveDAC8_1_wave1
+ 3140 043d 0B       		.uleb128 0xb
+ 3141 043e 1B040000 		.4byte	0x41b
+ 3142 0442 11       		.uleb128 0x11
+ 3143 0443 EB010000 		.4byte	0x1eb
+ 3144 0447 52040000 		.4byte	0x452
+ 3145 044b 13       		.uleb128 0x13
+ 3146 044c AB000000 		.4byte	0xab
+ 3147 0450 C7       		.byte	0xc7
+ 3148 0451 00       		.byte	0
+ 3149 0452 10       		.uleb128 0x10
+ 3150 0453 F7030000 		.4byte	.LASF36
+ 3151 0457 01       		.byte	0x1
+ 3152 0458 15       		.byte	0x15
+ 3153 0459 63040000 		.4byte	0x463
+ 3154 045d 05       		.uleb128 0x5
+ 3155 045e 03       		.byte	0x3
+ 3156 045f 00000000 		.4byte	WaveDAC8_1_wave2
+ 3157 0463 0B       		.uleb128 0xb
+ 3158 0464 42040000 		.4byte	0x442
+ 3159 0468 14       		.uleb128 0x14
+ 3160 0469 42000000 		.4byte	.LASF37
+ 3161 046d 42000000 		.4byte	.LASF37
+ 3162 0471 03       		.byte	0x3
+ 3163 0472 3A       		.byte	0x3a
+ 3164 0473 14       		.uleb128 0x14
+ 3165 0474 A4020000 		.4byte	.LASF38
+ 3166 0478 A4020000 		.4byte	.LASF38
+ 3167 047c 04       		.byte	0x4
+ 3168 047d 29       		.byte	0x29
+ 3169 047e 14       		.uleb128 0x14
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 62
+
+
+ 3170 047f 62030000 		.4byte	.LASF39
+ 3171 0483 62030000 		.4byte	.LASF39
+ 3172 0487 03       		.byte	0x3
+ 3173 0488 37       		.byte	0x37
+ 3174 0489 14       		.uleb128 0x14
+ 3175 048a 6B020000 		.4byte	.LASF40
+ 3176 048e 6B020000 		.4byte	.LASF40
+ 3177 0492 05       		.byte	0x5
+ 3178 0493 27       		.byte	0x27
+ 3179 0494 14       		.uleb128 0x14
+ 3180 0495 26020000 		.4byte	.LASF41
+ 3181 0499 26020000 		.4byte	.LASF41
+ 3182 049d 05       		.byte	0x5
+ 3183 049e 28       		.byte	0x28
+ 3184 049f 14       		.uleb128 0x14
+ 3185 04a0 3E040000 		.4byte	.LASF42
+ 3186 04a4 3E040000 		.4byte	.LASF42
+ 3187 04a8 04       		.byte	0x4
+ 3188 04a9 2A       		.byte	0x2a
+ 3189 04aa 14       		.uleb128 0x14
+ 3190 04ab 4C030000 		.4byte	.LASF43
+ 3191 04af 4C030000 		.4byte	.LASF43
+ 3192 04b3 03       		.byte	0x3
+ 3193 04b4 34       		.byte	0x34
+ 3194 04b5 14       		.uleb128 0x14
+ 3195 04b6 C6000000 		.4byte	.LASF44
+ 3196 04ba C6000000 		.4byte	.LASF44
+ 3197 04be 06       		.byte	0x6
+ 3198 04bf 1E       		.byte	0x1e
+ 3199 04c0 14       		.uleb128 0x14
+ 3200 04c1 EE010000 		.4byte	.LASF45
+ 3201 04c5 EE010000 		.4byte	.LASF45
+ 3202 04c9 04       		.byte	0x4
+ 3203 04ca 3B       		.byte	0x3b
+ 3204 04cb 14       		.uleb128 0x14
+ 3205 04cc 5A000000 		.4byte	.LASF46
+ 3206 04d0 5A000000 		.4byte	.LASF46
+ 3207 04d4 04       		.byte	0x4
+ 3208 04d5 3F       		.byte	0x3f
+ 3209 04d6 14       		.uleb128 0x14
+ 3210 04d7 8F000000 		.4byte	.LASF47
+ 3211 04db 8F000000 		.4byte	.LASF47
+ 3212 04df 04       		.byte	0x4
+ 3213 04e0 2F       		.byte	0x2f
+ 3214 04e1 14       		.uleb128 0x14
+ 3215 04e2 B9020000 		.4byte	.LASF48
+ 3216 04e6 B9020000 		.4byte	.LASF48
+ 3217 04ea 07       		.byte	0x7
+ 3218 04eb 1E       		.byte	0x1e
+ 3219 04ec 14       		.uleb128 0x14
+ 3220 04ed D8010000 		.4byte	.LASF49
+ 3221 04f1 D8010000 		.4byte	.LASF49
+ 3222 04f5 03       		.byte	0x3
+ 3223 04f6 39       		.byte	0x39
+ 3224 04f7 14       		.uleb128 0x14
+ 3225 04f8 0C010000 		.4byte	.LASF50
+ 3226 04fc 0C010000 		.4byte	.LASF50
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 63
+
+
+ 3227 0500 03       		.byte	0x3
+ 3228 0501 35       		.byte	0x35
+ 3229 0502 14       		.uleb128 0x14
+ 3230 0503 00000000 		.4byte	.LASF51
+ 3231 0507 00000000 		.4byte	.LASF51
+ 3232 050b 03       		.byte	0x3
+ 3233 050c 36       		.byte	0x36
+ 3234 050d 14       		.uleb128 0x14
+ 3235 050e FC000000 		.4byte	.LASF52
+ 3236 0512 FC000000 		.4byte	.LASF52
+ 3237 0516 04       		.byte	0x4
+ 3238 0517 38       		.byte	0x38
+ 3239 0518 00       		.byte	0
+ 3240              		.section	.debug_abbrev,"",%progbits
+ 3241              	.Ldebug_abbrev0:
+ 3242 0000 01       		.uleb128 0x1
+ 3243 0001 11       		.uleb128 0x11
+ 3244 0002 01       		.byte	0x1
+ 3245 0003 25       		.uleb128 0x25
+ 3246 0004 0E       		.uleb128 0xe
+ 3247 0005 13       		.uleb128 0x13
+ 3248 0006 0B       		.uleb128 0xb
+ 3249 0007 03       		.uleb128 0x3
+ 3250 0008 0E       		.uleb128 0xe
+ 3251 0009 1B       		.uleb128 0x1b
+ 3252 000a 0E       		.uleb128 0xe
+ 3253 000b 55       		.uleb128 0x55
+ 3254 000c 17       		.uleb128 0x17
+ 3255 000d 11       		.uleb128 0x11
+ 3256 000e 01       		.uleb128 0x1
+ 3257 000f 10       		.uleb128 0x10
+ 3258 0010 17       		.uleb128 0x17
+ 3259 0011 00       		.byte	0
+ 3260 0012 00       		.byte	0
+ 3261 0013 02       		.uleb128 0x2
+ 3262 0014 24       		.uleb128 0x24
+ 3263 0015 00       		.byte	0
+ 3264 0016 0B       		.uleb128 0xb
+ 3265 0017 0B       		.uleb128 0xb
+ 3266 0018 3E       		.uleb128 0x3e
+ 3267 0019 0B       		.uleb128 0xb
+ 3268 001a 03       		.uleb128 0x3
+ 3269 001b 0E       		.uleb128 0xe
+ 3270 001c 00       		.byte	0
+ 3271 001d 00       		.byte	0
+ 3272 001e 03       		.uleb128 0x3
+ 3273 001f 24       		.uleb128 0x24
+ 3274 0020 00       		.byte	0
+ 3275 0021 0B       		.uleb128 0xb
+ 3276 0022 0B       		.uleb128 0xb
+ 3277 0023 3E       		.uleb128 0x3e
+ 3278 0024 0B       		.uleb128 0xb
+ 3279 0025 03       		.uleb128 0x3
+ 3280 0026 08       		.uleb128 0x8
+ 3281 0027 00       		.byte	0
+ 3282 0028 00       		.byte	0
+ 3283 0029 04       		.uleb128 0x4
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 64
+
+
+ 3284 002a 16       		.uleb128 0x16
+ 3285 002b 00       		.byte	0
+ 3286 002c 03       		.uleb128 0x3
+ 3287 002d 0E       		.uleb128 0xe
+ 3288 002e 3A       		.uleb128 0x3a
+ 3289 002f 0B       		.uleb128 0xb
+ 3290 0030 3B       		.uleb128 0x3b
+ 3291 0031 05       		.uleb128 0x5
+ 3292 0032 49       		.uleb128 0x49
+ 3293 0033 13       		.uleb128 0x13
+ 3294 0034 00       		.byte	0
+ 3295 0035 00       		.byte	0
+ 3296 0036 05       		.uleb128 0x5
+ 3297 0037 2E       		.uleb128 0x2e
+ 3298 0038 01       		.byte	0x1
+ 3299 0039 3F       		.uleb128 0x3f
+ 3300 003a 19       		.uleb128 0x19
+ 3301 003b 03       		.uleb128 0x3
+ 3302 003c 0E       		.uleb128 0xe
+ 3303 003d 3A       		.uleb128 0x3a
+ 3304 003e 0B       		.uleb128 0xb
+ 3305 003f 3B       		.uleb128 0x3b
+ 3306 0040 0B       		.uleb128 0xb
+ 3307 0041 27       		.uleb128 0x27
+ 3308 0042 19       		.uleb128 0x19
+ 3309 0043 11       		.uleb128 0x11
+ 3310 0044 01       		.uleb128 0x1
+ 3311 0045 12       		.uleb128 0x12
+ 3312 0046 06       		.uleb128 0x6
+ 3313 0047 40       		.uleb128 0x40
+ 3314 0048 18       		.uleb128 0x18
+ 3315 0049 9742     		.uleb128 0x2117
+ 3316 004b 19       		.uleb128 0x19
+ 3317 004c 01       		.uleb128 0x1
+ 3318 004d 13       		.uleb128 0x13
+ 3319 004e 00       		.byte	0
+ 3320 004f 00       		.byte	0
+ 3321 0050 06       		.uleb128 0x6
+ 3322 0051 898201   		.uleb128 0x4109
+ 3323 0054 00       		.byte	0
+ 3324 0055 11       		.uleb128 0x11
+ 3325 0056 01       		.uleb128 0x1
+ 3326 0057 31       		.uleb128 0x31
+ 3327 0058 13       		.uleb128 0x13
+ 3328 0059 00       		.byte	0
+ 3329 005a 00       		.byte	0
+ 3330 005b 07       		.uleb128 0x7
+ 3331 005c 898201   		.uleb128 0x4109
+ 3332 005f 01       		.byte	0x1
+ 3333 0060 11       		.uleb128 0x11
+ 3334 0061 01       		.uleb128 0x1
+ 3335 0062 31       		.uleb128 0x31
+ 3336 0063 13       		.uleb128 0x13
+ 3337 0064 01       		.uleb128 0x1
+ 3338 0065 13       		.uleb128 0x13
+ 3339 0066 00       		.byte	0
+ 3340 0067 00       		.byte	0
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 65
+
+
+ 3341 0068 08       		.uleb128 0x8
+ 3342 0069 8A8201   		.uleb128 0x410a
+ 3343 006c 00       		.byte	0
+ 3344 006d 02       		.uleb128 0x2
+ 3345 006e 18       		.uleb128 0x18
+ 3346 006f 9142     		.uleb128 0x2111
+ 3347 0071 18       		.uleb128 0x18
+ 3348 0072 00       		.byte	0
+ 3349 0073 00       		.byte	0
+ 3350 0074 09       		.uleb128 0x9
+ 3351 0075 05       		.uleb128 0x5
+ 3352 0076 00       		.byte	0
+ 3353 0077 03       		.uleb128 0x3
+ 3354 0078 0E       		.uleb128 0xe
+ 3355 0079 3A       		.uleb128 0x3a
+ 3356 007a 0B       		.uleb128 0xb
+ 3357 007b 3B       		.uleb128 0x3b
+ 3358 007c 0B       		.uleb128 0xb
+ 3359 007d 49       		.uleb128 0x49
+ 3360 007e 13       		.uleb128 0x13
+ 3361 007f 02       		.uleb128 0x2
+ 3362 0080 17       		.uleb128 0x17
+ 3363 0081 00       		.byte	0
+ 3364 0082 00       		.byte	0
+ 3365 0083 0A       		.uleb128 0xa
+ 3366 0084 0F       		.uleb128 0xf
+ 3367 0085 00       		.byte	0
+ 3368 0086 0B       		.uleb128 0xb
+ 3369 0087 0B       		.uleb128 0xb
+ 3370 0088 49       		.uleb128 0x49
+ 3371 0089 13       		.uleb128 0x13
+ 3372 008a 00       		.byte	0
+ 3373 008b 00       		.byte	0
+ 3374 008c 0B       		.uleb128 0xb
+ 3375 008d 26       		.uleb128 0x26
+ 3376 008e 00       		.byte	0
+ 3377 008f 49       		.uleb128 0x49
+ 3378 0090 13       		.uleb128 0x13
+ 3379 0091 00       		.byte	0
+ 3380 0092 00       		.byte	0
+ 3381 0093 0C       		.uleb128 0xc
+ 3382 0094 2E       		.uleb128 0x2e
+ 3383 0095 01       		.byte	0x1
+ 3384 0096 3F       		.uleb128 0x3f
+ 3385 0097 19       		.uleb128 0x19
+ 3386 0098 03       		.uleb128 0x3
+ 3387 0099 0E       		.uleb128 0xe
+ 3388 009a 3A       		.uleb128 0x3a
+ 3389 009b 0B       		.uleb128 0xb
+ 3390 009c 3B       		.uleb128 0x3b
+ 3391 009d 05       		.uleb128 0x5
+ 3392 009e 27       		.uleb128 0x27
+ 3393 009f 19       		.uleb128 0x19
+ 3394 00a0 11       		.uleb128 0x11
+ 3395 00a1 01       		.uleb128 0x1
+ 3396 00a2 12       		.uleb128 0x12
+ 3397 00a3 06       		.uleb128 0x6
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 66
+
+
+ 3398 00a4 40       		.uleb128 0x40
+ 3399 00a5 18       		.uleb128 0x18
+ 3400 00a6 9742     		.uleb128 0x2117
+ 3401 00a8 19       		.uleb128 0x19
+ 3402 00a9 01       		.uleb128 0x1
+ 3403 00aa 13       		.uleb128 0x13
+ 3404 00ab 00       		.byte	0
+ 3405 00ac 00       		.byte	0
+ 3406 00ad 0D       		.uleb128 0xd
+ 3407 00ae 05       		.uleb128 0x5
+ 3408 00af 00       		.byte	0
+ 3409 00b0 03       		.uleb128 0x3
+ 3410 00b1 0E       		.uleb128 0xe
+ 3411 00b2 3A       		.uleb128 0x3a
+ 3412 00b3 0B       		.uleb128 0xb
+ 3413 00b4 3B       		.uleb128 0x3b
+ 3414 00b5 05       		.uleb128 0x5
+ 3415 00b6 49       		.uleb128 0x49
+ 3416 00b7 13       		.uleb128 0x13
+ 3417 00b8 02       		.uleb128 0x2
+ 3418 00b9 17       		.uleb128 0x17
+ 3419 00ba 00       		.byte	0
+ 3420 00bb 00       		.byte	0
+ 3421 00bc 0E       		.uleb128 0xe
+ 3422 00bd 898201   		.uleb128 0x4109
+ 3423 00c0 01       		.byte	0x1
+ 3424 00c1 11       		.uleb128 0x11
+ 3425 00c2 01       		.uleb128 0x1
+ 3426 00c3 31       		.uleb128 0x31
+ 3427 00c4 13       		.uleb128 0x13
+ 3428 00c5 00       		.byte	0
+ 3429 00c6 00       		.byte	0
+ 3430 00c7 0F       		.uleb128 0xf
+ 3431 00c8 34       		.uleb128 0x34
+ 3432 00c9 00       		.byte	0
+ 3433 00ca 03       		.uleb128 0x3
+ 3434 00cb 0E       		.uleb128 0xe
+ 3435 00cc 3A       		.uleb128 0x3a
+ 3436 00cd 0B       		.uleb128 0xb
+ 3437 00ce 3B       		.uleb128 0x3b
+ 3438 00cf 0B       		.uleb128 0xb
+ 3439 00d0 49       		.uleb128 0x49
+ 3440 00d1 13       		.uleb128 0x13
+ 3441 00d2 02       		.uleb128 0x2
+ 3442 00d3 18       		.uleb128 0x18
+ 3443 00d4 00       		.byte	0
+ 3444 00d5 00       		.byte	0
+ 3445 00d6 10       		.uleb128 0x10
+ 3446 00d7 34       		.uleb128 0x34
+ 3447 00d8 00       		.byte	0
+ 3448 00d9 03       		.uleb128 0x3
+ 3449 00da 0E       		.uleb128 0xe
+ 3450 00db 3A       		.uleb128 0x3a
+ 3451 00dc 0B       		.uleb128 0xb
+ 3452 00dd 3B       		.uleb128 0x3b
+ 3453 00de 0B       		.uleb128 0xb
+ 3454 00df 49       		.uleb128 0x49
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 67
+
+
+ 3455 00e0 13       		.uleb128 0x13
+ 3456 00e1 3F       		.uleb128 0x3f
+ 3457 00e2 19       		.uleb128 0x19
+ 3458 00e3 02       		.uleb128 0x2
+ 3459 00e4 18       		.uleb128 0x18
+ 3460 00e5 00       		.byte	0
+ 3461 00e6 00       		.byte	0
+ 3462 00e7 11       		.uleb128 0x11
+ 3463 00e8 01       		.uleb128 0x1
+ 3464 00e9 01       		.byte	0x1
+ 3465 00ea 49       		.uleb128 0x49
+ 3466 00eb 13       		.uleb128 0x13
+ 3467 00ec 01       		.uleb128 0x1
+ 3468 00ed 13       		.uleb128 0x13
+ 3469 00ee 00       		.byte	0
+ 3470 00ef 00       		.byte	0
+ 3471 00f0 12       		.uleb128 0x12
+ 3472 00f1 21       		.uleb128 0x21
+ 3473 00f2 00       		.byte	0
+ 3474 00f3 49       		.uleb128 0x49
+ 3475 00f4 13       		.uleb128 0x13
+ 3476 00f5 2F       		.uleb128 0x2f
+ 3477 00f6 05       		.uleb128 0x5
+ 3478 00f7 00       		.byte	0
+ 3479 00f8 00       		.byte	0
+ 3480 00f9 13       		.uleb128 0x13
+ 3481 00fa 21       		.uleb128 0x21
+ 3482 00fb 00       		.byte	0
+ 3483 00fc 49       		.uleb128 0x49
+ 3484 00fd 13       		.uleb128 0x13
+ 3485 00fe 2F       		.uleb128 0x2f
+ 3486 00ff 0B       		.uleb128 0xb
+ 3487 0100 00       		.byte	0
+ 3488 0101 00       		.byte	0
+ 3489 0102 14       		.uleb128 0x14
+ 3490 0103 2E       		.uleb128 0x2e
+ 3491 0104 00       		.byte	0
+ 3492 0105 3F       		.uleb128 0x3f
+ 3493 0106 19       		.uleb128 0x19
+ 3494 0107 3C       		.uleb128 0x3c
+ 3495 0108 19       		.uleb128 0x19
+ 3496 0109 6E       		.uleb128 0x6e
+ 3497 010a 0E       		.uleb128 0xe
+ 3498 010b 03       		.uleb128 0x3
+ 3499 010c 0E       		.uleb128 0xe
+ 3500 010d 3A       		.uleb128 0x3a
+ 3501 010e 0B       		.uleb128 0xb
+ 3502 010f 3B       		.uleb128 0x3b
+ 3503 0110 0B       		.uleb128 0xb
+ 3504 0111 00       		.byte	0
+ 3505 0112 00       		.byte	0
+ 3506 0113 00       		.byte	0
+ 3507              		.section	.debug_loc,"",%progbits
+ 3508              	.Ldebug_loc0:
+ 3509              	.LLST0:
+ 3510 0000 00000000 		.4byte	.LVL9
+ 3511 0004 10000000 		.4byte	.LVL11
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 68
+
+
+ 3512 0008 0100     		.2byte	0x1
+ 3513 000a 50       		.byte	0x50
+ 3514 000b 10000000 		.4byte	.LVL11
+ 3515 000f 3A000000 		.4byte	.LVL16
+ 3516 0013 0100     		.2byte	0x1
+ 3517 0015 55       		.byte	0x55
+ 3518 0016 3A000000 		.4byte	.LVL16
+ 3519 001a 40000000 		.4byte	.LFE5
+ 3520 001e 0400     		.2byte	0x4
+ 3521 0020 F3       		.byte	0xf3
+ 3522 0021 01       		.uleb128 0x1
+ 3523 0022 50       		.byte	0x50
+ 3524 0023 9F       		.byte	0x9f
+ 3525 0024 00000000 		.4byte	0
+ 3526 0028 00000000 		.4byte	0
+ 3527              	.LLST1:
+ 3528 002c 00000000 		.4byte	.LVL9
+ 3529 0030 0E000000 		.4byte	.LVL10
+ 3530 0034 0100     		.2byte	0x1
+ 3531 0036 51       		.byte	0x51
+ 3532 0037 0E000000 		.4byte	.LVL10
+ 3533 003b 40000000 		.4byte	.LFE5
+ 3534 003f 0400     		.2byte	0x4
+ 3535 0041 F3       		.byte	0xf3
+ 3536 0042 01       		.uleb128 0x1
+ 3537 0043 51       		.byte	0x51
+ 3538 0044 9F       		.byte	0x9f
+ 3539 0045 00000000 		.4byte	0
+ 3540 0049 00000000 		.4byte	0
+ 3541              	.LLST2:
+ 3542 004d 00000000 		.4byte	.LVL17
+ 3543 0051 10000000 		.4byte	.LVL19
+ 3544 0055 0100     		.2byte	0x1
+ 3545 0057 50       		.byte	0x50
+ 3546 0058 10000000 		.4byte	.LVL19
+ 3547 005c 3A000000 		.4byte	.LVL24
+ 3548 0060 0100     		.2byte	0x1
+ 3549 0062 55       		.byte	0x55
+ 3550 0063 3A000000 		.4byte	.LVL24
+ 3551 0067 40000000 		.4byte	.LFE6
+ 3552 006b 0400     		.2byte	0x4
+ 3553 006d F3       		.byte	0xf3
+ 3554 006e 01       		.uleb128 0x1
+ 3555 006f 50       		.byte	0x50
+ 3556 0070 9F       		.byte	0x9f
+ 3557 0071 00000000 		.4byte	0
+ 3558 0075 00000000 		.4byte	0
+ 3559              	.LLST3:
+ 3560 0079 00000000 		.4byte	.LVL17
+ 3561 007d 0E000000 		.4byte	.LVL18
+ 3562 0081 0100     		.2byte	0x1
+ 3563 0083 51       		.byte	0x51
+ 3564 0084 0E000000 		.4byte	.LVL18
+ 3565 0088 40000000 		.4byte	.LFE6
+ 3566 008c 0400     		.2byte	0x4
+ 3567 008e F3       		.byte	0xf3
+ 3568 008f 01       		.uleb128 0x1
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 69
+
+
+ 3569 0090 51       		.byte	0x51
+ 3570 0091 9F       		.byte	0x9f
+ 3571 0092 00000000 		.4byte	0
+ 3572 0096 00000000 		.4byte	0
+ 3573              	.LLST4:
+ 3574 009a 00000000 		.4byte	.LVL34
+ 3575 009e 09000000 		.4byte	.LVL35-1
+ 3576 00a2 0100     		.2byte	0x1
+ 3577 00a4 50       		.byte	0x50
+ 3578 00a5 09000000 		.4byte	.LVL35-1
+ 3579 00a9 18000000 		.4byte	.LFE3
+ 3580 00ad 0400     		.2byte	0x4
+ 3581 00af F3       		.byte	0xf3
+ 3582 00b0 01       		.uleb128 0x1
+ 3583 00b1 50       		.byte	0x50
+ 3584 00b2 9F       		.byte	0x9f
+ 3585 00b3 00000000 		.4byte	0
+ 3586 00b7 00000000 		.4byte	0
+ 3587              	.LLST5:
+ 3588 00bb 00000000 		.4byte	.LVL34
+ 3589 00bf 09000000 		.4byte	.LVL35-1
+ 3590 00c3 0100     		.2byte	0x1
+ 3591 00c5 51       		.byte	0x51
+ 3592 00c6 09000000 		.4byte	.LVL35-1
+ 3593 00ca 18000000 		.4byte	.LFE3
+ 3594 00ce 0400     		.2byte	0x4
+ 3595 00d0 F3       		.byte	0xf3
+ 3596 00d1 01       		.uleb128 0x1
+ 3597 00d2 51       		.byte	0x51
+ 3598 00d3 9F       		.byte	0x9f
+ 3599 00d4 00000000 		.4byte	0
+ 3600 00d8 00000000 		.4byte	0
+ 3601              	.LLST6:
+ 3602 00dc 00000000 		.4byte	.LVL34
+ 3603 00e0 09000000 		.4byte	.LVL35-1
+ 3604 00e4 0100     		.2byte	0x1
+ 3605 00e6 52       		.byte	0x52
+ 3606 00e7 09000000 		.4byte	.LVL35-1
+ 3607 00eb 18000000 		.4byte	.LFE3
+ 3608 00ef 0100     		.2byte	0x1
+ 3609 00f1 54       		.byte	0x54
+ 3610 00f2 00000000 		.4byte	0
+ 3611 00f6 00000000 		.4byte	0
+ 3612              	.LLST7:
+ 3613 00fa 00000000 		.4byte	.LVL34
+ 3614 00fe 09000000 		.4byte	.LVL35-1
+ 3615 0102 0100     		.2byte	0x1
+ 3616 0104 53       		.byte	0x53
+ 3617 0105 09000000 		.4byte	.LVL35-1
+ 3618 0109 18000000 		.4byte	.LFE3
+ 3619 010d 0400     		.2byte	0x4
+ 3620 010f F3       		.byte	0xf3
+ 3621 0110 01       		.uleb128 0x1
+ 3622 0111 53       		.byte	0x53
+ 3623 0112 9F       		.byte	0x9f
+ 3624 0113 00000000 		.4byte	0
+ 3625 0117 00000000 		.4byte	0
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 70
+
+
+ 3626              		.section	.debug_aranges,"",%progbits
+ 3627 0000 4C000000 		.4byte	0x4c
+ 3628 0004 0200     		.2byte	0x2
+ 3629 0006 00000000 		.4byte	.Ldebug_info0
+ 3630 000a 04       		.byte	0x4
+ 3631 000b 00       		.byte	0
+ 3632 000c 0000     		.2byte	0
+ 3633 000e 0000     		.2byte	0
+ 3634 0010 00000000 		.4byte	.LFB1
+ 3635 0014 28000000 		.4byte	.LFE1-.LFB1
+ 3636 0018 00000000 		.4byte	.LFB4
+ 3637 001c 20000000 		.4byte	.LFE4-.LFB4
+ 3638 0020 00000000 		.4byte	.LFB5
+ 3639 0024 40000000 		.4byte	.LFE5-.LFB5
+ 3640 0028 00000000 		.4byte	.LFB6
+ 3641 002c 40000000 		.4byte	.LFE6-.LFB6
+ 3642 0030 00000000 		.4byte	.LFB0
+ 3643 0034 40000000 		.4byte	.LFE0-.LFB0
+ 3644 0038 00000000 		.4byte	.LFB2
+ 3645 003c 1C000000 		.4byte	.LFE2-.LFB2
+ 3646 0040 00000000 		.4byte	.LFB3
+ 3647 0044 18000000 		.4byte	.LFE3-.LFB3
+ 3648 0048 00000000 		.4byte	0
+ 3649 004c 00000000 		.4byte	0
+ 3650              		.section	.debug_ranges,"",%progbits
+ 3651              	.Ldebug_ranges0:
+ 3652 0000 00000000 		.4byte	.LFB1
+ 3653 0004 28000000 		.4byte	.LFE1
+ 3654 0008 00000000 		.4byte	.LFB4
+ 3655 000c 20000000 		.4byte	.LFE4
+ 3656 0010 00000000 		.4byte	.LFB5
+ 3657 0014 40000000 		.4byte	.LFE5
+ 3658 0018 00000000 		.4byte	.LFB6
+ 3659 001c 40000000 		.4byte	.LFE6
+ 3660 0020 00000000 		.4byte	.LFB0
+ 3661 0024 40000000 		.4byte	.LFE0
+ 3662 0028 00000000 		.4byte	.LFB2
+ 3663 002c 1C000000 		.4byte	.LFE2
+ 3664 0030 00000000 		.4byte	.LFB3
+ 3665 0034 18000000 		.4byte	.LFE3
+ 3666 0038 00000000 		.4byte	0
+ 3667 003c 00000000 		.4byte	0
+ 3668              		.section	.debug_line,"",%progbits
+ 3669              	.Ldebug_line0:
+ 3670 0000 5C010000 		.section	.debug_str,"MS",%progbits,1
+ 3670      0200BC00 
+ 3670      00000201 
+ 3670      FB0E0D00 
+ 3670      01010101 
+ 3671              	.LASF51:
+ 3672 0000 57617665 		.ascii	"WaveDAC8_1_VDAC8_SetRange\000"
+ 3672      44414338 
+ 3672      5F315F56 
+ 3672      44414338 
+ 3672      5F536574 
+ 3673              	.LASF34:
+ 3674 001a 57617665 		.ascii	"WaveDAC8_1_initVar\000"
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 71
+
+
+ 3674      44414338 
+ 3674      5F315F69 
+ 3674      6E697456 
+ 3674      617200
+ 3675              	.LASF31:
+ 3676 002d 57617665 		.ascii	"WaveDAC8_1_Wave2Chan\000"
+ 3676      44414338 
+ 3676      5F315F57 
+ 3676      61766532 
+ 3676      4368616E 
+ 3677              	.LASF37:
+ 3678 0042 57617665 		.ascii	"WaveDAC8_1_VDAC8_Enable\000"
+ 3678      44414338 
+ 3678      5F315F56 
+ 3678      44414338 
+ 3678      5F456E61 
+ 3679              	.LASF46:
+ 3680 005a 4379446D 		.ascii	"CyDmaTdSetAddress\000"
+ 3680      61546453 
+ 3680      65744164 
+ 3680      64726573 
+ 3680      7300
+ 3681              	.LASF23:
+ 3682 006c 57617665 		.ascii	"WaveDAC8_1_Init\000"
+ 3682      44414338 
+ 3682      5F315F49 
+ 3682      6E697400 
+ 3683              	.LASF3:
+ 3684 007c 73686F72 		.ascii	"short unsigned int\000"
+ 3684      7420756E 
+ 3684      7369676E 
+ 3684      65642069 
+ 3684      6E7400
+ 3685              	.LASF47:
+ 3686 008f 4379446D 		.ascii	"CyDmaChSetInitialTd\000"
+ 3686      61436853 
+ 3686      6574496E 
+ 3686      69746961 
+ 3686      6C546400 
+ 3687              	.LASF24:
+ 3688 00a3 57617665 		.ascii	"WaveDAC8_1_Start\000"
+ 3688      44414338 
+ 3688      5F315F53 
+ 3688      74617274 
+ 3688      00
+ 3689              	.LASF26:
+ 3690 00b4 77617665 		.ascii	"wavePtr1\000"
+ 3690      50747231 
+ 3690      00
+ 3691              	.LASF28:
+ 3692 00bd 77617665 		.ascii	"wavePtr2\000"
+ 3692      50747232 
+ 3692      00
+ 3693              	.LASF44:
+ 3694 00c6 57617665 		.ascii	"WaveDAC8_1_Wave1_DMA_DmaInitialize\000"
+ 3694      44414338 
+ 3694      5F315F57 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 72
+
+
+ 3694      61766531 
+ 3694      5F444D41 
+ 3695              	.LASF25:
+ 3696 00e9 57617665 		.ascii	"WaveDAC8_1_StartEx\000"
+ 3696      44414338 
+ 3696      5F315F53 
+ 3696      74617274 
+ 3696      457800
+ 3697              	.LASF52:
+ 3698 00fc 4379446D 		.ascii	"CyDmaTdAllocate\000"
+ 3698      61546441 
+ 3698      6C6C6F63 
+ 3698      61746500 
+ 3699              	.LASF50:
+ 3700 010c 57617665 		.ascii	"WaveDAC8_1_VDAC8_SetSpeed\000"
+ 3700      44414338 
+ 3700      5F315F56 
+ 3700      44414338 
+ 3700      5F536574 
+ 3701              	.LASF12:
+ 3702 0126 666C6F61 		.ascii	"float\000"
+ 3702      7400
+ 3703              	.LASF32:
+ 3704 012c 57617665 		.ascii	"WaveDAC8_1_Wave1TD\000"
+ 3704      44414338 
+ 3704      5F315F57 
+ 3704      61766531 
+ 3704      544400
+ 3705              	.LASF21:
+ 3706 013f 73616D70 		.ascii	"sampleSize\000"
+ 3706      6C655369 
+ 3706      7A6500
+ 3707              	.LASF53:
+ 3708 014a 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 3708      43313120 
+ 3708      352E342E 
+ 3708      31203230 
+ 3708      31363036 
+ 3709 017d 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 3709      20726576 
+ 3709      6973696F 
+ 3709      6E203233 
+ 3709      37373135 
+ 3710 01b0 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 3710      66756E63 
+ 3710      74696F6E 
+ 3710      2D736563 
+ 3710      74696F6E 
+ 3711              	.LASF49:
+ 3712 01d8 57617665 		.ascii	"WaveDAC8_1_VDAC8_Init\000"
+ 3712      44414338 
+ 3712      5F315F56 
+ 3712      44414338 
+ 3712      5F496E69 
+ 3713              	.LASF45:
+ 3714 01ee 4379446D 		.ascii	"CyDmaTdSetConfiguration\000"
+ 3714      61546453 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 73
+
+
+ 3714      6574436F 
+ 3714      6E666967 
+ 3714      75726174 
+ 3715              	.LASF5:
+ 3716 0206 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3716      20756E73 
+ 3716      69676E65 
+ 3716      6420696E 
+ 3716      7400
+ 3717              	.LASF20:
+ 3718 0218 77617665 		.ascii	"wavePtr\000"
+ 3718      50747200 
+ 3719              	.LASF9:
+ 3720 0220 75696E74 		.ascii	"uint8\000"
+ 3720      3800
+ 3721              	.LASF41:
+ 3722 0226 57617665 		.ascii	"WaveDAC8_1_DacClk_Stop\000"
+ 3722      44414338 
+ 3722      5F315F44 
+ 3722      6163436C 
+ 3722      6B5F5374 
+ 3723              	.LASF27:
+ 3724 023d 73616D70 		.ascii	"sampleSize1\000"
+ 3724      6C655369 
+ 3724      7A653100 
+ 3725              	.LASF29:
+ 3726 0249 73616D70 		.ascii	"sampleSize2\000"
+ 3726      6C655369 
+ 3726      7A653200 
+ 3727              	.LASF19:
+ 3728 0255 57617665 		.ascii	"WaveDAC8_1_Wave1Setup\000"
+ 3728      44414338 
+ 3728      5F315F57 
+ 3728      61766531 
+ 3728      53657475 
+ 3729              	.LASF40:
+ 3730 026b 57617665 		.ascii	"WaveDAC8_1_DacClk_Start\000"
+ 3730      44414338 
+ 3730      5F315F44 
+ 3730      6163436C 
+ 3730      6B5F5374 
+ 3731              	.LASF13:
+ 3732 0283 646F7562 		.ascii	"double\000"
+ 3732      6C6500
+ 3733              	.LASF18:
+ 3734 028a 57617665 		.ascii	"WaveDAC8_1_Stop\000"
+ 3734      44414338 
+ 3734      5F315F53 
+ 3734      746F7000 
+ 3735              	.LASF2:
+ 3736 029a 73686F72 		.ascii	"short int\000"
+ 3736      7420696E 
+ 3736      7400
+ 3737              	.LASF38:
+ 3738 02a4 4379446D 		.ascii	"CyDmaChEnable\000"
+ 3738      61436845 
+ 3738      6E61626C 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 74
+
+
+ 3738      6500
+ 3739              	.LASF10:
+ 3740 02b2 75696E74 		.ascii	"uint16\000"
+ 3740      313600
+ 3741              	.LASF48:
+ 3742 02b9 57617665 		.ascii	"WaveDAC8_1_Wave2_DMA_DmaInitialize\000"
+ 3742      44414338 
+ 3742      5F315F57 
+ 3742      61766532 
+ 3742      5F444D41 
+ 3743              	.LASF11:
+ 3744 02dc 75696E74 		.ascii	"uint32\000"
+ 3744      333200
+ 3745              	.LASF1:
+ 3746 02e3 756E7369 		.ascii	"unsigned char\000"
+ 3746      676E6564 
+ 3746      20636861 
+ 3746      7200
+ 3747              	.LASF8:
+ 3748 02f1 756E7369 		.ascii	"unsigned int\000"
+ 3748      676E6564 
+ 3748      20696E74 
+ 3748      00
+ 3749              	.LASF54:
+ 3750 02fe 47656E65 		.ascii	"Generated_Source\\PSoC5\\WaveDAC8_1.c\000"
+ 3750      72617465 
+ 3750      645F536F 
+ 3750      75726365 
+ 3750      5C50536F 
+ 3751              	.LASF7:
+ 3752 0322 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3752      206C6F6E 
+ 3752      6720756E 
+ 3752      7369676E 
+ 3752      65642069 
+ 3753              	.LASF33:
+ 3754 0339 57617665 		.ascii	"WaveDAC8_1_Wave2TD\000"
+ 3754      44414338 
+ 3754      5F315F57 
+ 3754      61766532 
+ 3754      544400
+ 3755              	.LASF43:
+ 3756 034c 57617665 		.ascii	"WaveDAC8_1_VDAC8_Stop\000"
+ 3756      44414338 
+ 3756      5F315F56 
+ 3756      44414338 
+ 3756      5F53746F 
+ 3757              	.LASF39:
+ 3758 0362 57617665 		.ascii	"WaveDAC8_1_VDAC8_SetValue\000"
+ 3758      44414338 
+ 3758      5F315F56 
+ 3758      44414338 
+ 3758      5F536574 
+ 3759              	.LASF55:
+ 3760 037c 443A5C70 		.ascii	"D:\\psoc codes\\ADC+UART\\ADC+UART.cydsn\000"
+ 3760      736F6320 
+ 3760      636F6465 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 75
+
+
+ 3760      735C4144 
+ 3760      432B5541 
+ 3761              	.LASF16:
+ 3762 03a2 73697A65 		.ascii	"sizetype\000"
+ 3762      74797065 
+ 3762      00
+ 3763              	.LASF6:
+ 3764 03ab 6C6F6E67 		.ascii	"long long int\000"
+ 3764      206C6F6E 
+ 3764      6720696E 
+ 3764      7400
+ 3765              	.LASF14:
+ 3766 03b9 63686172 		.ascii	"char\000"
+ 3766      00
+ 3767              	.LASF22:
+ 3768 03be 57617665 		.ascii	"WaveDAC8_1_Wave2Setup\000"
+ 3768      44414338 
+ 3768      5F315F57 
+ 3768      61766532 
+ 3768      53657475 
+ 3769              	.LASF17:
+ 3770 03d4 57617665 		.ascii	"WaveDAC8_1_Enable\000"
+ 3770      44414338 
+ 3770      5F315F45 
+ 3770      6E61626C 
+ 3770      6500
+ 3771              	.LASF35:
+ 3772 03e6 57617665 		.ascii	"WaveDAC8_1_wave1\000"
+ 3772      44414338 
+ 3772      5F315F77 
+ 3772      61766531 
+ 3772      00
+ 3773              	.LASF36:
+ 3774 03f7 57617665 		.ascii	"WaveDAC8_1_wave2\000"
+ 3774      44414338 
+ 3774      5F315F77 
+ 3774      61766532 
+ 3774      00
+ 3775              	.LASF30:
+ 3776 0408 57617665 		.ascii	"WaveDAC8_1_Wave1Chan\000"
+ 3776      44414338 
+ 3776      5F315F57 
+ 3776      61766531 
+ 3776      4368616E 
+ 3777              	.LASF4:
+ 3778 041d 6C6F6E67 		.ascii	"long int\000"
+ 3778      20696E74 
+ 3778      00
+ 3779              	.LASF15:
+ 3780 0426 6C6F6E67 		.ascii	"long double\000"
+ 3780      20646F75 
+ 3780      626C6500 
+ 3781              	.LASF0:
+ 3782 0432 7369676E 		.ascii	"signed char\000"
+ 3782      65642063 
+ 3782      68617200 
+ 3783              	.LASF42:
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccbGmR2M.s 			page 76
+
+
+ 3784 043e 4379446D 		.ascii	"CyDmaChDisable\000"
+ 3784      61436844 
+ 3784      69736162 
+ 3784      6C6500
+ 3785              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

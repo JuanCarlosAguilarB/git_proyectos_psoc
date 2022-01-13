@@ -1,0 +1,870 @@
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.comm	result,32,4
+  20              		.section	.text.main,"ax",%progbits
+  21              		.align	2
+  22              		.global	main
+  23              		.thumb
+  24              		.thumb_func
+  25              		.type	main, %function
+  26              	main:
+  27              	.LFB63:
+  28              		.file 1 "main.c"
+   1:main.c        **** #include <project.h>
+   2:main.c        **** 
+   3:main.c        **** /* There are 16 input channels */
+   4:main.c        **** #define NUMCHAN (16u)
+   5:main.c        **** 
+   6:main.c        **** /* DMA configuration constants for DMA_1 */
+   7:main.c        **** #define DMA_1_BYTES_PER_BURST (2u)
+   8:main.c        **** #define DMA_1_REQUEST_PER_BURST (1u)
+   9:main.c        **** #define DMA_1_SRC_BASE (CYDEV_PERIPH_BASE)
+  10:main.c        **** #define DMA_1_DST_BASE (CYDEV_SRAM_BASE)
+  11:main.c        **** 
+  12:main.c        **** /* 16-bit wide SRAM buffer with 16 locations into which DMA writes ADC readings */
+  13:main.c        **** uint16 result[NUMCHAN];
+  14:main.c        **** 
+  15:main.c        **** void DMA_Config(void);
+  16:main.c        **** 
+  17:main.c        **** 
+  18:main.c        **** /*******************************************************************************
+  19:main.c        **** * Function Name: main
+  20:main.c        **** ********************************************************************************
+  21:main.c        **** *
+  22:main.c        **** * Summary:
+  23:main.c        **** *  main() performs following functions:
+  24:main.c        **** *  1: Starts the components
+  25:main.c        **** *  2: Calls function DMA_Config to setup the DMA.
+  26:main.c        **** *  3: Starts ADC continuous conversion.
+  27:main.c        **** *  4: Gets the converted result and displays it in LCD. Also displays VDAC data
+  28:main.c        **** *     register value on LCD.
+  29:main.c        **** *
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 2
+
+
+  30:main.c        **** * Parameters:
+  31:main.c        **** *  None.
+  32:main.c        **** *
+  33:main.c        **** * Return:
+  34:main.c        **** *  None.
+  35:main.c        **** *
+  36:main.c        **** *******************************************************************************/
+  37:main.c        **** int main()
+  38:main.c        **** {
+  29              		.loc 1 38 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33 0000 80B5     		push	{r7, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 7, -8
+  36              		.cfi_offset 14, -4
+  37 0002 82B0     		sub	sp, sp, #8
+  38              		.cfi_def_cfa_offset 16
+  39 0004 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  39:main.c        ****     /* Initialize variable that indicates which mux channel is displayed on LCD */
+  40:main.c        ****     uint8 curChan = 0u;
+  41              		.loc 1 40 0
+  42 0006 0023     		movs	r3, #0
+  43 0008 FB71     		strb	r3, [r7, #7]
+  41:main.c        **** 
+  42:main.c        ****     LCD_Start();
+  44              		.loc 1 42 0
+  45 000a FFF7FEFF 		bl	LCD_Start
+  43:main.c        ****     ADC_Start();
+  46              		.loc 1 43 0
+  47 000e FFF7FEFF 		bl	ADC_Start
+  44:main.c        ****     Delay_PWM_Start();
+  48              		.loc 1 44 0
+  49 0012 FFF7FEFF 		bl	Delay_PWM_Start
+  45:main.c        **** 
+  46:main.c        ****     DMA_Config();
+  50              		.loc 1 46 0
+  51 0016 FFF7FEFF 		bl	DMA_Config
+  47:main.c        **** 
+  48:main.c        ****     /* Enable ADC SOC to be triggered by PWM output */
+  49:main.c        ****     Start_Reg_Write(1u);
+  52              		.loc 1 49 0
+  53 001a 0120     		movs	r0, #1
+  54 001c FFF7FEFF 		bl	Start_Reg_Write
+  55              	.L3:
+  50:main.c        **** 
+  51:main.c        ****     for(;;)
+  52:main.c        ****     {
+  53:main.c        ****         /*LCD_ClearDisplay();
+  54:main.c        ****         LCD_PrintString("Channel: ");
+  55:main.c        ****         LCD_PrintNumber(curChan);
+  56:main.c        **** 
+  57:main.c        ****         LCD_Position(1u, 0u);
+  58:main.c        ****         LCD_PrintNumber(result[curChan]);
+  59:main.c        **** */
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 3
+
+
+  60:main.c        ****         /* For ease of reading LCD */
+  61:main.c        ****   //      CyDelay(100u/*ms*/);
+  62:main.c        **** 
+  63:main.c        ****         /* If SW2 is pressed */
+  64:main.c        ****        // if(!ChannelSelect_Read())
+  65:main.c        ****       //  {
+  66:main.c        ****             /* Wait until button is released */
+  67:main.c        ****     /*        while(!ChannelSelect_Read())
+  68:main.c        ****             {
+  69:main.c        ****             }
+  70:main.c        **** */
+  71:main.c        ****             /* Increment to next channel for display */
+  72:main.c        ****             curChan++;
+  56              		.loc 1 72 0
+  57 0020 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  58 0022 0133     		adds	r3, r3, #1
+  59 0024 FB71     		strb	r3, [r7, #7]
+  73:main.c        **** 
+  74:main.c        ****             /* If we are at channel 16, reset to channel 0 */
+  75:main.c        ****             if(curChan == NUMCHAN)
+  60              		.loc 1 75 0
+  61 0026 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  62 0028 102B     		cmp	r3, #16
+  63 002a F9D1     		bne	.L3
+  76:main.c        ****             {
+  77:main.c        ****                 curChan = 0u;
+  64              		.loc 1 77 0
+  65 002c 0023     		movs	r3, #0
+  66 002e FB71     		strb	r3, [r7, #7]
+  78:main.c        ****             }
+  79:main.c        ****        }
+  67              		.loc 1 79 0
+  68 0030 F6E7     		b	.L3
+  69              		.cfi_endproc
+  70              	.LFE63:
+  71              		.size	main, .-main
+  72 0032 00BF     		.section	.text.DMA_Config,"ax",%progbits
+  73              		.align	2
+  74              		.global	DMA_Config
+  75              		.thumb
+  76              		.thumb_func
+  77              		.type	DMA_Config, %function
+  78              	DMA_Config:
+  79              	.LFB64:
+  80:main.c        ****     //}
+  81:main.c        **** }
+  82:main.c        **** 
+  83:main.c        **** 
+  84:main.c        **** /*******************************************************************************
+  85:main.c        **** * Function Name:  DMA_Config
+  86:main.c        **** ********************************************************************************
+  87:main.c        **** *
+  88:main.c        **** * Summary:
+  89:main.c        **** *    Code generated by the DMA Wizard.
+  90:main.c        **** *
+  91:main.c        **** *    DMA_Config() performs following functions:
+  92:main.c        **** *  1: Initializes the DMA channel
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 4
+
+
+  93:main.c        **** *  2: Allocates Transfer Descriptors
+  94:main.c        **** *  3: Configures the TD.
+  95:main.c        **** *  4: Sets source and destination address for this TD.
+  96:main.c        **** *  5: Initializes the TD.
+  97:main.c        **** *  6: Enables the DMA channel.
+  98:main.c        **** *
+  99:main.c        **** * Parameters:
+ 100:main.c        **** *  None.
+ 101:main.c        **** *
+ 102:main.c        **** * Return:
+ 103:main.c        **** *  None.
+ 104:main.c        **** *
+ 105:main.c        **** *******************************************************************************/
+ 106:main.c        **** void DMA_Config()
+ 107:main.c        **** {
+  80              		.loc 1 107 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 8
+  83              		@ frame_needed = 1, uses_anonymous_args = 0
+  84 0000 80B5     		push	{r7, lr}
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 7, -8
+  87              		.cfi_offset 14, -4
+  88 0002 82B0     		sub	sp, sp, #8
+  89              		.cfi_def_cfa_offset 16
+  90 0004 00AF     		add	r7, sp, #0
+  91              		.cfi_def_cfa_register 7
+ 108:main.c        ****     /* Variable declarations for DMA_1 */
+ 109:main.c        ****     uint8 DMA_1_Chan;
+ 110:main.c        ****     uint8 DMA_1_TD[1];
+ 111:main.c        **** 
+ 112:main.c        ****     /* Iniitialize DMA channel */
+ 113:main.c        ****     DMA_1_Chan = DMA_1_DmaInitialize(DMA_1_BYTES_PER_BURST, DMA_1_REQUEST_PER_BURST,
+  92              		.loc 1 113 0
+  93 0006 41F6FF73 		movw	r3, #8191
+  94 000a 4FF48042 		mov	r2, #16384
+  95 000e 0121     		movs	r1, #1
+  96 0010 0220     		movs	r0, #2
+  97 0012 FFF7FEFF 		bl	DMA_1_DmaInitialize
+  98 0016 0346     		mov	r3, r0
+  99 0018 FB71     		strb	r3, [r7, #7]
+ 114:main.c        ****         HI16(DMA_1_SRC_BASE), HI16(DMA_1_DST_BASE));
+ 115:main.c        **** 
+ 116:main.c        ****     /* Allocate TD */
+ 117:main.c        ****     DMA_1_TD[0] = CyDmaTdAllocate();
+ 100              		.loc 1 117 0
+ 101 001a FFF7FEFF 		bl	CyDmaTdAllocate
+ 102 001e 0346     		mov	r3, r0
+ 103 0020 3B71     		strb	r3, [r7, #4]
+ 118:main.c        **** 
+ 119:main.c        ****     /* TD configuration setting */
+ 120:main.c        ****     #if (CY_PSOC3)
+ 121:main.c        ****         CyDmaTdSetConfiguration(DMA_1_TD[0], 2u * NUMCHAN, DMA_1_TD[0], TD_SWAP_EN | TD_INC_DST_ADR
+ 122:main.c        ****     #else
+ 123:main.c        ****         CyDmaTdSetConfiguration(DMA_1_TD[0], 2u * NUMCHAN, DMA_1_TD[0], TD_INC_DST_ADR);
+ 104              		.loc 1 123 0
+ 105 0022 3879     		ldrb	r0, [r7, #4]	@ zero_extendqisi2
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 5
+
+
+ 106 0024 3A79     		ldrb	r2, [r7, #4]	@ zero_extendqisi2
+ 107 0026 0223     		movs	r3, #2
+ 108 0028 2021     		movs	r1, #32
+ 109 002a FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 124:main.c        ****     #endif
+ 125:main.c        **** 
+ 126:main.c        ****     /* Set Source and Destination address */
+ 127:main.c        ****     CyDmaTdSetAddress(DMA_1_TD[0], LO16((uint32)ADC_DEC_SAMP_PTR), LO16((uint32)result));
+ 110              		.loc 1 127 0
+ 111 002e 3B79     		ldrb	r3, [r7, #4]	@ zero_extendqisi2
+ 112 0030 0A4A     		ldr	r2, .L5
+ 113 0032 92B2     		uxth	r2, r2
+ 114 0034 44F61061 		movw	r1, #19984
+ 115 0038 1846     		mov	r0, r3
+ 116 003a FFF7FEFF 		bl	CyDmaTdSetAddress
+ 128:main.c        **** 
+ 129:main.c        ****     /* TD initialization */
+ 130:main.c        ****     CyDmaChSetInitialTd(DMA_1_Chan, DMA_1_TD[0]);
+ 117              		.loc 1 130 0
+ 118 003e 3A79     		ldrb	r2, [r7, #4]	@ zero_extendqisi2
+ 119 0040 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 120 0042 1146     		mov	r1, r2
+ 121 0044 1846     		mov	r0, r3
+ 122 0046 FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 131:main.c        **** 
+ 132:main.c        ****     /* Enable the DMA channel */
+ 133:main.c        ****     CyDmaChEnable(DMA_1_Chan, 1u);
+ 123              		.loc 1 133 0
+ 124 004a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 125 004c 0121     		movs	r1, #1
+ 126 004e 1846     		mov	r0, r3
+ 127 0050 FFF7FEFF 		bl	CyDmaChEnable
+ 134:main.c        **** 
+ 135:main.c        **** }
+ 128              		.loc 1 135 0
+ 129 0054 00BF     		nop
+ 130 0056 0837     		adds	r7, r7, #8
+ 131              		.cfi_def_cfa_offset 8
+ 132 0058 BD46     		mov	sp, r7
+ 133              		.cfi_def_cfa_register 13
+ 134              		@ sp needed
+ 135 005a 80BD     		pop	{r7, pc}
+ 136              	.L6:
+ 137              		.align	2
+ 138              	.L5:
+ 139 005c 00000000 		.word	result
+ 140              		.cfi_endproc
+ 141              	.LFE64:
+ 142              		.size	DMA_Config, .-DMA_Config
+ 143              		.text
+ 144              	.Letext0:
+ 145              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 146              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 147              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 148              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 149              		.section	.debug_info,"",%progbits
+ 150              	.Ldebug_info0:
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 6
+
+
+ 151 0000 72010000 		.4byte	0x172
+ 152 0004 0400     		.2byte	0x4
+ 153 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 154 000a 04       		.byte	0x4
+ 155 000b 01       		.uleb128 0x1
+ 156 000c 5D010000 		.4byte	.LASF27
+ 157 0010 0C       		.byte	0xc
+ 158 0011 18010000 		.4byte	.LASF28
+ 159 0015 0B000000 		.4byte	.LASF29
+ 160 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 161 001d 00000000 		.4byte	0
+ 162 0021 00000000 		.4byte	.Ldebug_line0
+ 163 0025 02       		.uleb128 0x2
+ 164 0026 01       		.byte	0x1
+ 165 0027 06       		.byte	0x6
+ 166 0028 49010000 		.4byte	.LASF0
+ 167 002c 02       		.uleb128 0x2
+ 168 002d 01       		.byte	0x1
+ 169 002e 08       		.byte	0x8
+ 170 002f 66000000 		.4byte	.LASF1
+ 171 0033 02       		.uleb128 0x2
+ 172 0034 02       		.byte	0x2
+ 173 0035 05       		.byte	0x5
+ 174 0036 24010000 		.4byte	.LASF2
+ 175 003a 02       		.uleb128 0x2
+ 176 003b 02       		.byte	0x2
+ 177 003c 07       		.byte	0x7
+ 178 003d 8B000000 		.4byte	.LASF3
+ 179 0041 03       		.uleb128 0x3
+ 180 0042 4B000000 		.4byte	.LASF9
+ 181 0046 02       		.byte	0x2
+ 182 0047 3F       		.byte	0x3f
+ 183 0048 4C000000 		.4byte	0x4c
+ 184 004c 02       		.uleb128 0x2
+ 185 004d 04       		.byte	0x4
+ 186 004e 05       		.byte	0x5
+ 187 004f 34010000 		.4byte	.LASF4
+ 188 0053 02       		.uleb128 0x2
+ 189 0054 04       		.byte	0x4
+ 190 0055 07       		.byte	0x7
+ 191 0056 79000000 		.4byte	.LASF5
+ 192 005a 02       		.uleb128 0x2
+ 193 005b 08       		.byte	0x8
+ 194 005c 05       		.byte	0x5
+ 195 005d 0A010000 		.4byte	.LASF6
+ 196 0061 02       		.uleb128 0x2
+ 197 0062 08       		.byte	0x8
+ 198 0063 07       		.byte	0x7
+ 199 0064 DB000000 		.4byte	.LASF7
+ 200 0068 04       		.uleb128 0x4
+ 201 0069 04       		.byte	0x4
+ 202 006a 05       		.byte	0x5
+ 203 006b 696E7400 		.ascii	"int\000"
+ 204 006f 02       		.uleb128 0x2
+ 205 0070 04       		.byte	0x4
+ 206 0071 07       		.byte	0x7
+ 207 0072 CE000000 		.4byte	.LASF8
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 7
+
+
+ 208 0076 03       		.uleb128 0x3
+ 209 0077 F9000000 		.4byte	.LASF10
+ 210 007b 03       		.byte	0x3
+ 211 007c 2C       		.byte	0x2c
+ 212 007d 41000000 		.4byte	0x41
+ 213 0081 05       		.uleb128 0x5
+ 214 0082 2E010000 		.4byte	.LASF11
+ 215 0086 04       		.byte	0x4
+ 216 0087 9201     		.2byte	0x192
+ 217 0089 2C000000 		.4byte	0x2c
+ 218 008d 05       		.uleb128 0x5
+ 219 008e C0000000 		.4byte	.LASF12
+ 220 0092 04       		.byte	0x4
+ 221 0093 9301     		.2byte	0x193
+ 222 0095 3A000000 		.4byte	0x3a
+ 223 0099 05       		.uleb128 0x5
+ 224 009a C7000000 		.4byte	.LASF13
+ 225 009e 04       		.byte	0x4
+ 226 009f 9401     		.2byte	0x194
+ 227 00a1 53000000 		.4byte	0x53
+ 228 00a5 02       		.uleb128 0x2
+ 229 00a6 04       		.byte	0x4
+ 230 00a7 04       		.byte	0x4
+ 231 00a8 60000000 		.4byte	.LASF14
+ 232 00ac 02       		.uleb128 0x2
+ 233 00ad 08       		.byte	0x8
+ 234 00ae 04       		.byte	0x4
+ 235 00af B4000000 		.4byte	.LASF15
+ 236 00b3 02       		.uleb128 0x2
+ 237 00b4 01       		.byte	0x1
+ 238 00b5 08       		.byte	0x8
+ 239 00b6 1F010000 		.4byte	.LASF16
+ 240 00ba 05       		.uleb128 0x5
+ 241 00bb 74000000 		.4byte	.LASF17
+ 242 00bf 04       		.byte	0x4
+ 243 00c0 3C02     		.2byte	0x23c
+ 244 00c2 C6000000 		.4byte	0xc6
+ 245 00c6 06       		.uleb128 0x6
+ 246 00c7 81000000 		.4byte	0x81
+ 247 00cb 02       		.uleb128 0x2
+ 248 00cc 08       		.byte	0x8
+ 249 00cd 04       		.byte	0x4
+ 250 00ce 3D010000 		.4byte	.LASF18
+ 251 00d2 02       		.uleb128 0x2
+ 252 00d3 04       		.byte	0x4
+ 253 00d4 07       		.byte	0x7
+ 254 00d5 01010000 		.4byte	.LASF19
+ 255 00d9 07       		.uleb128 0x7
+ 256 00da BB000000 		.4byte	.LASF20
+ 257 00de 01       		.byte	0x1
+ 258 00df 25       		.byte	0x25
+ 259 00e0 68000000 		.4byte	0x68
+ 260 00e4 00000000 		.4byte	.LFB63
+ 261 00e8 32000000 		.4byte	.LFE63-.LFB63
+ 262 00ec 01       		.uleb128 0x1
+ 263 00ed 9C       		.byte	0x9c
+ 264 00ee 01010000 		.4byte	0x101
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 8
+
+
+ 265 00f2 08       		.uleb128 0x8
+ 266 00f3 55010000 		.4byte	.LASF22
+ 267 00f7 01       		.byte	0x1
+ 268 00f8 28       		.byte	0x28
+ 269 00f9 81000000 		.4byte	0x81
+ 270 00fd 02       		.uleb128 0x2
+ 271 00fe 91       		.byte	0x91
+ 272 00ff 77       		.sleb128 -9
+ 273 0100 00       		.byte	0
+ 274 0101 09       		.uleb128 0x9
+ 275 0102 55000000 		.4byte	.LASF21
+ 276 0106 01       		.byte	0x1
+ 277 0107 6A       		.byte	0x6a
+ 278 0108 00000000 		.4byte	.LFB64
+ 279 010c 60000000 		.4byte	.LFE64-.LFB64
+ 280 0110 01       		.uleb128 0x1
+ 281 0111 9C       		.byte	0x9c
+ 282 0112 33010000 		.4byte	0x133
+ 283 0116 08       		.uleb128 0x8
+ 284 0117 00000000 		.4byte	.LASF23
+ 285 011b 01       		.byte	0x1
+ 286 011c 6D       		.byte	0x6d
+ 287 011d 81000000 		.4byte	0x81
+ 288 0121 02       		.uleb128 0x2
+ 289 0122 91       		.byte	0x91
+ 290 0123 77       		.sleb128 -9
+ 291 0124 08       		.uleb128 0x8
+ 292 0125 9E000000 		.4byte	.LASF24
+ 293 0129 01       		.byte	0x1
+ 294 012a 6E       		.byte	0x6e
+ 295 012b 33010000 		.4byte	0x133
+ 296 012f 02       		.uleb128 0x2
+ 297 0130 91       		.byte	0x91
+ 298 0131 74       		.sleb128 -12
+ 299 0132 00       		.byte	0
+ 300 0133 0A       		.uleb128 0xa
+ 301 0134 81000000 		.4byte	0x81
+ 302 0138 43010000 		.4byte	0x143
+ 303 013c 0B       		.uleb128 0xb
+ 304 013d D2000000 		.4byte	0xd2
+ 305 0141 00       		.byte	0
+ 306 0142 00       		.byte	0
+ 307 0143 0C       		.uleb128 0xc
+ 308 0144 A7000000 		.4byte	.LASF25
+ 309 0148 05       		.byte	0x5
+ 310 0149 1207     		.2byte	0x712
+ 311 014b 4F010000 		.4byte	0x14f
+ 312 014f 06       		.uleb128 0x6
+ 313 0150 76000000 		.4byte	0x76
+ 314 0154 0A       		.uleb128 0xa
+ 315 0155 8D000000 		.4byte	0x8d
+ 316 0159 64010000 		.4byte	0x164
+ 317 015d 0B       		.uleb128 0xb
+ 318 015e D2000000 		.4byte	0xd2
+ 319 0162 0F       		.byte	0xf
+ 320 0163 00       		.byte	0
+ 321 0164 0D       		.uleb128 0xd
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 9
+
+
+ 322 0165 F2000000 		.4byte	.LASF26
+ 323 0169 01       		.byte	0x1
+ 324 016a 0D       		.byte	0xd
+ 325 016b 54010000 		.4byte	0x154
+ 326 016f 05       		.uleb128 0x5
+ 327 0170 03       		.byte	0x3
+ 328 0171 00000000 		.4byte	result
+ 329 0175 00       		.byte	0
+ 330              		.section	.debug_abbrev,"",%progbits
+ 331              	.Ldebug_abbrev0:
+ 332 0000 01       		.uleb128 0x1
+ 333 0001 11       		.uleb128 0x11
+ 334 0002 01       		.byte	0x1
+ 335 0003 25       		.uleb128 0x25
+ 336 0004 0E       		.uleb128 0xe
+ 337 0005 13       		.uleb128 0x13
+ 338 0006 0B       		.uleb128 0xb
+ 339 0007 03       		.uleb128 0x3
+ 340 0008 0E       		.uleb128 0xe
+ 341 0009 1B       		.uleb128 0x1b
+ 342 000a 0E       		.uleb128 0xe
+ 343 000b 55       		.uleb128 0x55
+ 344 000c 17       		.uleb128 0x17
+ 345 000d 11       		.uleb128 0x11
+ 346 000e 01       		.uleb128 0x1
+ 347 000f 10       		.uleb128 0x10
+ 348 0010 17       		.uleb128 0x17
+ 349 0011 00       		.byte	0
+ 350 0012 00       		.byte	0
+ 351 0013 02       		.uleb128 0x2
+ 352 0014 24       		.uleb128 0x24
+ 353 0015 00       		.byte	0
+ 354 0016 0B       		.uleb128 0xb
+ 355 0017 0B       		.uleb128 0xb
+ 356 0018 3E       		.uleb128 0x3e
+ 357 0019 0B       		.uleb128 0xb
+ 358 001a 03       		.uleb128 0x3
+ 359 001b 0E       		.uleb128 0xe
+ 360 001c 00       		.byte	0
+ 361 001d 00       		.byte	0
+ 362 001e 03       		.uleb128 0x3
+ 363 001f 16       		.uleb128 0x16
+ 364 0020 00       		.byte	0
+ 365 0021 03       		.uleb128 0x3
+ 366 0022 0E       		.uleb128 0xe
+ 367 0023 3A       		.uleb128 0x3a
+ 368 0024 0B       		.uleb128 0xb
+ 369 0025 3B       		.uleb128 0x3b
+ 370 0026 0B       		.uleb128 0xb
+ 371 0027 49       		.uleb128 0x49
+ 372 0028 13       		.uleb128 0x13
+ 373 0029 00       		.byte	0
+ 374 002a 00       		.byte	0
+ 375 002b 04       		.uleb128 0x4
+ 376 002c 24       		.uleb128 0x24
+ 377 002d 00       		.byte	0
+ 378 002e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 10
+
+
+ 379 002f 0B       		.uleb128 0xb
+ 380 0030 3E       		.uleb128 0x3e
+ 381 0031 0B       		.uleb128 0xb
+ 382 0032 03       		.uleb128 0x3
+ 383 0033 08       		.uleb128 0x8
+ 384 0034 00       		.byte	0
+ 385 0035 00       		.byte	0
+ 386 0036 05       		.uleb128 0x5
+ 387 0037 16       		.uleb128 0x16
+ 388 0038 00       		.byte	0
+ 389 0039 03       		.uleb128 0x3
+ 390 003a 0E       		.uleb128 0xe
+ 391 003b 3A       		.uleb128 0x3a
+ 392 003c 0B       		.uleb128 0xb
+ 393 003d 3B       		.uleb128 0x3b
+ 394 003e 05       		.uleb128 0x5
+ 395 003f 49       		.uleb128 0x49
+ 396 0040 13       		.uleb128 0x13
+ 397 0041 00       		.byte	0
+ 398 0042 00       		.byte	0
+ 399 0043 06       		.uleb128 0x6
+ 400 0044 35       		.uleb128 0x35
+ 401 0045 00       		.byte	0
+ 402 0046 49       		.uleb128 0x49
+ 403 0047 13       		.uleb128 0x13
+ 404 0048 00       		.byte	0
+ 405 0049 00       		.byte	0
+ 406 004a 07       		.uleb128 0x7
+ 407 004b 2E       		.uleb128 0x2e
+ 408 004c 01       		.byte	0x1
+ 409 004d 3F       		.uleb128 0x3f
+ 410 004e 19       		.uleb128 0x19
+ 411 004f 03       		.uleb128 0x3
+ 412 0050 0E       		.uleb128 0xe
+ 413 0051 3A       		.uleb128 0x3a
+ 414 0052 0B       		.uleb128 0xb
+ 415 0053 3B       		.uleb128 0x3b
+ 416 0054 0B       		.uleb128 0xb
+ 417 0055 49       		.uleb128 0x49
+ 418 0056 13       		.uleb128 0x13
+ 419 0057 11       		.uleb128 0x11
+ 420 0058 01       		.uleb128 0x1
+ 421 0059 12       		.uleb128 0x12
+ 422 005a 06       		.uleb128 0x6
+ 423 005b 40       		.uleb128 0x40
+ 424 005c 18       		.uleb128 0x18
+ 425 005d 9642     		.uleb128 0x2116
+ 426 005f 19       		.uleb128 0x19
+ 427 0060 01       		.uleb128 0x1
+ 428 0061 13       		.uleb128 0x13
+ 429 0062 00       		.byte	0
+ 430 0063 00       		.byte	0
+ 431 0064 08       		.uleb128 0x8
+ 432 0065 34       		.uleb128 0x34
+ 433 0066 00       		.byte	0
+ 434 0067 03       		.uleb128 0x3
+ 435 0068 0E       		.uleb128 0xe
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 11
+
+
+ 436 0069 3A       		.uleb128 0x3a
+ 437 006a 0B       		.uleb128 0xb
+ 438 006b 3B       		.uleb128 0x3b
+ 439 006c 0B       		.uleb128 0xb
+ 440 006d 49       		.uleb128 0x49
+ 441 006e 13       		.uleb128 0x13
+ 442 006f 02       		.uleb128 0x2
+ 443 0070 18       		.uleb128 0x18
+ 444 0071 00       		.byte	0
+ 445 0072 00       		.byte	0
+ 446 0073 09       		.uleb128 0x9
+ 447 0074 2E       		.uleb128 0x2e
+ 448 0075 01       		.byte	0x1
+ 449 0076 3F       		.uleb128 0x3f
+ 450 0077 19       		.uleb128 0x19
+ 451 0078 03       		.uleb128 0x3
+ 452 0079 0E       		.uleb128 0xe
+ 453 007a 3A       		.uleb128 0x3a
+ 454 007b 0B       		.uleb128 0xb
+ 455 007c 3B       		.uleb128 0x3b
+ 456 007d 0B       		.uleb128 0xb
+ 457 007e 27       		.uleb128 0x27
+ 458 007f 19       		.uleb128 0x19
+ 459 0080 11       		.uleb128 0x11
+ 460 0081 01       		.uleb128 0x1
+ 461 0082 12       		.uleb128 0x12
+ 462 0083 06       		.uleb128 0x6
+ 463 0084 40       		.uleb128 0x40
+ 464 0085 18       		.uleb128 0x18
+ 465 0086 9642     		.uleb128 0x2116
+ 466 0088 19       		.uleb128 0x19
+ 467 0089 01       		.uleb128 0x1
+ 468 008a 13       		.uleb128 0x13
+ 469 008b 00       		.byte	0
+ 470 008c 00       		.byte	0
+ 471 008d 0A       		.uleb128 0xa
+ 472 008e 01       		.uleb128 0x1
+ 473 008f 01       		.byte	0x1
+ 474 0090 49       		.uleb128 0x49
+ 475 0091 13       		.uleb128 0x13
+ 476 0092 01       		.uleb128 0x1
+ 477 0093 13       		.uleb128 0x13
+ 478 0094 00       		.byte	0
+ 479 0095 00       		.byte	0
+ 480 0096 0B       		.uleb128 0xb
+ 481 0097 21       		.uleb128 0x21
+ 482 0098 00       		.byte	0
+ 483 0099 49       		.uleb128 0x49
+ 484 009a 13       		.uleb128 0x13
+ 485 009b 2F       		.uleb128 0x2f
+ 486 009c 0B       		.uleb128 0xb
+ 487 009d 00       		.byte	0
+ 488 009e 00       		.byte	0
+ 489 009f 0C       		.uleb128 0xc
+ 490 00a0 34       		.uleb128 0x34
+ 491 00a1 00       		.byte	0
+ 492 00a2 03       		.uleb128 0x3
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 12
+
+
+ 493 00a3 0E       		.uleb128 0xe
+ 494 00a4 3A       		.uleb128 0x3a
+ 495 00a5 0B       		.uleb128 0xb
+ 496 00a6 3B       		.uleb128 0x3b
+ 497 00a7 05       		.uleb128 0x5
+ 498 00a8 49       		.uleb128 0x49
+ 499 00a9 13       		.uleb128 0x13
+ 500 00aa 3F       		.uleb128 0x3f
+ 501 00ab 19       		.uleb128 0x19
+ 502 00ac 3C       		.uleb128 0x3c
+ 503 00ad 19       		.uleb128 0x19
+ 504 00ae 00       		.byte	0
+ 505 00af 00       		.byte	0
+ 506 00b0 0D       		.uleb128 0xd
+ 507 00b1 34       		.uleb128 0x34
+ 508 00b2 00       		.byte	0
+ 509 00b3 03       		.uleb128 0x3
+ 510 00b4 0E       		.uleb128 0xe
+ 511 00b5 3A       		.uleb128 0x3a
+ 512 00b6 0B       		.uleb128 0xb
+ 513 00b7 3B       		.uleb128 0x3b
+ 514 00b8 0B       		.uleb128 0xb
+ 515 00b9 49       		.uleb128 0x49
+ 516 00ba 13       		.uleb128 0x13
+ 517 00bb 3F       		.uleb128 0x3f
+ 518 00bc 19       		.uleb128 0x19
+ 519 00bd 02       		.uleb128 0x2
+ 520 00be 18       		.uleb128 0x18
+ 521 00bf 00       		.byte	0
+ 522 00c0 00       		.byte	0
+ 523 00c1 00       		.byte	0
+ 524              		.section	.debug_aranges,"",%progbits
+ 525 0000 24000000 		.4byte	0x24
+ 526 0004 0200     		.2byte	0x2
+ 527 0006 00000000 		.4byte	.Ldebug_info0
+ 528 000a 04       		.byte	0x4
+ 529 000b 00       		.byte	0
+ 530 000c 0000     		.2byte	0
+ 531 000e 0000     		.2byte	0
+ 532 0010 00000000 		.4byte	.LFB63
+ 533 0014 32000000 		.4byte	.LFE63-.LFB63
+ 534 0018 00000000 		.4byte	.LFB64
+ 535 001c 60000000 		.4byte	.LFE64-.LFB64
+ 536 0020 00000000 		.4byte	0
+ 537 0024 00000000 		.4byte	0
+ 538              		.section	.debug_ranges,"",%progbits
+ 539              	.Ldebug_ranges0:
+ 540 0000 00000000 		.4byte	.LFB63
+ 541 0004 32000000 		.4byte	.LFE63
+ 542 0008 00000000 		.4byte	.LFB64
+ 543 000c 60000000 		.4byte	.LFE64
+ 544 0010 00000000 		.4byte	0
+ 545 0014 00000000 		.4byte	0
+ 546              		.section	.debug_line,"",%progbits
+ 547              	.Ldebug_line0:
+ 548 0000 84010000 		.section	.debug_str,"MS",%progbits,1
+ 548      02004C01 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 13
+
+
+ 548      00000201 
+ 548      FB0E0D00 
+ 548      01010101 
+ 549              	.LASF23:
+ 550 0000 444D415F 		.ascii	"DMA_1_Chan\000"
+ 550      315F4368 
+ 550      616E00
+ 551              	.LASF29:
+ 552 000b 443A5C70 		.ascii	"D:\\psoc codes\\adc16\\DelSig_16Channel01\\DelSig_1"
+ 552      736F6320 
+ 552      636F6465 
+ 552      735C6164 
+ 552      6331365C 
+ 553 003a 36436861 		.ascii	"6Channel01.cydsn\000"
+ 553      6E6E656C 
+ 553      30312E63 
+ 553      7964736E 
+ 553      00
+ 554              	.LASF9:
+ 555 004b 5F5F696E 		.ascii	"__int32_t\000"
+ 555      7433325F 
+ 555      7400
+ 556              	.LASF21:
+ 557 0055 444D415F 		.ascii	"DMA_Config\000"
+ 557      436F6E66 
+ 557      696700
+ 558              	.LASF14:
+ 559 0060 666C6F61 		.ascii	"float\000"
+ 559      7400
+ 560              	.LASF1:
+ 561 0066 756E7369 		.ascii	"unsigned char\000"
+ 561      676E6564 
+ 561      20636861 
+ 561      7200
+ 562              	.LASF17:
+ 563 0074 72656738 		.ascii	"reg8\000"
+ 563      00
+ 564              	.LASF5:
+ 565 0079 6C6F6E67 		.ascii	"long unsigned int\000"
+ 565      20756E73 
+ 565      69676E65 
+ 565      6420696E 
+ 565      7400
+ 566              	.LASF3:
+ 567 008b 73686F72 		.ascii	"short unsigned int\000"
+ 567      7420756E 
+ 567      7369676E 
+ 567      65642069 
+ 567      6E7400
+ 568              	.LASF24:
+ 569 009e 444D415F 		.ascii	"DMA_1_TD\000"
+ 569      315F5444 
+ 569      00
+ 570              	.LASF25:
+ 571 00a7 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 571      52784275 
+ 571      66666572 
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 14
+
+
+ 571      00
+ 572              	.LASF15:
+ 573 00b4 646F7562 		.ascii	"double\000"
+ 573      6C6500
+ 574              	.LASF20:
+ 575 00bb 6D61696E 		.ascii	"main\000"
+ 575      00
+ 576              	.LASF12:
+ 577 00c0 75696E74 		.ascii	"uint16\000"
+ 577      313600
+ 578              	.LASF13:
+ 579 00c7 75696E74 		.ascii	"uint32\000"
+ 579      333200
+ 580              	.LASF8:
+ 581 00ce 756E7369 		.ascii	"unsigned int\000"
+ 581      676E6564 
+ 581      20696E74 
+ 581      00
+ 582              	.LASF7:
+ 583 00db 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 583      206C6F6E 
+ 583      6720756E 
+ 583      7369676E 
+ 583      65642069 
+ 584              	.LASF26:
+ 585 00f2 72657375 		.ascii	"result\000"
+ 585      6C7400
+ 586              	.LASF10:
+ 587 00f9 696E7433 		.ascii	"int32_t\000"
+ 587      325F7400 
+ 588              	.LASF19:
+ 589 0101 73697A65 		.ascii	"sizetype\000"
+ 589      74797065 
+ 589      00
+ 590              	.LASF6:
+ 591 010a 6C6F6E67 		.ascii	"long long int\000"
+ 591      206C6F6E 
+ 591      6720696E 
+ 591      7400
+ 592              	.LASF28:
+ 593 0118 6D61696E 		.ascii	"main.c\000"
+ 593      2E6300
+ 594              	.LASF16:
+ 595 011f 63686172 		.ascii	"char\000"
+ 595      00
+ 596              	.LASF2:
+ 597 0124 73686F72 		.ascii	"short int\000"
+ 597      7420696E 
+ 597      7400
+ 598              	.LASF11:
+ 599 012e 75696E74 		.ascii	"uint8\000"
+ 599      3800
+ 600              	.LASF4:
+ 601 0134 6C6F6E67 		.ascii	"long int\000"
+ 601      20696E74 
+ 601      00
+ 602              	.LASF18:
+ARM GAS  C:\Users\celua\AppData\Local\Temp\ccIuLXOi.s 			page 15
+
+
+ 603 013d 6C6F6E67 		.ascii	"long double\000"
+ 603      20646F75 
+ 603      626C6500 
+ 604              	.LASF0:
+ 605 0149 7369676E 		.ascii	"signed char\000"
+ 605      65642063 
+ 605      68617200 
+ 606              	.LASF22:
+ 607 0155 63757243 		.ascii	"curChan\000"
+ 607      68616E00 
+ 608              	.LASF27:
+ 609 015d 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 609      43313120 
+ 609      352E342E 
+ 609      31203230 
+ 609      31363036 
+ 610 0190 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 610      20726576 
+ 610      6973696F 
+ 610      6E203233 
+ 610      37373135 
+ 611 01c3 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 611      66756E63 
+ 611      74696F6E 
+ 611      2D736563 
+ 611      74696F6E 
+ 612              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

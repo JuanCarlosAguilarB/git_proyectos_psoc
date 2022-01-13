@@ -1,0 +1,7 @@
+C:\Users\angel\Documents\PSoC Creator\Boton_SoftwareBueno\Boton_Software.cydsn\Boton_Software.cyprj|5de91ab4-19bb-4b05-9f7a-11372fb96aa1
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|a5c70e9f-b3cf-4829-8072-463b9b0aefc2
+C:\Users\angel\Documents\PSoC Creator\4.3\Downloads ( 4.3).cylib\Downloads ( 4.3).cyprj|a0034760-bce5-429c-bf87-a0398f2038c2
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|a9c6a63a-b519-4eb4-8c18-2f4c09390dec
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|50f9e3a1-e4c3-4fb4-93d6-c5200c308a17
+C:\Program Files (x86)\Cypress\PSoC Creator\4.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|8df3214c-54a9-4660-b54a-c729f1bbf020
+C:\Users\angel\Documents\PSoC Creator\Boton_SoftwareBueno\Boton_Software_2.cydsn\Boton_Software_2.cyprj|5c22d853-ab43-4678-8569-5960cd6ca235

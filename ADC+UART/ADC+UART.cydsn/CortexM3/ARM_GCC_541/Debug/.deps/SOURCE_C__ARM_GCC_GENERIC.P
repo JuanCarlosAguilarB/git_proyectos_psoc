@@ -1,0 +1,108 @@
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/CortexM3/ARM_GCC_541/Debug/main.o : D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/A0.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/A0_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_AMux.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_IRQ.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_theACLK.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Boton.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Boton_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CYDMAC.H D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CYFITTER.H D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Clock_1.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CyDmac.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CyFlash.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CyLib.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CySpc.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/LED.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/LED_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Pin_1.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Pin_1_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/UART.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/UART_IntClock.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_DacClk.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_VDAC8.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_Wave1_DMA_dma.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_Wave2_DMA_dma.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cmsis_armcc.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cmsis_gcc.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cm3.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cmFunc.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cmInstr.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cyPm.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cy_em_eeprom.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cydevice.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cydevice_trm.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cydisabledsheets.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cyfitter.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cypins.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cytypes.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/isrEnvio.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/isrRX.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/isr_glitch.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/project.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s0.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s0_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s1.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s1_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s2.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s2_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s3.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s3_aliases.h D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/main.c 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/A0.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/A0_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_AMux.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_IRQ.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/ADC_theACLK.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Boton.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Boton_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CYDMAC.H : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CYFITTER.H : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Clock_1.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/LED.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/LED_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Pin_1.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/Pin_1_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/UART.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/UART_IntClock.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_DacClk.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_VDAC8.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_Wave1_DMA_dma.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/WaveDAC8_1_Wave2_DMA_dma.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cmsis_armcc.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cmsis_gcc.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cm3.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cmFunc.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/core_cmInstr.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cy_em_eeprom.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cydisabledsheets.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/isrEnvio.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/isrRX.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/isr_glitch.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/project.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s0.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s0_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s1.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s1_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s2.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s2_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s3.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/Generated_Source/PSoC5/s3_aliases.h : 
+
+D:/psoc\ codes/ADC+UART/ADC+UART.cydsn/main.c : 
+
