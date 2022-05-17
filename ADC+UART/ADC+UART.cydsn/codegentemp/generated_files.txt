@@ -44,24 +44,6 @@
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\LED_aliases.h" value="HEADER;;;;;LED" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\LED.c" value="SOURCE_C;CortexM3;;;;LED" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\LED.h" value="HEADER;;;;;LED" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1.h" value="HEADER;;;;;WaveDAC8_1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_PM.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\Pin_1_aliases.h" value="HEADER;;;;;Pin_1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\Pin_1.c" value="SOURCE_C;CortexM3;;;;Pin_1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\Pin_1.h" value="HEADER;;;;;Pin_1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s0_aliases.h" value="HEADER;;;;;s0" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s0.c" value="SOURCE_C;CortexM3;;;;s0" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s0.h" value="HEADER;;;;;s0" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s1_aliases.h" value="HEADER;;;;;s1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s1.c" value="SOURCE_C;CortexM3;;;;s1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s1.h" value="HEADER;;;;;s1" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s2_aliases.h" value="HEADER;;;;;s2" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s2.c" value="SOURCE_C;CortexM3;;;;s2" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s2.h" value="HEADER;;;;;s2" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s3_aliases.h" value="HEADER;;;;;s3" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s3.c" value="SOURCE_C;CortexM3;;;;s3" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\s3.h" value="HEADER;;;;;s3" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\ADC_AMux.c" value="SOURCE_C;CortexM3;;;;ADC_AMux" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\ADC_AMux.h" value="HEADER;;;;;ADC_AMux" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\ADC_Ext_CP_Clk.c" value="SOURCE_C;CortexM3;;;;ADC_Ext_CP_Clk" />
@@ -72,15 +54,6 @@
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\ADC_theACLK.h" value="HEADER;;;;;ADC_theACLK" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\UART_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_IntClock" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\UART_IntClock.h" value="HEADER;;;;;UART_IntClock" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_DacClk.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1_DacClk" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_DacClk.h" value="HEADER;;;;;WaveDAC8_1_DacClk" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_Wave1_DMA_dma.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1_Wave1_DMA" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_Wave1_DMA_dma.h" value="HEADER;;;;;WaveDAC8_1_Wave1_DMA" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_Wave2_DMA_dma.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1_Wave2_DMA" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_Wave2_DMA_dma.h" value="HEADER;;;;;WaveDAC8_1_Wave2_DMA" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_VDAC8.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1_VDAC8" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_VDAC8.h" value="HEADER;;;;;WaveDAC8_1_VDAC8" />
-  <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\WaveDAC8_1_VDAC8_PM.c" value="SOURCE_C;CortexM3;;;;WaveDAC8_1_VDAC8" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\Cm3RealView.scat" value="LINKER_SCRIPT;;;fdb8e1ae-f83a-46cf-9446-1d703716f38a;;cy_boot" />
   <file name="D:\psoc codes\ADC+UART\ADC+UART.cydsn\codegentemp\Cm3Start.c" value="SOURCE_C;CortexM3;;;;cy_boot" />

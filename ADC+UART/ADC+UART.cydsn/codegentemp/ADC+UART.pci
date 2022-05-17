@@ -1,5 +1,5 @@
 # ADC+UART
-# 2022-01-03 01:23:41Z
+# 2021-12-23 02:27:22Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -12,10 +12,4 @@ set_io "Rx_1(0)" iocell 12 6
 set_io "Tx_1(0)" iocell 12 7
 set_io "Boton(0)" iocell 2 2
 set_io "LED(0)" iocell 2 1
-set_io "Pin_1(0)" iocell 3 2
-set_io "s0(0)" iocell 3 3
-set_io "s1(0)" iocell 3 4
-set_io "s2(0)" iocell 3 5
-set_io "s3(0)" iocell 3 6
 set_location "\ADC:DSM\" dsmodcell -1 -1 0
-set_location "\WaveDAC8_1:VDAC8:viDAC8\" vidaccell -1 -1 3

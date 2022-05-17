@@ -126,33 +126,6 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Boton_aliases.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Boton.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Boton.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\Pin_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_DacClk.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_DacClk.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_Wave1_DMA_dma.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_Wave1_DMA_dma.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_Wave2_DMA_dma.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_Wave2_DMA_dma.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_VDAC8.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_VDAC8.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\WaveDAC8_1_VDAC8_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s0_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s0.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s0.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s3_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s3.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\s3.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="D:\psoc codes\ADC+UART\ADC+UART.cydsn\Export\ARM_GCC_Generic">

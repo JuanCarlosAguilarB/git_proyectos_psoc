@@ -1,42 +1,30 @@
-
-
-
+/* ========================================
+ *
+ * Copyright YOUR COMPANY, THE YEAR
+ * All Rights Reserved
+ * UNPUBLISHED, LICENSED SOFTWARE.
+ *
+ * CONFIDENTIAL AND PROPRIETARY INFORMATION
+ * WHICH IS THE PROPERTY OF your company.
+ *
+ * ========================================
+*/
 #include "project.h"
 #include <stdio.h>
- //#include <s0.h>
+
 volatile int32 time=0;
 float32 VoltsADC[3];
 char str[12],str2[12];
 char recibir;
+
 int canal=0,cont=1;;
 
-
-
-void pines(int a);
-
 CY_ISR(Enviar)
-{   
-    
-   sprintf(str2,"%ld \n  ",(ADC_GetResult32()));
-   UART_PutString(str2); 
-   //ADC_Stop(); 
-
-//if(cont==0){
-   //  s0_Write(1);
- //   }
-   // if(cont==1){
-     //s0_Write(0); 
-     //}
-    //if(cont==1){cont=0; UART_PutString("\n"); } else{ cont++;}
+{
     //sprintf(str2," %.9f \n  ",ADC_CountsTo_Volts(ADC_GetResult32()));
-   
-//ADC_StartConvert();
-    
-//    AMux_FastSelect(cont);
-  //  ADC_Start();
-    //ADC_StartConvert();    
-    
-    
+   sprintf(str2," %ld \n  ",(ADC_GetResult32()));
+        UART_PutString(str2);
+        
         
 }
 
@@ -73,14 +61,12 @@ CY_ISR_PROTO(cambio);
 
 
 
-
 int main(void)
 {
-    
-    CyGlobalIntEnable;
-    isr_glitch_StartEx(cambio);    
-    WaveDAC8_1_Start();
-    
+    CyGlobalIntEnable; 
+isr_glitch_StartEx(cambio);    
+
+    //AMux_Start();
     
     
     UART_Start();
@@ -118,32 +104,3 @@ int main(void)
 }
 
 /* [] END OF FILE */
-
-
-void pines(int a){
-
-switch (a){
-
-    case 1:
-    s0_Write(0);
-    s1_Write(0);
-    s2_Write(0);
-    s3_Write(0);
-    break;
-    
-    case 2:
-    s0_Write(1);
-    s1_Write(0);
-    s2_Write(0);
-    s3_Write(0);
-    
-    
-    break;
-
-
-}
-    
-
-}
-
-
