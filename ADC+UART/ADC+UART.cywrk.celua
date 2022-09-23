@@ -208,14 +208,17 @@
 </userData>
 </CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
 <Unloaded />
-<OpenDocs />
+<OpenDocs>
+<name v=".\ADC+UART.cydsn\main.c" />
+<name v=".\ADC+UART.cydsn\TopDesign\TopDesign.cysch" />
+</OpenDocs>
 <OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
 
   Actipro Docking/MDI for WinForms
   Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
   http://www.actiprosoftware.com
 
---><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical" /><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Vertical"><TabbedMdiContainer Size="873, 473" SelectedTabbedMdiWindow="3c8d068e-c0df-49ea-9085-a6c03658f9f2"><DocumentWindow Key="D:\psoc codes\ADC+UART\ADC+UART.cydsn\main.c" Guid="05233eab-e98f-461d-bd7e-a2675cd2b988" /><DocumentWindow Key="D:\psoc codes\ADC+UART\ADC+UART.cydsn\TopDesign\TopDesign.cysch" Guid="3c8d068e-c0df-49ea-9085-a6c03658f9f2" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
 <config v="" />
 <AutoUpdate v="true" />
 </CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
